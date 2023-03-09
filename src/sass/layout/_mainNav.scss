@@ -1,0 +1,50 @@
+.main-nav {
+  background-color: $color-gray-900;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+  z-index: 100;
+  font-size: 1.8rem;
+
+  &__header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__list {
+    display: flex;
+    gap: 2rem;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  &__list a {
+    text-decoration: none;
+    color: $color-primary-600;
+  }
+
+  &__list a:hover,
+  &__list a.active {
+    font-weight: bolder;
+    color: $color-primary-900;
+  }
+
+  &__feature {
+    color: #fff;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border-color: #212529;
+    border: transparent;
+  }
+
+  &__feature.button {
+    color: $color-primary-600;
+  }
+  &__feature :hover {
+    font-weight: bolder;
+    color: $color-primary-900;
+  }
+}

@@ -1,0 +1,8 @@
+section#page-content {
+  margin-top: 60px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid green;
+}

@@ -1,0 +1,35 @@
+.heading-1 {
+  font-size: 4rem;
+}
+
+.heading-2 {
+  font-size: 3rem;
+}
+
+.heading-3 {
+  font-size: 2rem;
+}
+
+.text-1 {
+  font-size: 2rem;
+}
+
+.text-2 {
+  font-size: 1.5rem;
+}
+
+.text-3 {
+  font-size: 1.2rem;
+}
+
+.restaurant {
+  &__menu {
+    color: $color-restaurant;
+    text-transform: uppercase;
+  }
+
+  &__category {
+    text-transform: uppercase;
+    color: $color-restaurant-light;
+  }
+}
