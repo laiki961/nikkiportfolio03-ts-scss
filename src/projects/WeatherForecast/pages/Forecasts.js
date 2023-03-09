@@ -12,6 +12,7 @@ const Forecasts = () => {
   useEffect(() => {}, [forecasts]);
 
   let content = <Loading />;
+  console.log(`isLoading: ${isLoading}`);
   if (forecasts.length > 0) {
     content = (
       <div id={classes["forecast-container"]}>

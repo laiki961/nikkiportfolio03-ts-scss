@@ -1,16 +1,16 @@
 .weather-forecast-day {
-  padding: 1rem;
-  width: fit-content;
-  display: inline-block;
+    padding: 1rem;
+    width: fit-content;
+    display: inline-block;
 }
 
 .weather-icon {
-  text-align: center;
-  border-color: transparent;
-  background-color: transparent;
+    text-align: center;
+    border-color: transparent;
+    background-color: transparent;
 }
 
 .weather-icon:hover {
-  background: #fffdfd;
-  border-radius: 0.5em;
+    background: #fffdfd;
+    border-radius: 0.5em;
 }

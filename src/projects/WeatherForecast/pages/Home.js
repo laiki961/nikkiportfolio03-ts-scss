@@ -4,7 +4,7 @@ import Search from "../components/Search";
 const Home = () => {
   return (
     <section className={classes["open-weather"]}>
-      <div className={classes["open-weather-container"]}>
+      <div className={classes.main}>
         <>
           <p className={classes.title}>Enter a City and State</p>
           <Search />

@@ -5,7 +5,8 @@
 }
 
 #forecast-container {
-  background-color: var(--color-primary-500);
+  background-color: #ffd37c;
+  font-size: 2rem;
   border-radius: 1rem;
   padding: 1rem;
   margin: 0;

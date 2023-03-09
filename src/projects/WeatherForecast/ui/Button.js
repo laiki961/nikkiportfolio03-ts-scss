@@ -2,7 +2,7 @@ import classes from "./Button.module.css";
 
 const Button = (props) => {
   return (
-    <div className={classes["button-clearfix"]}>
+    <div className={classes.clearfix}>
       <button
         className={classes.button}
         type={props.type || "button"}

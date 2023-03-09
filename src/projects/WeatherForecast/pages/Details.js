@@ -1,4 +1,4 @@
-import Card from "../../../Layouts/components/Card/Card";
+import Card from "../../../components/Card/Card";
 import classes from "./Details.module.css";
 
 const Details = (props) => {

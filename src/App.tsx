@@ -6,8 +6,9 @@ import { LandingPage } from "./components/LandingPage/LandingPage";
 import ErrorPage from "./components/Error/Error";
 
 import WeatherRootLayout from "./projects/WeatherForecast/pages/Root";
-import Forecasts from "./projects/WeatherForecast/pages/Forecasts";
 import WeatherHome from "./projects/WeatherForecast/pages/Home";
+import Forecasts from "./projects/WeatherForecast/pages/Forecasts";
+
 import Restaurant from "./projects/Restaurant/Restaurant";
 
 const router = createBrowserRouter([
