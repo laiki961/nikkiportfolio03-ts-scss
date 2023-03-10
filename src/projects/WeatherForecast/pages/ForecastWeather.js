@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./ForecastWeather.module.css";
-import WeatherDetailsModal from "./ui/Modal";
+import WeatherDetailsModal from "./DetailsModal";
 
 const ForcastWeather = (props) => {
   const [showDetails, setShowDetails] = useState(false);

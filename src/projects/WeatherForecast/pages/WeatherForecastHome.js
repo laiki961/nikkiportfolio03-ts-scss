@@ -1,4 +1,4 @@
-import classes from "./Home.module.css";
+import classes from "./WeatherForecastHome.module.css";
 import Search from "../components/Search";
 
 const Home = () => {

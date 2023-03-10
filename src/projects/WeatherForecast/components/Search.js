@@ -4,7 +4,7 @@ import useInput from "../../../hooks/use-input";
 import WeatherContext from "../store/weather-context";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-import classes from "./Search.module.css";
+import "../../../App.scss";
 
 const Search = ({ className }) => {
   const { onFetch, error } = useContext(WeatherContext);
@@ -45,13 +45,11 @@ const Search = ({ className }) => {
   let errorText = "";
   if (className !== "navbar") {
     if (cityHasError) {
-      errorText = (
-        <p className={classes["error-text"]}>City must not be empty.</p>
-      );
+      errorText = <p className='error-text'>City must not be empty.</p>;
     }
     if (error) {
       errorText = (
-        <p className={classes["error-text"]}>
+        <p className='error-text'>
           {error} <br />
           Please enter a valid city.
         </p>
@@ -61,7 +59,7 @@ const Search = ({ className }) => {
 
   return (
     <form
-      className={`${classes.search} ${className} ${cityInputClasses} `}
+      className={`search ${className} ${cityInputClasses} `}
       onSubmit={submitHandler}
     >
       <Input

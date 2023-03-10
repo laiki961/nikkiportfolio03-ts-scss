@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import Card from "../../../components/Card/Card";
-import classes from "./Modal.module.css";
+import classes from "./DetailsModal.module.css";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.onClose}></div>;

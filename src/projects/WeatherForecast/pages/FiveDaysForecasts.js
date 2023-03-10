@@ -1,5 +1,5 @@
-import classes from "./Forecasts.module.css";
-import ForecastWeather from "../ForecastWeather";
+import classes from "./FiveDaysForecasts.module.css";
+import ForecastWeather from "./ForecastWeather";
 import WeatherContext from "../store/weather-context";
 import Loading from "../../../components/Loading/Loading";
 import { useContext, useEffect } from "react";
