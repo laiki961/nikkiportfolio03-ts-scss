@@ -26,6 +26,12 @@ export const Heros = () => {
                 tristique dolor augue ut mauris. Quisque at varius mauris, vitae
                 maximus velit. Donec in aliquam.
               </p>
+              <div className='label__container'>
+                <span className='label'>JavaScript</span>
+                <span className='label'>React</span>
+                <span className='label'>HTML</span>
+                <span className='label'>SCSS</span>
+              </div>
               <Link className='btn btn-dark btn-lg' to='/weather'>
                 Check it out
               </Link>
@@ -91,8 +97,7 @@ export const Heros = () => {
             <div className='col-image-weather'></div>
             <div className='mt-2'>
               <h1 className='heading-1'>
-                Weather Forecast{" "}
-                <i className='text-tertiary'>by Open Weather</i>
+                Weather Forecast <i className='text-3'>by Open Weather</i>
               </h1>
               <p className='lead text-1'>
                 Try to check in daily as our collection is always changing! We
@@ -101,6 +106,12 @@ export const Heros = () => {
                 book selection and our books are always going to be our top
                 priority.
               </p>
+              <div className='label__container'>
+                <span className='label'>JavaScript</span>
+                <span className='label'>React</span>
+                <span className='label'>HTML</span>
+                <span className='label'>SCSS</span>
+              </div>
               <Link className='btn btn-dark btn-md' to='/weather'>
                 Check it out
               </Link>

@@ -1,2 +1,19 @@
 .label {
+  &__container {
+    display: flexbox;
+    margin: 1rem auto;
+  }
+
+  background-color: $color-gray-200;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 2rem;
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
 }
