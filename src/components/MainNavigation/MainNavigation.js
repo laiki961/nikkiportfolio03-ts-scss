@@ -1,4 +1,3 @@
-import "../../App.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import Loading from "../Loading/Loading";
@@ -32,7 +31,7 @@ function MainNavigation() {
 
   return (
     <nav id='main-nav' className='main-nav'>
-      <header className='main-nav__header container-sm'>
+      <header className='main-nav__header container-xxl'>
         <ul className='main-nav__list'>
           <li>
             <NavLink

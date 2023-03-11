@@ -1,14 +1,13 @@
-.brand-1 {
-  font-size: 4rem;
-  color: $color-white;
-}
-
 .heading {
   &-1 {
     font-size: 4rem;
   }
   &-2 {
     font-size: 3rem;
+    margin: 2rem;
+    &--up {
+      text-transform: uppercase;
+    }
   }
   &-3 {
     font-size: 2rem;
@@ -24,6 +23,9 @@
   }
   &-3 {
     font-size: 1.2rem;
+    &--cap {
+      text-transform: capitalize;
+    }
   }
 }
 

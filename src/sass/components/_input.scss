@@ -1,11 +1,15 @@
 ////////////////////////////////////////////
 /// WEATHER INPUT
 .control {
-  margin: 1rem 0.5rem;
+  margin: 2rem 0.5rem;
   display: inline-block;
   align-items: stretch;
   flex-direction: column;
   font-size: 2rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 3.5rem;
+  }
 
   & input {
     display: inline-block;

@@ -1,7 +1,6 @@
 // import { useOktaAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
 // import classes from "../LandingPage.module.css";
-import "../../../App.scss";
 
 export const Heros = () => {
   //   const { authState } = useOktaAuth();

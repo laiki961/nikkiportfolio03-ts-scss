@@ -1,5 +1,3 @@
-//import "../../App.scss";
-
 const Restaurant = () => {
   return (
     <div className='restaurant container-sm'>

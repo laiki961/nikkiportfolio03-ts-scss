@@ -1,12 +1,11 @@
-import classes from "./WeatherForecastHome.module.css";
 import Search from "../components/Search";
 
 const Home = () => {
   return (
-    <section className={classes["open-weather"]}>
-      <div className={classes.main}>
+    <section className='weather__open-weather'>
+      <div className='weather__main'>
         <>
-          <p className={classes.title}>Enter a City and State</p>
+          <p className='weather__title'>Enter a City and State</p>
           <Search />
         </>
       </div>
