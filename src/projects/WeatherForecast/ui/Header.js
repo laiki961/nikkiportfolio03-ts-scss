@@ -9,7 +9,7 @@ const Header = React.forwardRef((props, ref) => {
         <Link to='/weather'>
           <h1 className='weather__brand'>My Weather App</h1>
         </Link>
-        <Search className='navbar weather__search' />
+        <Search className='navbar' />
       </header>
     </Fragment>
   );

@@ -1,11 +1,10 @@
-import "./Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className='site-footer'>
+    <footer className='footer'>
       <div className='container'>
         <div className='row'>
           <div className='col-sm-12 col-md-6'>
@@ -21,7 +20,7 @@ function Footer() {
 
           <div className='col-xs-6 col-md-3'>
             <h6>Quick Links</h6>
-            <ul className='footer-links'>
+            <ul className='footer__links'>
               <li>
                 <Link to='/'>Projects</Link>
                 <br />
@@ -39,12 +38,12 @@ function Footer() {
       <div className='container'>
         <div className='row'>
           <div className='col-md-8 col-sm-6 col-xs-12'>
-            <p className='copyright-text'>
+            <p className='footer__copyright-text'>
               Copyright @ 2023 All Rights Reserved by Nikki.
             </p>
           </div>
           <div className='col-md-4 col-sm-6 col-xs-12'>
-            <ul className='social-icons'>
+            <ul className='footer__social-icons'>
               <li>
                 <a
                   className='linkedin'
