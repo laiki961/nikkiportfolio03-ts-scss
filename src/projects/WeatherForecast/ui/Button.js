@@ -1,5 +1,3 @@
-import "../../../App.scss";
-
 const Button = (props) => {
   return (
     <div className='clearfix'>

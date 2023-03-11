@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Search from "../components/Search";
-import "../../../App.scss";
 
 const Header = React.forwardRef((props, ref) => {
   return (

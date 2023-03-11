@@ -1,6 +1,3 @@
-// import classes from "./PageContent.module.css";
-import "../../App.scss";
-
 function PageContent({ title, children }) {
   return (
     <section id='page-content'>

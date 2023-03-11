@@ -4,7 +4,6 @@ import useInput from "../../../hooks/use-input";
 import WeatherContext from "../store/weather-context";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
-import "../../../App.scss";
 
 const Search = ({ className }) => {
   const { onFetch, error } = useContext(WeatherContext);

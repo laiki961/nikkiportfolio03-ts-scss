@@ -1,4 +1,3 @@
-import "../../App.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import Loading from "../Loading/Loading";
