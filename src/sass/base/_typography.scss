@@ -9,6 +9,10 @@
   }
   &-2 {
     font-size: 3rem;
+    margin: 2rem;
+    &--cap {
+      text-transform: uppercase;
+    }
   }
   &-3 {
     font-size: 2rem;

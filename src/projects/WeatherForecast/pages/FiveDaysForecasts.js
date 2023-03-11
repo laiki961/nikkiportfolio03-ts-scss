@@ -1,5 +1,4 @@
-import classes from "./FiveDaysForecasts.module.css";
-import ForecastWeather from "./ForecastWeather";
+import ForecastDetails from "./ForecastDetails";
 import WeatherContext from "../store/weather-context";
 import Loading from "../../../components/Loading/Loading";
 import { useContext, useEffect } from "react";
@@ -15,13 +14,13 @@ const Forecasts = () => {
   console.log(`isLoading: ${isLoading}`);
   if (forecasts.length > 0) {
     content = (
-      <div id={classes["forecast-container"]}>
-        <div className={classes["forecast-city"]}>
+      <div className='weather__forecast-container'>
+        <div className='weather__forecast-city'>
           {forecasts[0].city}, {forecasts[0].country}
         </div>
-        <div className={classes["weather-forecast-5days"]}>
+        <div className='weather__forecast-5days'>
           {forecasts[1].map((forecast) => (
-            <ForecastWeather
+            <ForecastDetails
               key={forecast.id}
               city={forecasts[0].city}
               country={forecasts[0].country}
@@ -35,7 +34,7 @@ const Forecasts = () => {
     );
   }
   return (
-    <section id={classes.forecasts}>
+    <section className='weather__forecasts'>
       {error ? navigate("/weather") : isLoading ? <Loading /> : content}
     </section>
   );

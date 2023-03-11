@@ -1,0 +1,74 @@
+.weather {
+  // HOME
+  &__open-weather {
+    background-color: rgb(240, 196, 116);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  &__main {
+    text-align: center;
+    padding: 10px;
+    height: 200px;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__title {
+    font-size: 30px;
+    color: white;
+  }
+
+  // FORECAST DETAILS
+  &__forecast-day {
+    padding: 1rem;
+    width: fit-content;
+    display: inline-block;
+
+    :hover {
+      background: #fffdfd;
+      border-radius: 0.5em;
+    }
+  }
+
+  &__icon {
+    text-align: center;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  // FIVE DAYS FORECASTS
+  &__forecasts {
+    background-color: #fbc14d;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  &__forecast-container {
+    background-color: #ffd37c;
+    font-size: $default-font-size;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  &__forecast-city {
+    text-align: center;
+    padding-bottom: 2rem;
+    display: block;
+    font-size: 30px;
+    color: black;
+  }
+
+  &__forecast-5days {
+    text-align: center;
+  }
+}
