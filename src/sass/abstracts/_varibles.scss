@@ -29,3 +29,12 @@ $color-restaurant-light: #b1d8b7;
 
 //FONTS
 $default-font-size: 1.6rem;
+$font-primary: "Nunito", sans-serif;
+$font-display: "Josefin Sans", sans-serif;
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px;
+$bp-smallest: 25em; // 400px;

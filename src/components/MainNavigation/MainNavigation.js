@@ -31,7 +31,7 @@ function MainNavigation() {
 
   return (
     <nav id='main-nav' className='main-nav'>
-      <header className='main-nav__header container-sm'>
+      <header className='main-nav__header container-xxl'>
         <ul className='main-nav__list'>
           <li>
             <NavLink

@@ -71,4 +71,23 @@
   &__forecast-5days {
     text-align: center;
   }
+
+  // DETAILS MODAL
+  &__modal {
+    position: fixed;
+    width: 50%;
+    z-index: 100;
+    overflow: hidden;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__details-modal {
+    text-align: center;
+  }
+
+  &__details {
+    font-size: 1.5rem;
+  }
 }
