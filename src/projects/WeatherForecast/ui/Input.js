@@ -1,13 +1,9 @@
 import React from "react";
-import classes from "./Input.module.css";
+import "../../../App.scss";
 
 const Input = React.forwardRef((props, ref) => {
   return (
-    <div
-      className={`${classes.control} ${
-        props.isValid === false ? classes.invalid : ""
-      }`}
-    >
+    <div className={`control ${props.isValid === false ? "invalid" : ""}`}>
       <input
         type={props.type}
         id={props.id}

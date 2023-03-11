@@ -1,10 +1,10 @@
-import classes from "./Button.module.css";
+import "../../../App.scss";
 
 const Button = (props) => {
   return (
-    <div className={classes.clearfix}>
+    <div className='clearfix'>
       <button
-        className={classes.button}
+        className='button weather__button'
         type={props.type || "button"}
         onClick={props.onClick}
       >
