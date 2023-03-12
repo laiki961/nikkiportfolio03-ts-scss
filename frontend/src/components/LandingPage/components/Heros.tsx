@@ -14,7 +14,7 @@ export const Heros = () => {
             className='col-4 col-md-4 container d-flex 
                         justify-content-center align-items-center'
           >
-            <div className='ml-2'>
+            <div className='ml-2 u-margin-tb-sm'>
               <h1 className='heading-1'>
                 Weather Forecast <i className='text-3'>by Open Weather</i>
               </h1>
