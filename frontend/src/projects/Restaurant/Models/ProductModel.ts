@@ -1,7 +1,7 @@
 class ProductModel {
   id: number;
   name: string;
-  ingredients: string[];
+  description: string;
   category: string;
   img?: string;
   price: number;
@@ -9,14 +9,14 @@ class ProductModel {
   constructor(
     id: number,
     name: string,
-    ingredients: string[],
+    description: string,
     category: string,
     img: string,
     price: number
   ) {
     this.id = id;
     this.name = name;
-    this.ingredients = ingredients;
+    this.description = description;
     this.category = category;
     this.img = img;
     this.price = price;

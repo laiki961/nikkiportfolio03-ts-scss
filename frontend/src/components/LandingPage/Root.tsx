@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/Footer";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
-function RootLayout() {
+const RootLayout: React.FC = () => {
   const navigate = useNavigate();
 
   const customAuthHandler = () => {
@@ -32,6 +32,6 @@ function RootLayout() {
       <Footer />
     </Security>
   );
-}
+};
 
 export default RootLayout;

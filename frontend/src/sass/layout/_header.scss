@@ -1,3 +1,5 @@
+/////////////////////////////////////////
+/// WEATHER FORECAST
 .weather {
   &__header {
     position: relative;
@@ -56,5 +58,31 @@
     @media only screen and (max-width: $bp-smallest) {
       visibility: hidden;
     }
+  }
+}
+
+///////////////////////////////////////////////
+/// RESTAURANT
+.restaurant-nav {
+  background-color: $color-restaurant;
+  font-size: $default-font-size;
+
+  &__brand-link {
+    font-family: "Dancing Script", cursive;
+    padding: 0 1vw;
+    color: white;
+    font-size: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 2rem;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  &__list a:hover,
+  &__list a.active {
+    color: $color-primary-900;
   }
 }
