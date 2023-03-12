@@ -176,7 +176,7 @@ export const Loans = () => {
           </>
         ) : (
           <>
-            <h3 className='mt-3'>Currently no loans</h3>
+            <h3 className='text-1 u-margin-tb-sm'>Currently no loans</h3>
             <Link className='btn btn-secondary' to={`/library/search`}>
               Search for a new book
             </Link>

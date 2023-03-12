@@ -130,7 +130,7 @@ export const HistoryPage = () => {
         </>
       ) : (
         <>
-          <h3 className='mt-3'>Currently no history: </h3>
+          <h3 className='text-1 u-margin-tb-sm'>Currently no history</h3>
           <Link className='btn btn-primary' to={"search"}>
             Search for new book
           </Link>

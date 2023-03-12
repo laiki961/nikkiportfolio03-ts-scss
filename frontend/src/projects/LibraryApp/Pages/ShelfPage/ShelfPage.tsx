@@ -19,7 +19,7 @@ export const ShelfPage = () => {
           <div className='nav nav-tabs' id='nav-tab' role='tablist'>
             <button
               onClick={() => setHistoryClick(false)}
-              className='nav-link active'
+              className='nav-link active text-2'
               id='nav-loans-tab'
               data-bs-toggle='tab'
               data-bs-target='#nav-loans'
@@ -32,7 +32,7 @@ export const ShelfPage = () => {
             </button>
             <button
               onClick={() => setHistoryClick(true)}
-              className='nav-link'
+              className='nav-link text-2'
               id='nav-history-tab'
               data-bs-toggle='tab'
               data-bs-target='#nav-history'

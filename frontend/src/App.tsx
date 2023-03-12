@@ -13,8 +13,6 @@ import WeatherRootLayout from "./projects/WeatherForecast/pages/Root";
 import WeatherHome from "./projects/WeatherForecast/pages/WeatherForecastHome";
 import Forecasts from "./projects/WeatherForecast/pages/FiveDaysForecasts";
 
-// import Restaurant from "./projects/Restaurant/Restaurant";
-
 import LibraryRootLayout from "./projects/LibraryApp/Pages/Root";
 import LibraryHomePage from "./projects/LibraryApp/Pages/LibraryHomePage/HomePage";
 import { SearchBooksPage } from "./projects/LibraryApp/Pages/SearchBooksPage/SearchBooksPage";
@@ -23,6 +21,9 @@ import { ReviewListPage } from "./projects/LibraryApp/Pages/BookCheckoutPage/Rev
 import { ShelfPage } from "./projects/LibraryApp/Pages/ShelfPage/ShelfPage";
 import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesPage";
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
+
+import RestaurantRootLayout from "./projects/Restaurant/Pages/Root";
+import RestaurantHomePage from "./projects/Restaurant/Pages/RestaurantHomePage";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,20 @@ const router = createBrowserRouter([
             path: "/library/admin",
             element: <ManageLibraryPage />,
           },
+        ],
+      },
+      {
+        path: "restaurant",
+        element: <RestaurantRootLayout />,
+        children: [
+          {
+            index: true,
+            element: <RestaurantHomePage />,
+          },
+          // {
+          //   path: "/restaurant/:productId",
+          //   element: <DetailsPage />,
+          // },
         ],
       },
     ],

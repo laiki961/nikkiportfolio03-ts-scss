@@ -11,8 +11,8 @@ const WeatherDetailsModalOverlay = (props) => {
     <Card className='weather__modal'>
       <section className='weather__details-modal'>
         <div>
-          <h3 className='heading-2'>
-            <span className='heading-2--up'>
+          <h3 className='heading-2 u-margin-tb-sm'>
+            <span className='heading-2--up '>
               {props.city}, {props.country}
             </span>
           </h3>

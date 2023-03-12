@@ -154,27 +154,27 @@ export const SearchBooksPage = () => {
                   aria-labelledby='dropdownMeunButton1'
                 >
                   <li onClick={() => categoryField("All")}>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item text-3' href='#'>
                       All
                     </a>
                   </li>
                   <li onClick={() => categoryField("FE")}>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item text-3' href='#'>
                       Front End
                     </a>
                   </li>
                   <li onClick={() => categoryField("BE")}>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item text-3' href='#'>
                       Back End
                     </a>
                   </li>
                   <li onClick={() => categoryField("Data")}>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item text-3' href='#'>
                       Data
                     </a>
                   </li>
                   <li onClick={() => categoryField("DevOps")}>
-                    <a className='dropdown-item' href='#'>
+                    <a className='dropdown-item text-3' href='#'>
                       DevOps
                     </a>
                   </li>
