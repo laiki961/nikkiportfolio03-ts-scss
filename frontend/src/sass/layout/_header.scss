@@ -1,0 +1,88 @@
+/////////////////////////////////////////
+/// WEATHER FORECAST
+.weather {
+  &__header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8rem;
+    background-color: orange;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 2rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 0;
+    }
+  }
+
+  &__brand {
+    font-size: 4rem;
+    color: $color-white;
+
+    @media only screen and (max-width: $bp-medium) {
+      min-width: max-content;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      min-width: max-content;
+      padding: 0rem 2rem;
+      font-size: 3.5rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      min-width: max-content;
+      padding: 0rem 2rem;
+      font-size: 3rem;
+    }
+  }
+
+  &__search {
+    @media only screen and (max-width: $bp-medium) {
+      visibility: hidden;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      visibility: hidden;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      visibility: hidden;
+    }
+  }
+}
+
+///////////////////////////////////////////////
+/// RESTAURANT
+.restaurant-nav {
+  background-color: $color-restaurant;
+  font-size: $default-font-size;
+
+  &__brand-link {
+    font-family: "Dancing Script", cursive;
+    padding: 0 1vw;
+    color: white;
+    font-size: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 2rem;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  &__list a:hover,
+  &__list a.active {
+    color: $color-primary-900;
+  }
+}

@@ -1,0 +1,103 @@
+////////////////////////////////
+/// RESTAURANT CARD
+.restaurant {
+  &__product-card {
+    border: 0.2rem solid $color-gray-300;
+    padding: 0.5rem;
+    background-color: $color-gray-300;
+
+    border-radius: 20px;
+    min-height: 20rem; // minmax(20rem, max-content);
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(20rem, min-content)
+      [product-detail-start] minmax(20rem, 1fr)
+      [product-detail-end] minmax(15rem, min-content) [full-end];
+  }
+
+  &__product-img-box {
+    background: transparent;
+    display: flex;
+    & > * {
+      border-radius: 1rem;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__product-detail {
+    border: 0.5rem solid $color-gray-300;
+    background-color: $color-gray-200;
+    display: inline-block;
+    margin-left: 2rem;
+
+    & > * {
+      display: block; // turns all spans to block
+    }
+    & > .product-name {
+      font-size: xx-large;
+    }
+
+    & > .product-ingredients {
+      font-size: xx-large;
+    }
+    & > .product-price {
+      font-size: xx-large;
+    }
+  }
+
+  &__cta {
+    padding: 50% 0; // center the entire element
+    background-color: $color-gray-200;
+    display: inline-block;
+    margin-left: 2rem;
+  }
+
+  &__quantity-control {
+    text-align: center;
+  }
+
+  &__quantity-control-button {
+    background-color: $color-restaurant-light;
+    margin: 0.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 30%;
+
+    font-size: $default-font-size;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: translateY(-1px);
+      background-color: $color-restaurant-button-hover;
+    }
+  }
+
+  &__cta-input {
+    font-size: $default-font-size;
+    width: 3rem;
+    height: 2rem;
+  }
+
+  &__cta-button {
+    background-color: $color-restaurant-dark;
+    color: $color-white;
+    font-weight: 600;
+
+    //center the button
+    display: block;
+    margin: 0 auto;
+
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem 1rem;
+
+    // display: flex;
+    // justify-content: right;
+    // text-align: right;
+  }
+}
