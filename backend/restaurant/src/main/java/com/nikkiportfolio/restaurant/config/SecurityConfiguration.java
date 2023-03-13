@@ -16,7 +16,7 @@ public class SecurityConfiguration {
         http.csrf().disable();
 
         // Protect endpoints at /api/<type>/secure
-//        http.authorizeRequests(configurer -> configurer.antMatchers("restaurant/api/**")
+//        http.authorizeRequests(configurer -> configurer.antMatchers("restaurant/api/admin/secure/**")
 //                        .authenticated())
 //                .oauth2ResourceServer()
 //                .jwt();

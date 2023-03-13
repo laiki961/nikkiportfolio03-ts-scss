@@ -1,12 +1,14 @@
 package com.nikkiportfolio.restaurant.domain.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="product")
 @Data
+@NoArgsConstructor
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +21,11 @@ public class ProductEntity {
     @Column (name = "category")
     private String category;
 
-    @Column (name="ingredients")
-    private String ingredients;
+    @Column (name="description")
+    private String description;
 
     @Column (name = "price")
     private double price;
-
-    @Column (name="totalQuantity")
-    private int totalQuantity;
-
-    @Column (name = "quantityAvailable")
-    private int quantityAvailable;
 
     @Override
     public String toString() {
@@ -37,10 +33,18 @@ public class ProductEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
-                ", ingredients='" + ingredients + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
-                ", totalQuantity=" + totalQuantity +
-                ", quantityAvailable=" + quantityAvailable +
                 '}';
     }
+
+    public ProductEntity(Long id, String name, String category, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+    }
+
+
 }

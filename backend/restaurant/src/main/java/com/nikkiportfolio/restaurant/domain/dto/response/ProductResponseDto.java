@@ -8,17 +8,17 @@ public class ProductResponseDto {
     private Long id;
     private String name;
     private String category;
+    private String description;
     private double price;
-    private int totalQuantity;
-    private int quantityAvailable;
+
+
 
     public ProductResponseDto (Product product){
         this.id = product.getId();
         this.name = product.getName();
         this.category = product.getCategory();
+        this.description = product.getDescription();
         this.price = product.getPrice();
-        this.totalQuantity = product.getTotalQuantity();
-        this.quantityAvailable = product.getQuantityAvailable();
     }
 
     @Override
@@ -27,9 +27,8 @@ public class ProductResponseDto {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
-                ", totalQuantity=" + totalQuantity +
-                ", quantityAvailable=" + quantityAvailable +
                 '}';
     }
 
