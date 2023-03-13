@@ -12,7 +12,7 @@ export const Carousel = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const baseUrl: string = "http://localhost:8080/library/api/books";
+      const baseUrl: string = `${process.env.REACT_APP_LIBRARY_API}/books`;
       const url: string = `${baseUrl}?page=0&size=9`;
 
       const response = await fetch(url);
@@ -51,7 +51,7 @@ export const Carousel = () => {
 
   if (httpError) {
     return (
-      <div className='container m-5'>
+      <div className='container m-5 text-2'>
         <p>{httpError}</p>
       </div>
     );
