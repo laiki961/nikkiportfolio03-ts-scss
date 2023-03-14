@@ -4,10 +4,13 @@ section#page-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid green;
 }
 
 .page-content {
-  font-size: 1rem;
+  font-size: $default-font-lg;
   text-align: center;
+
+  & > h1 {
+    font-size: 4rem;
+  }
 }

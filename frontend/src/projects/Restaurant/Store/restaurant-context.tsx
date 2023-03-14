@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import useHttp from "../../../hooks/use-http";
-import ProductModel from "../Models/ProductModel";
+import ProductModel from "../models/MealModel";
 
 type RestaurantContextObj = {
   products: ProductModel[];

@@ -3,7 +3,7 @@ function PageContent({ title, children }) {
     <section id='page-content'>
       <div className='page-content'>
         <h1>{title}</h1>
-        {children}
+        <p>{children}</p>
       </div>
     </section>
   );

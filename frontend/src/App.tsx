@@ -22,8 +22,10 @@ import { ShelfPage } from "./projects/LibraryApp/Pages/ShelfPage/ShelfPage";
 import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesPage";
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
-import RestaurantRootLayout from "./projects/Restaurant/Pages/Root";
-import RestaurantHomePage from "./projects/Restaurant/Pages/RestaurantHomePage";
+import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
+import RestaurantHomePage, {
+  loader as productsLoader,
+} from "./projects/Restaurant/pages/Menu/RestaurantHomePage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,7 @@ const router = createBrowserRouter([
       {
         path: "library",
         element: <LibraryRootLayout />,
+        errorElement: <ErrorPage />,
         children: [
           { index: true, element: <LibraryHomePage /> },
           { path: "/library/search", element: <SearchBooksPage /> },
@@ -82,10 +85,12 @@ const router = createBrowserRouter([
       {
         path: "restaurant",
         element: <RestaurantRootLayout />,
+        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
             element: <RestaurantHomePage />,
+            loader: productsLoader,
           },
           // {
           //   path: "/restaurant/:productId",

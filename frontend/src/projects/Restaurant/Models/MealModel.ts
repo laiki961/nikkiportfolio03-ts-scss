@@ -1,4 +1,4 @@
-class ProductModel {
+class MealModel {
   id: number;
   name: string;
   description: string;
@@ -23,4 +23,4 @@ class ProductModel {
   }
 }
 
-export default ProductModel;
+export default MealModel;
