@@ -99,4 +99,11 @@
     // grid-row: 1 / span 2;
     // transform: translateY(-1rem);
   }
+
+  &__badge {
+    background-color: $color-restaurant-dark;
+    border-radius: 30px;
+    padding: 0.15rem 1.25rem;
+    color: $color-white;
+  }
 }

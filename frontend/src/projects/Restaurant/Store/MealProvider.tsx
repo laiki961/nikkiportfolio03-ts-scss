@@ -44,10 +44,10 @@ export const MealsProvider = ({ children }: ChildrenType): ReactElement => {
 
   return (
     <MealsContext.Provider value={{ productEntities }}>
-      {children}
-      {/* {!isLoading && children}
+      {/* {children} */}
+      {!isLoading && children}
       {isLoading && <Loading />}
-      {error && <p>error</p>} */}
+      {error && <p>error</p>}
     </MealsContext.Provider>
   );
 };

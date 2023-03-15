@@ -23,7 +23,7 @@ import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesP
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
-import { Home as RestaurantHomePage } from "./projects/Restaurant/pages/Home"; //loader as productsLoader,
+import { MealList } from "./projects/Restaurant/pages/Menu/MealList"; //loader as productsLoader,
 import { Cart as RestaurantCartPage } from "./projects/Restaurant/pages/Cart/Cart";
 import { Order as RestaurantOrderPage } from "./projects/Restaurant/pages/Order/Order";
 
@@ -89,13 +89,8 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <RestaurantHomePage />,
-            //loader: productsLoader,
+            element: <MealList />,
           },
-          // {
-          //   path: "/restaurant/:productId",
-          //   element: <DetailsPage />,
-          // },
           {
             path: "/restaurant/cart",
             element: <RestaurantCartPage />,

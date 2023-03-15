@@ -1,15 +1,10 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
-// import { Order } from "../../models/CartModel";
-import { RootState } from "../../store/index";
+import useCart from "../../../../hooks/useCart";
 
 function RestaurantNavbar() {
-  // const dispatch = useDispatch();
-  // const cartQuantity = useSelector<RootState, Order[]>(
-  //   (state) => state.totalQuantity
-  // );
+  const { totalItems } = useCart();
 
   return (
     <Navbar id='restaurant-nav' className='restaurant-nav'>
@@ -37,10 +32,14 @@ function RestaurantNavbar() {
           <li>
             <NavLink
               to='/restaurant/cart'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
+              className={({ isActive }) =>
+                isActive
+                  ? "active restaurant-nav__cart"
+                  : "restaurant-nav__cart"
+              }
             >
               <img src={icon} className='restaurant-nav__icon'></img>
-              <span>3</span>
+              <span className='restaurant-nav__badge'>{totalItems}</span>
             </NavLink>
           </li>
         </ul>
