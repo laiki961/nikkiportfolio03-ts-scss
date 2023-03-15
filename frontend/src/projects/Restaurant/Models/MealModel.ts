@@ -1,8 +1,8 @@
 class MealModel {
   id: number;
   name: string;
-  description: string;
   category: string;
+  description: string;
   img?: string;
   price: number;
 

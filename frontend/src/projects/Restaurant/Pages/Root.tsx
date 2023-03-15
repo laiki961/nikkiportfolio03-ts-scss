@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom";
 import RestaurantNavbar from "../components /Navbar/Navbar";
-import { RestaurantContextProvider } from "../store/restaurant-context";
 import { Provider } from "react-redux";
 import store from "../store/index";
+import { MealsProvider } from "../store/MealProvider";
 
 function RestaurantRootLayout() {
   return (
     <div className='restaurant__bg-image'>
-      <Provider store={store}>
-        <RestaurantContextProvider>
+      <MealsProvider>
+        <Provider store={store}>
           <RestaurantNavbar />
           <Outlet />
-        </RestaurantContextProvider>
-      </Provider>
+        </Provider>
+      </MealsProvider>
     </div>
   );
 }

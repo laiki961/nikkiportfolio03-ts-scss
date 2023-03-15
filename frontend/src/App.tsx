@@ -23,9 +23,9 @@ import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesP
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
-import RestaurantHomePage, {
-  loader as productsLoader,
-} from "./projects/Restaurant/pages/Menu/RestaurantHomePage";
+import { Home as RestaurantHomePage } from "./projects/Restaurant/pages/Home"; //loader as productsLoader,
+import { Cart as RestaurantCartPage } from "./projects/Restaurant/pages/Cart/Cart";
+import { Order as RestaurantOrderPage } from "./projects/Restaurant/pages/Order/Order";
 
 const router = createBrowserRouter([
   {
@@ -90,12 +90,20 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <RestaurantHomePage />,
-            loader: productsLoader,
+            //loader: productsLoader,
           },
           // {
           //   path: "/restaurant/:productId",
           //   element: <DetailsPage />,
           // },
+          {
+            path: "/restaurant/cart",
+            element: <RestaurantCartPage />,
+          },
+          {
+            path: "/restaurant/order",
+            element: <RestaurantOrderPage />,
+          },
         ],
       },
     ],

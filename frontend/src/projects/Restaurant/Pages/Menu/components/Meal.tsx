@@ -1,22 +1,21 @@
 import { Card } from "react-bootstrap";
-import MealModel from "../../../models/MealModel";
-
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "../../../store/counter";
+import MealModel from "../../../models/MealModel";
+import store from "../../../store";
+import MealForm from "./MealForm";
+import { RootState } from "../../../store/index";
+// import { Order } from "../../../models/CartModel";
+import { cartActions } from "../../../store/cart-slice";
 
 const Meal: React.FC<{ meal: MealModel }> = (props) => {
   const dispatch = useDispatch();
+  const { id, name, price } = props.meal;
 
-  const counter = useSelector((state: any) => state.counter.counter);
+  // const meals = useSelector<RootState, Order[]>((state) => state.items);
 
-  const incrementHandler = () => {
-    dispatch(counterActions.increment());
+  const addToCartHandler = () => {
+    dispatch(cartActions.addItemToCart({ id, name, price }));
   };
-  const decrementHandler = () => {
-    dispatch(counterActions.decrement());
-  };
-
-  const addToCartHandler = () => {};
 
   return (
     <Card className='restaurant__meal-card u-margin-tb-sm'>
@@ -32,32 +31,7 @@ const Meal: React.FC<{ meal: MealModel }> = (props) => {
         <i className='meal-description'>{props.meal.description}</i>
         <div className='meal-price'>CAD ${props.meal.price}</div>
       </div>
-      <div className='restaurant__cta'>
-        <div className='restaurant__quantity-control'>
-          <button
-            className='restaurant__quantity-control-button'
-            onClick={decrementHandler}
-          >
-            -
-          </button>
-          <input
-            id='meal-quantity'
-            type='number'
-            value={counter}
-            disabled
-            className='restaurant__cta-input'
-          ></input>
-          <button
-            className='restaurant__quantity-control-button'
-            onClick={incrementHandler}
-          >
-            +
-          </button>
-        </div>
-        <button className='restaurant__cta-button' onClick={addToCartHandler}>
-          Add
-        </button>
-      </div>
+      <MealForm key={props.meal.id} onAddToCart={addToCartHandler} />
     </Card>
   );
 };
