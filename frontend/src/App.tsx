@@ -22,8 +22,10 @@ import { ShelfPage } from "./projects/LibraryApp/Pages/ShelfPage/ShelfPage";
 import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesPage";
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
-import RestaurantRootLayout from "./projects/Restaurant/Pages/Root";
-import RestaurantHomePage from "./projects/Restaurant/Pages/RestaurantHomePage";
+import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
+import { MealList } from "./projects/Restaurant/pages/Menu/MealList"; //loader as productsLoader,
+import { Cart as RestaurantCartPage } from "./projects/Restaurant/pages/Cart/Cart";
+import { Order as RestaurantOrderPage } from "./projects/Restaurant/pages/Order/Order";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,7 @@ const router = createBrowserRouter([
       {
         path: "library",
         element: <LibraryRootLayout />,
+        errorElement: <ErrorPage />,
         children: [
           { index: true, element: <LibraryHomePage /> },
           { path: "/library/search", element: <SearchBooksPage /> },
@@ -82,15 +85,20 @@ const router = createBrowserRouter([
       {
         path: "restaurant",
         element: <RestaurantRootLayout />,
+        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
-            element: <RestaurantHomePage />,
+            element: <MealList />,
           },
-          // {
-          //   path: "/restaurant/:productId",
-          //   element: <DetailsPage />,
-          // },
+          {
+            path: "/restaurant/cart",
+            element: <RestaurantCartPage />,
+          },
+          {
+            path: "/restaurant/order",
+            element: <RestaurantOrderPage />,
+          },
         ],
       },
     ],

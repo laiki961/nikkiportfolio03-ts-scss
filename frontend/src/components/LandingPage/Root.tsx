@@ -5,6 +5,7 @@ import MainNavigation from "../MainNavigation/MainNavigation";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import { oktaConfig } from "../../lib/config";
 import Footer from "../../components/Footer/Footer";
+import Loading from "../Loading/Loading";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 

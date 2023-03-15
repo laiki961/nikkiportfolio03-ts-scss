@@ -1,0 +1,23 @@
+//////////////////////////////////
+///Restaurant Cart
+.restaurant-cart {
+  &__title {
+    font-size: $default-font-xl;
+    margin: 2rem 0;
+  }
+
+  &__list {
+    min-height: 60vh;
+  }
+
+  &__summary {
+    & > * {
+      float: right;
+      clear: right;
+      padding: 1rem;
+    }
+    & > button {
+      margin-top: 1rem;
+    }
+  }
+}

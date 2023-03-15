@@ -79,10 +79,31 @@
     gap: 2rem;
     padding-left: 0;
     margin-bottom: 0;
+    align-items: center;
+
+    & > li > a {
+      color: $color-restaurant-dark;
+    }
   }
 
   &__list a:hover,
   &__list a.active {
     color: $color-primary-900;
+  }
+
+  &__icon {
+    filter: invert(22%) sepia(6%) saturate(4966%) hue-rotate(112deg)
+      brightness(92%) contrast(83%);
+    width: 3.5rem;
+    height: 3.5rem;
+    // grid-row: 1 / span 2;
+    // transform: translateY(-1rem);
+  }
+
+  &__badge {
+    background-color: $color-restaurant-dark;
+    border-radius: 30px;
+    padding: 0.15rem 1.25rem;
+    color: $color-white;
   }
 }

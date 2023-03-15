@@ -1,7 +1,11 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
+import useCart from "../../../../hooks/useCart";
 
 function RestaurantNavbar() {
+  const { totalItems } = useCart();
+
   return (
     <Navbar id='restaurant-nav' className='restaurant-nav'>
       <Container>
@@ -23,6 +27,19 @@ function RestaurantNavbar() {
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Reservation
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/restaurant/cart'
+              className={({ isActive }) =>
+                isActive
+                  ? "active restaurant-nav__cart"
+                  : "restaurant-nav__cart"
+              }
+            >
+              <img src={icon} className='restaurant-nav__icon'></img>
+              <span className='restaurant-nav__badge'>{totalItems}</span>
             </NavLink>
           </li>
         </ul>

@@ -1,14 +1,17 @@
 import { Outlet } from "react-router-dom";
-import RestaurantNavbar from "../Components/Navbar/Navbar";
-import { RestaurantContextProvider } from "../Store/restaurant-context";
+import RestaurantNavbar from "../components /Navbar/Navbar";
+import { MealsProvider } from "../store/MealProvider";
+import { CartProvider } from "../store/CartProvider";
 
 function RestaurantRootLayout() {
   return (
     <div className='restaurant__bg-image'>
-      <RestaurantContextProvider>
-        <RestaurantNavbar />
-        <Outlet />
-      </RestaurantContextProvider>
+      <MealsProvider>
+        <CartProvider>
+          <RestaurantNavbar />
+          <Outlet />
+        </CartProvider>
+      </MealsProvider>
     </div>
   );
 }
