@@ -1,6 +1,6 @@
 import Loading from "../../../../components/Loading/Loading";
 import Meal from "./Meal";
-import MealModel from "../../models/MealModel";
+import MealModel from "../../Models/MealModel";
 import useCart from "../../../../hooks/useCart";
 import useMeals from "../../../../hooks/useMeals";
 import { ReactElement } from "react";

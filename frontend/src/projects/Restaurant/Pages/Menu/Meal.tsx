@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
-import MealModel from "../../models/MealModel";
+import MealModel from "../../Models/MealModel";
 import MealForm from "./MealForm";
-import { ReducerActionType, ReducerAction } from "../../store/CartProvider";
+import { ReducerActionType, ReducerAction } from "../../Store/CartProvider";
 
 type PropsType = {
   key: number;

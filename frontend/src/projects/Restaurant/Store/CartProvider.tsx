@@ -1,5 +1,5 @@
 import { createContext, ReactElement, useMemo, useReducer } from "react";
-import { CartItemModel } from "../models/CartModel";
+import { CartItemModel } from "../Models/CartModel";
 
 type CartStateType = {
   cart: CartItemModel[];
