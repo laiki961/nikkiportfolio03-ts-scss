@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import RestaurantNavbar from "../components /Navbar/Navbar";
-import { MealsProvider } from "../store/MealProvider";
-import { CartProvider } from "../store/CartProvider";
+import { MealsProvider } from "../Store/MealProvider";
+import { CartProvider } from "../Store/CartProvider";
 
 function RestaurantRootLayout() {
   return (
