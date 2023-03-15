@@ -3,11 +3,16 @@ import { useRef, useState } from "react";
 const MealForm: React.FC<{
   key: number;
   onAddToCart: () => void;
+  inCart: boolean;
   //   onIncrement: () => {};
   //   onDecrement: () => {};
 }> = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef<HTMLInputElement>(null);
+
+  const itemInCart = props.inCart ? (
+    <p className='restaurant-card__noti'>Item in Cart 🛒</p>
+  ) : null;
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,16 +28,15 @@ const MealForm: React.FC<{
       setAmountIsValid(false);
       return;
     }
-
     props.onAddToCart();
   };
 
   return (
-    <form className='restaurant__cta' onSubmit={submitHandler}>
-      <div className='restaurant__quantity-control'>
+    <form className='restaurant-card__cta' onSubmit={submitHandler}>
+      <div className='restaurant-card__quantity-control'>
         <button
           type='button'
-          className='restaurant__quantity-control-button'
+          className='restaurant-card__quantity-control-button'
           //   onClick={decrementHandler.bind(null, props.key)}
         >
           -
@@ -42,20 +46,21 @@ const MealForm: React.FC<{
           ref={amountInputRef}
           type='number'
           defaultValue='1'
-          className='restaurant__cta-input'
+          className='restaurant-card__cta-input'
         ></input>
         <button
           type='button'
-          className='restaurant__quantity-control-button'
+          className='restaurant-card__quantity-control-button'
           //onClick={incrementHandler.bind(null, props.key)}
         >
           +
         </button>
       </div>
-      <button type='submit' className='restaurant__cta-button'>
+      <button type='submit' className='restaurant-card__cta-button'>
         Add
       </button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
+      {itemInCart}
     </form>
   );
 };
