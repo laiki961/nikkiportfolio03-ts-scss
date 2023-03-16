@@ -24,4 +24,10 @@ public class AdminApi {
         Product product = adminService.postProduct(productRequestDto.toProduct());
         return new ProductResponseDto(product);
     }
+//
+//    @DeleteMapping("/remove-product")
+//    public ProductResponseDto removeProduct(@PathVariable(required= true) String id){
+//        Product product = adminService.postProduct(productRequestDto.toProduct());
+//        return new ProductResponseDto(product);
+
 }
