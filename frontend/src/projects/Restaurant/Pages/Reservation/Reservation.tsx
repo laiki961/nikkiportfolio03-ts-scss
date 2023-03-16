@@ -1,9 +1,7 @@
-const Reservation = () => {
+export const Reservation = () => {
   return (
-    <div>
+    <section className='min-vh-100 container'>
       <div>Reservation</div>
-    </div>
+    </section>
   );
 };
-
-export default Reservation;

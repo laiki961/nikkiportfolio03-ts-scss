@@ -28,7 +28,7 @@ function Footer() {
                 <br />
                 <Link to='/library'>Library</Link>
                 <br />
-                <Link to='/ecommerce'>eCommerce</Link>
+                <Link to='/restaurant'>Restaurant</Link>
               </li>
             </ul>
           </div>

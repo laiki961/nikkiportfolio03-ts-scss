@@ -3,7 +3,6 @@ export type CartItemModel = {
   name: string;
   price: number;
   amount: number;
-  subTotal: number;
 };
 
 class CartModel {

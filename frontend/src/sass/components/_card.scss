@@ -7,7 +7,6 @@
   margin: 1.5rem 0;
 
   border-radius: 20px;
-  min-height: 20rem; // minmax(20rem, max-content);
   display: grid;
   grid-template-columns:
     [full-start img-start] minmax(25rem, min-content)
@@ -16,7 +15,9 @@
 
   &__img-box {
     background: transparent;
-    display: flex;
+    margin: auto;
+    display: block;
+
     & > * {
       border-radius: 1rem;
       width: 100%;
@@ -25,7 +26,8 @@
   }
 
   &__detail {
-    border: 0.5rem solid $color-gray-300;
+    // border: 0.5rem solid $color-gray-300;
+    margin: 2rem 0;
     margin-left: 2rem;
     font-family: "Open Sans", sans-serif;
     display: grid;
@@ -45,9 +47,13 @@
   }
 
   &__cta {
-    padding: 50% 0; // center the entire element
+    // padding: 50% 0; // center the entire element
     display: inline-block;
     margin-left: 2rem;
+  }
+  &__cta-meun {
+    padding: 40% 0;
+    text-align: center;
   }
 
   &__quantity-control {
@@ -89,6 +95,7 @@
     //center the button
     display: block;
     margin: 0 auto;
+    margin-top: 1rem;
 
     border: none;
     border-radius: 10%;
@@ -99,5 +106,42 @@
     font-size: $default-font-size;
     text-align: center;
     margin-top: 1rem;
+  }
+}
+
+.restaurant-cart {
+  &__card {
+    background-color: gold;
+    display: grid;
+    grid-template-columns:
+      [list-start item-start] minmax(10rem, 1fr)
+      [item-end price-start] minmax(15rem, min-content)
+      [price-end amount-start] minmax(15rem, min-content)
+      [amount-end subtotal-start] minmax(15rem, min-content)
+      [subtotal-end list-end];
+  }
+
+  &__img-box {
+    background-color: beige;
+  }
+
+  &__detail {
+    background-color: blueviolet;
+  }
+
+  // &__meal-name {
+  //   background-color: burlywood;
+  // }
+
+  &__meal-price {
+    background-color: cadetblue;
+  }
+
+  &__quantity {
+    background-color: chocolate;
+  }
+
+  &__subTotal {
+    background-color: darkcyan;
   }
 }

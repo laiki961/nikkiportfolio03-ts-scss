@@ -26,6 +26,7 @@ import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
 import { MealList } from "./projects/Restaurant/pages/Menu/MealList"; //loader as productsLoader,
 import { Cart as RestaurantCartPage } from "./projects/Restaurant/pages/Cart/Cart";
 import { Order as RestaurantOrderPage } from "./projects/Restaurant/pages/Order/Order";
+import { Reservation as RestaurantReservationPage } from "./projects/Restaurant/pages/Reservation/Reservation";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         element: <LoginWidget config={oktaConfig} />,
       },
       { path: "/callback", element: <LoginCallback /> },
+      {
+        path: "/about-me",
+        element: <LoginWidget config={oktaConfig} />,
+      },
       {
         path: "weather",
         element: <WeatherRootLayout />,
@@ -98,6 +103,10 @@ const router = createBrowserRouter([
           {
             path: "/restaurant/order",
             element: <RestaurantOrderPage />,
+          },
+          {
+            path: "/restaurant/reservation",
+            element: <RestaurantReservationPage />,
           },
         ],
       },

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import QuantityControl from "../../components /QuantityControl/QuantityControl";
 
 const MealForm: React.FC<{
   key: number;
@@ -33,34 +34,14 @@ const MealForm: React.FC<{
 
   return (
     <form className='restaurant-card__cta' onSubmit={submitHandler}>
-      <div className='restaurant-card__quantity-control'>
-        <button
-          type='button'
-          className='restaurant-card__quantity-control-button'
-          //   onClick={decrementHandler.bind(null, props.key)}
-        >
-          -
+      <div className='restaurant-card__cta-meun'>
+        <QuantityControl ref={amountInputRef} className='menu' />
+        <button type='submit' className='restaurant-card__cta-button'>
+          Add
         </button>
-        <input
-          id='meal-quantity'
-          ref={amountInputRef}
-          type='number'
-          defaultValue='1'
-          className='restaurant-card__cta-input'
-        ></input>
-        <button
-          type='button'
-          className='restaurant-card__quantity-control-button'
-          //onClick={incrementHandler.bind(null, props.key)}
-        >
-          +
-        </button>
+        {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
+        {itemInCart}
       </div>
-      <button type='submit' className='restaurant-card__cta-button'>
-        Add
-      </button>
-      {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
-      {itemInCart}
     </form>
   );
 };

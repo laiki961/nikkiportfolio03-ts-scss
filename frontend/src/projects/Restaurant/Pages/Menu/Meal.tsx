@@ -22,7 +22,7 @@ const Meal: React.FC<PropsType> = (props) => {
     // dispatch(cartActions.addItemToCart({ id, name, price }));
     dispatch({
       type: REDUCER_ACTIONS.ADD,
-      payload: { ...meal, amount: 1, subTotal: price },
+      payload: { ...meal, amount: 1 },
     });
   };
 

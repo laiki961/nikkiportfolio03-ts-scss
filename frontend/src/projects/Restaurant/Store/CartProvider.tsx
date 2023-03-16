@@ -40,10 +40,14 @@ const reducer = (
         (item) => item.id === id
       );
       const amount: number = itemExists ? itemExists.amount + 1 : 1;
-      const subTotal: number = itemExists ? itemExists.amount * price : price;
+      if (itemExists) {
+        console.log(itemExists.amount);
+        console.log(price);
+      }
+
       return {
         ...state,
-        cart: [...filteredCart, { id, name, price, amount, subTotal }],
+        cart: [...filteredCart, { id, name, price, amount }],
       };
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
@@ -54,14 +58,16 @@ const reducer = (
       const filteredCart: CartItemModel[] = state.cart.filter(
         (item) => item.id !== id
       );
+
       return { ...state, cart: [...filteredCart] };
     }
+
     case REDUCER_ACTION_TYPE.QUANTITY: {
       if (!action.payload) {
         throw new Error("action.payload missing in QUANTITY action");
       }
 
-      const { id, amount } = action.payload;
+      const { id, price, amount } = action.payload;
 
       const itemExists: CartItemModel | undefined = state.cart.find(
         (item) => item.id === id
@@ -69,6 +75,7 @@ const reducer = (
       if (!itemExists) {
         throw new Error("Item must exist in order to update quantity");
       }
+
       const updatedItem: CartItemModel = { ...itemExists, amount };
 
       const filteredCart: CartItemModel[] = state.cart.filter(

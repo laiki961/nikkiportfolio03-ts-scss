@@ -44,28 +44,38 @@ function MainNavigation() {
           </li>
           <li>
             <NavLink
-              to='/weather'
+              to='/about-me'
               className={({ isActive }) => (isActive ? "active" : undefined)}
+              end
             >
-              Weather Forecast
+              About Me
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to='/library'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
-              Library
-            </NavLink>
+          {/* dropdown button start */}
+          <li className='main-nav__dropdown'>
+            <button className='main-nav__dropdown-button'>Projects</button>
+            <div className='main-nav__dropdown-content'>
+              <NavLink
+                to='/weather'
+                className={({ isActive }) => (isActive ? "active" : undefined)}
+              >
+                Weather Forecast
+              </NavLink>
+              <NavLink
+                to='/library'
+                className={({ isActive }) => (isActive ? "active" : undefined)}
+              >
+                Library
+              </NavLink>
+              <NavLink
+                to='/restaurant'
+                className={({ isActive }) => (isActive ? "active" : undefined)}
+              >
+                Restaurant
+              </NavLink>
+            </div>
           </li>
-          <li>
-            <NavLink
-              to='/restaurant'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
-              Restaurant
-            </NavLink>
-          </li>
+          {/* dropdown button end */}
         </ul>
         <ul className='main-nav__list'>
           {!authState.isAuthenticated ? (

@@ -47,4 +47,39 @@
     font-weight: bolder;
     color: $color-primary-900;
   }
+
+  &__dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__dropdown-button {
+    background-color: inherit;
+    color: $color-primary-600;
+    border: none;
+  }
+
+  &__dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: $color-gray-900;
+    min-width: 20rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    & a {
+      text-decoration: none;
+      color: $color-primary-600;
+      display: block;
+      padding: 0.8rem 1rem;
+    }
+    & a:hover {
+      background-color: $color-gray-600;
+    }
+  }
+  &__dropdown:hover &__dropdown-content {
+    display: block;
+  }
+  &__dropdown:hover &__dropdown-button {
+    background-color: inherit;
+  }
 }
