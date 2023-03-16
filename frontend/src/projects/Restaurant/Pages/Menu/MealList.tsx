@@ -21,6 +21,7 @@ export const MealList: React.FC<{}> = () => {
           dispatch={dispatch}
           REDUCER_ACTIONS={REDUCER_ACTIONS}
           inCart={inCart}
+          className='menu'
         />
       );
     });

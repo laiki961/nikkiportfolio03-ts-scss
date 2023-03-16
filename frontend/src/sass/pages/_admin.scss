@@ -1,0 +1,26 @@
+.restaurant-admin {
+  font-size: $default-font-size;
+
+  // &__meals-list {
+  // }
+
+  &__features {
+    text-align: center;
+    padding: 50% 0;
+  }
+
+  &__features-icon {
+    & > svg {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem;
+    }
+  }
+  &__features-icon > .edit {
+    background-color: $color-primary-500;
+  }
+
+  &__features-icon > .delete {
+    background-color: red;
+  }
+}

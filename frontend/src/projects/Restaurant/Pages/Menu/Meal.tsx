@@ -2,13 +2,18 @@ import { Card } from "react-bootstrap";
 import MealModel from "../../Models/MealModel";
 import MealForm from "./MealForm";
 import { ReducerActionType, ReducerAction } from "../../Store/CartProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+// import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 type PropsType = {
   key: number;
   meal: MealModel;
-  dispatch: React.Dispatch<ReducerAction>;
-  REDUCER_ACTIONS: ReducerActionType;
-  inCart: boolean;
+  dispatch?: React.Dispatch<ReducerAction>;
+  REDUCER_ACTIONS?: ReducerActionType;
+  inCart?: boolean;
+  className: string;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
@@ -19,8 +24,8 @@ const Meal: React.FC<PropsType> = (props) => {
   // console.log(img);
 
   const addToCartHandler = (amount: number) => {
-    dispatch({
-      type: REDUCER_ACTIONS.ADD,
+    dispatch!({
+      type: REDUCER_ACTIONS!.ADD,
       payload: { ...meal, amount: amount },
     });
   };
@@ -45,7 +50,17 @@ const Meal: React.FC<PropsType> = (props) => {
         </div>
         {/* <div className='meal-price'>CAD ${price}</div> */}
       </div>
-      <MealForm key={id} onAddToCart={addToCartHandler} inCart={inCart} />
+      {props.className === "menu" && (
+        <MealForm key={id} onAddToCart={addToCartHandler} inCart={!inCart} />
+      )}
+      {props.className === "admin" && (
+        <div className='restaurant-admin__features'>
+          <div className='restaurant-admin__features-icon '>
+            <FontAwesomeIcon icon={faPenToSquare} className='edit' />
+            <FontAwesomeIcon icon={faTrashCan} className='delete' />
+          </div>
+        </div>
+      )}
     </Card>
   );
 };

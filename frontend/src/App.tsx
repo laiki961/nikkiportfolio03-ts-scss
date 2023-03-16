@@ -24,9 +24,10 @@ import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
 import { MealList } from "./projects/Restaurant/pages/Menu/MealList"; //loader as productsLoader,
-import { Cart as RestaurantCartPage } from "./projects/Restaurant/pages/Cart/Cart";
-import { Order as RestaurantOrderPage } from "./projects/Restaurant/pages/Order/Order";
-import { Reservation as RestaurantReservationPage } from "./projects/Restaurant/pages/Reservation/Reservation";
+import RestaurantCartPage from "./projects/Restaurant/pages/Cart/Cart";
+import RestaurantOrderPage from "./projects/Restaurant/pages/Order/Order";
+import RestaurantReservationPage from "./projects/Restaurant/pages/Reservation/Reservation";
+import RestaurantAdminPage from "./projects/Restaurant/pages/Admin/Admin";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
           {
             path: "/restaurant/reservation",
             element: <RestaurantReservationPage />,
+          },
+          {
+            path: "/restaurant/admin",
+            element: <RestaurantAdminPage />,
           },
         ],
       },

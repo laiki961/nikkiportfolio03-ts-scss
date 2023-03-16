@@ -44,3 +44,10 @@
   color: $color-error-text;
   font-size: 2rem;
 }
+
+.section-title {
+  font-size: $default-font-xl;
+  text-align: center;
+  margin: 1rem 0;
+  font-family: $font-display;
+}
