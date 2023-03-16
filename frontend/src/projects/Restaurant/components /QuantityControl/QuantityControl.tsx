@@ -2,43 +2,48 @@ import React, { ReactNode, useEffect, useState } from "react";
 
 interface Props {
   className: string;
-  onValueChange: (value: number) => void;
+  // onValueChange: (value: number) => void;
+  onDecrement: () => void;
+  onIncrement: () => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  amount: number;
 }
 
 // const QuantityControl = React.forwardRef<HTMLInputElement | null, Props>(
 //   (props, ref) => {
 const QuantityControl: React.FC<Props> = (props) => {
-  const [amount, setAmount] = useState<number>(1);
+  // const [amount, setAmount] = useState<number>(1);
 
-  useEffect(() => {
-    props.onValueChange(amount);
-  }, [amount]);
+  // useEffect(() => {
+  //   props.onValueChange(amount);
+  // }, [amount]);
 
-  const decrementHandler = () => {
-    setAmount(amount - 1);
-  };
-  const incrementHandler = () => {
-    setAmount(amount + 1);
-  };
-  const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+e.target.value);
-  };
+  // const decrementHandler = () => {
+  //   if (amount > 1) {
+  //     setAmount(amount - 1);
+  //   }
+  // };
+  // const incrementHandler = () => {
+  //   setAmount(amount + 1);
+  // };
+  // const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAmount(+e.target.value);
+  // };
 
   return (
     <div className={`restaurant-card__quantity-control ${props.className}`}>
       <button
         type='button'
         className='restaurant-card__quantity-control-button'
-        onClick={decrementHandler}
+        onClick={props.onDecrement}
         //   onClick={decrementHandler.bind(null, props.key)}
       >
         -
       </button>
       <input
         id='meal-quantity'
-        onChange={amountChangeHandler}
-        // ref={ref}
-        value={amount}
+        onChange={props.onInputChange}
+        value={props.amount}
         type='number'
         min='1'
         max='10'
@@ -47,7 +52,7 @@ const QuantityControl: React.FC<Props> = (props) => {
       <button
         type='button'
         className='restaurant-card__quantity-control-button'
-        onClick={incrementHandler}
+        onClick={props.onIncrement}
         //onClick={incrementHandler.bind(null, props.key)}
       >
         +

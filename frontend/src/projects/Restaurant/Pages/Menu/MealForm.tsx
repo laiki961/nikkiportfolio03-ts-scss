@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QuantityControl from "../../components /QuantityControl/QuantityControl";
 
 const MealForm: React.FC<{
@@ -32,13 +32,35 @@ const MealForm: React.FC<{
     setAmount(value);
   };
 
+  ///////////
+
+  useEffect(() => {
+    inputValue(amount);
+  }, [amount]);
+
+  const decrementHandler = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  };
+  const incrementHandler = () => {
+    setAmount(amount + 1);
+  };
+  const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(+e.target.value);
+  };
+
   return (
     <form className='restaurant-card__cta' onSubmit={submitHandler}>
       <div className='restaurant-card__cta-meun'>
         <QuantityControl
-          onValueChange={inputValue}
+          // onValueChange={inputValue}
           // ref={amountInputRef}
           className='menu'
+          onDecrement={decrementHandler}
+          onIncrement={incrementHandler}
+          onInputChange={amountChangeHandler}
+          amount={amount}
         />
         <button type='submit' className='restaurant-card__cta-button'>
           Add

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import QuantityControl from "../../components /QuantityControl/QuantityControl";
 import { CartItemModel } from "../../Models/CartModel";
@@ -11,9 +11,21 @@ type PropsType = {
 };
 
 const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
-  const [amount, setAmount] = useState<number>(1);
+  const [amount, setAmount] = useState<number>(item.amount);
+  const [subTotal, setSubTotal] = useState<number>(item.amount * item.price);
 
-  const subTotal: number = item.amount * item.price;
+  useEffect(() => {
+    inputValue(amount);
+    setSubTotal(amount * item.price);
+    dispatch({
+      type: REDUCER_ACTIONS.QUANTITY,
+      payload: { ...item, amount: amount },
+    });
+  }, [amount]);
+
+  const inputValue = (value: number) => {
+    setAmount(value);
+  };
 
   const maxAmount: number = item.amount > 10 ? 10 : item.amount;
 
@@ -31,8 +43,17 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     });
   };
 
-  const inputValue = (value: number) => {
-    setAmount(value);
+  const decrementHandler = () => {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  };
+  const incrementHandler = () => {
+    // console.log(`clicked: incrementHandler; amount: ${amount}`);
+    setAmount(amount + 1);
+  };
+  const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(+e.target.value);
   };
 
   return (
@@ -56,8 +77,14 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
         }).format(item.price)}
       </div>
       <div className='restaurant-cart__quantity'>
-        Amount: {item.amount}
-        <QuantityControl onValueChange={inputValue} className='cart' />
+        {/* {item.amount} */}
+        <QuantityControl
+          className='cart'
+          onDecrement={decrementHandler}
+          onIncrement={incrementHandler}
+          onInputChange={amountChangeHandler}
+          amount={amount}
+        />
       </div>
       <div className='restaurant-cart__subTotal'>
         {new Intl.NumberFormat("en-US", {
