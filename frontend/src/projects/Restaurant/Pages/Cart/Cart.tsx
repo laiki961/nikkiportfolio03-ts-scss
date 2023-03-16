@@ -60,10 +60,9 @@ export const Cart: React.FC<{}> = () => {
           />
         ))}
       </div>
-
       <div className='restaurant-cart__summary'>
-        <span>Total Item(s): {totalItems}</span>
-        <span>Total Price: {totalPrice}</span>
+        <p>Total Item(s): {totalItems}</p>
+        <p>Total Price: {totalPrice}</p>
         <button
           disabled={isSubmitting || totalItems === 0}
           onClick={onSubmitOrderHandler}

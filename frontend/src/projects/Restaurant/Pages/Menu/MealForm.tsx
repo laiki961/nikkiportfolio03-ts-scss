@@ -3,13 +3,12 @@ import QuantityControl from "../../components /QuantityControl/QuantityControl";
 
 const MealForm: React.FC<{
   key: number;
-  onAddToCart: () => void;
+  onAddToCart: (amount: number) => void;
   inCart: boolean;
-  //   onIncrement: () => {};
-  //   onDecrement: () => {};
 }> = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef<HTMLInputElement>(null);
+  // const amountInputRef = useRef<HTMLInputElement>(null);
+  const [amount, setAmount] = useState<number>(1);
 
   const itemInCart = props.inCart ? (
     <p className='restaurant-card__noti'>Item in Cart 🛒</p>
@@ -18,24 +17,29 @@ const MealForm: React.FC<{
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const enteredAmount: string = amountInputRef.current!.value;
-    const enteredAmountNumber = +enteredAmount;
+    // const enteredAmount: string = amountInputRef.current!.value;
+    // const enteredAmountNumber = +enteredAmount;
 
-    if (
-      enteredAmount.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 5
-    ) {
+    if (amount === 0 || amount < 1 || amount > 5) {
       setAmountIsValid(false);
       return;
     }
-    props.onAddToCart();
+
+    props.onAddToCart(amount);
+  };
+
+  const inputValue = (value: number) => {
+    setAmount(value);
   };
 
   return (
     <form className='restaurant-card__cta' onSubmit={submitHandler}>
       <div className='restaurant-card__cta-meun'>
-        <QuantityControl ref={amountInputRef} className='menu' />
+        <QuantityControl
+          onValueChange={inputValue}
+          // ref={amountInputRef}
+          className='menu'
+        />
         <button type='submit' className='restaurant-card__cta-button'>
           Add
         </button>

@@ -39,7 +39,9 @@ const reducer = (
       const itemExists: CartItemModel | undefined = state.cart.find(
         (item) => item.id === id
       );
-      const amount: number = itemExists ? itemExists.amount + 1 : 1;
+      const amount: number = itemExists
+        ? itemExists.amount + action.payload.amount
+        : action.payload.amount;
       if (itemExists) {
         console.log(itemExists.amount);
         console.log(price);

@@ -1,7 +1,5 @@
-import { ReactElement } from "react";
+import { ChangeEvent, useState } from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import useCart from "../../../../hooks/useCart";
 import QuantityControl from "../../components /QuantityControl/QuantityControl";
 import { CartItemModel } from "../../Models/CartModel";
 import { ReducerAction, ReducerActionType } from "../../Store/CartProvider";
@@ -13,9 +11,29 @@ type PropsType = {
 };
 
 const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
-  const { totalItems, cart } = useCart();
+  const [amount, setAmount] = useState<number>(1);
 
   const subTotal: number = item.amount * item.price;
+
+  const maxAmount: number = item.amount > 10 ? 10 : item.amount;
+
+  const onChangeAmt = (e: ChangeEvent<HTMLButtonElement>) => {
+    dispatch({
+      type: REDUCER_ACTIONS.QUANTITY,
+      payload: { ...item, amount: Number(e.target.value) },
+    });
+  };
+
+  const onRemoveFromCart = () => {
+    dispatch({
+      type: REDUCER_ACTIONS.REMOVE,
+      payload: item,
+    });
+  };
+
+  const inputValue = (value: number) => {
+    setAmount(value);
+  };
 
   return (
     <Card key={item.id} className='restaurant-cart__card '>
@@ -39,7 +57,7 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
       </div>
       <div className='restaurant-cart__quantity'>
         Amount: {item.amount}
-        <QuantityControl className='cart' />
+        <QuantityControl onValueChange={inputValue} className='cart' />
       </div>
       <div className='restaurant-cart__subTotal'>
         {new Intl.NumberFormat("en-US", {
