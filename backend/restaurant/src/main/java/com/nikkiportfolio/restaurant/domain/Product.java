@@ -27,6 +27,9 @@ public class Product {
 
     @Column(name="price")
     private double price;
+//
+//    @Column(name="img")
+//    private Optional<String> img;
 
     public Product(ProductEntity productEntity){
         this.id = productEntity.getId();
@@ -34,5 +37,6 @@ public class Product {
         this.category = productEntity.getCategory();
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
+//        this.img = productEntity.getImg();
     }
 }
