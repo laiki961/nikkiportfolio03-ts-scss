@@ -89,7 +89,7 @@ export const Heros = () => {
                 I built this application to utilize and pratice all the skills
                 that I have leant from the courses that I have taken before.
               </p>
-              <Link className='btn btn-dark btn-lg' to='/ecommerce'>
+              <Link className='btn btn-dark btn-lg' to='/restaurant'>
                 Check it out
               </Link>
               <div className='label__container'>
@@ -153,7 +153,7 @@ export const Heros = () => {
               <Link
                 type='button'
                 className='btn btn-dark btn-md'
-                to='/ecommerce'
+                to='/restaurant'
               >
                 Check it out
               </Link>
@@ -162,7 +162,7 @@ export const Heros = () => {
           <div className='m-2'>
             <div className='col-image-library'></div>
             <div className='mt-2'>
-              <h1 className='heading-1'>eCommerce</h1>
+              <h1 className='heading-1'>Restaurant</h1>
               <p className='lead text-1'>
                 Try to check in daily as our collection is always changing! We
                 work nonstop to provide the most accurate book selection
@@ -170,7 +170,7 @@ export const Heros = () => {
                 book selection and our books are always going to be our top
                 priority.
               </p>
-              <Link className='btn btn-dark btn-md' to='/ecommerce'>
+              <Link className='btn btn-dark btn-md' to='/restaurant'>
                 Check it out
               </Link>
             </div>

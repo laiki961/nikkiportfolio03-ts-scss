@@ -18,11 +18,10 @@ const Meal: React.FC<PropsType> = (props) => {
   // const img: string = new URL(`../../../images/${meal.id}.jpg`, import.meta.url).href;
   // console.log(img);
 
-  const addToCartHandler = () => {
-    // dispatch(cartActions.addItemToCart({ id, name, price }));
+  const addToCartHandler = (amount: number) => {
     dispatch({
       type: REDUCER_ACTIONS.ADD,
-      payload: { ...meal, amount: 1, subTotal: price },
+      payload: { ...meal, amount: amount },
     });
   };
 
