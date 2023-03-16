@@ -1,13 +1,60 @@
 //////////////////////////////////
 ///Restaurant Cart
 .restaurant-cart {
+  &__card {
+    display: grid;
+    grid-template-columns:
+      [list-start item-start] minmax(10rem, 1fr)
+      [item-end price-start] minmax(15rem, min-content)
+      [price-end amount-start] minmax(15rem, min-content)
+      [amount-end subtotal-start] minmax(15rem, min-content)
+      [subtotal-end list-end];
+  }
+
+  &__card.cart-title {
+    border-radius: 1rem;
+    border: 2px solid;
+    padding: 1rem;
+    background-color: $color-restaurant-dark;
+    color: $color-white;
+
+    & > * {
+      text-align: center;
+    }
+  }
+
+  &__price,
+  &__subTotal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__img-box {
+    background-color: beige;
+  }
+
+  &__detail {
+    background-color: blueviolet;
+  }
+
+  // &__meal-name {
+  //   background-color: burlywood;
+  // }
+
   &__title {
     font-size: $default-font-xl;
     margin: 2rem 0;
   }
 
   &__list {
-    min-height: 60vh;
+    // min-height: 60vh;
+    margin-top: 1rem;
+
+    border-radius: 1rem;
+    border: 2px solid;
+    padding: 1rem;
+    background-color: $color-restaurant-light;
   }
 
   &__summary {
@@ -20,4 +67,14 @@
       margin-top: 1rem;
     }
   }
+
+  &__link-second {
+    color: $color-restaurant-dark;
+    transition: all 1s;
+    font-weight: 700;
+    &:hover {
+      color: $color-primary-900;
+    }
+  }
 }
+///////////////////////////////////////////

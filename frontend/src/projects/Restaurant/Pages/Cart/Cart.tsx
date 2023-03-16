@@ -20,7 +20,7 @@ export const Cart: React.FC<{}> = () => {
   };
 
   const listTitle: ReactElement = (
-    <div className='restaurant-cart__card'>
+    <div className='restaurant-cart__card cart-title'>
       <span>Item(s)</span>
       <span>Price</span>
       <span>Amount</span>
@@ -34,7 +34,7 @@ export const Cart: React.FC<{}> = () => {
       <div>
         <p>You have 0 items in cart </p>
         <br />
-        <Link className='btn-second' to='/restaurant'>
+        <Link className='restaurant-cart__link-second' to='/restaurant'>
           Return to the Menu &rarr;
         </Link>
       </div>

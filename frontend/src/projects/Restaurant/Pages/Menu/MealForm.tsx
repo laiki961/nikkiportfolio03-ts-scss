@@ -44,7 +44,9 @@ const MealForm: React.FC<{
     }
   };
   const incrementHandler = () => {
-    setAmount(amount + 1);
+    if (amount < 10) {
+      setAmount(amount + 1);
+    }
   };
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+e.target.value);
