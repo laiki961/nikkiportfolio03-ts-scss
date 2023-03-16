@@ -2,28 +2,51 @@ import { Card } from "react-bootstrap";
 import MealModel from "../../Models/MealModel";
 import MealForm from "./MealForm";
 import { ReducerActionType, ReducerAction } from "../../Store/CartProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../../../../components/Loading/Loading";
+import { ReactElement } from "react";
 
 type PropsType = {
   key: number;
   meal: MealModel;
-  dispatch: React.Dispatch<ReducerAction>;
-  REDUCER_ACTIONS: ReducerActionType;
-  inCart: boolean;
+  dispatch?: React.Dispatch<ReducerAction>;
+  REDUCER_ACTIONS?: ReducerActionType;
+  inCart?: boolean;
+  className: string;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
-  const { meal, dispatch, REDUCER_ACTIONS, inCart } = props;
+  const { meal, dispatch, REDUCER_ACTIONS, inCart, className } = props;
   const { id, name, price, description } = meal;
 
   // const img: string = new URL(`../../../images/${meal.id}.jpg`, import.meta.url).href;
   // console.log(img);
 
   const addToCartHandler = (amount: number) => {
-    dispatch({
-      type: REDUCER_ACTIONS.ADD,
+    dispatch!({
+      type: REDUCER_ACTIONS!.ADD,
       payload: { ...meal, amount: amount },
     });
   };
+
+  let content: ReactElement | ReactElement[] = <Loading />;
+  if (className === "menu" && inCart !== undefined) {
+    content = (
+      <MealForm key={id} onAddToCart={addToCartHandler} inCart={inCart} />
+    );
+  }
+  if (className === "admin") {
+    content = (
+      <div className='restaurant-admin__features'>
+        <div className='restaurant-admin__features-icon '>
+          <FontAwesomeIcon icon={faPenToSquare} className='edit' />
+          <FontAwesomeIcon icon={faTrashCan} className='delete' />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Card className='restaurant-card'>
@@ -45,7 +68,7 @@ const Meal: React.FC<PropsType> = (props) => {
         </div>
         {/* <div className='meal-price'>CAD ${price}</div> */}
       </div>
-      <MealForm key={id} onAddToCart={addToCartHandler} inCart={inCart} />
+      {content}
     </Card>
   );
 };

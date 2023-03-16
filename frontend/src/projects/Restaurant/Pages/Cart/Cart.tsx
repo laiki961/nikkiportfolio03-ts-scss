@@ -5,7 +5,7 @@ import Card from "../../../../components/Card/Card";
 import useCart from "../../../../hooks/useCart";
 import CartItem from "./CartItem";
 
-export const Cart: React.FC<{}> = () => {
+const Cart: React.FC<{}> = () => {
   const [confirm, setConfrim] = useState<boolean>(false);
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export const Cart: React.FC<{}> = () => {
   };
 
   const listTitle: ReactElement = (
-    <div className='restaurant-cart__card'>
+    <div className='restaurant-cart__card cart-title'>
       <span>Item(s)</span>
       <span>Price</span>
       <span>Amount</span>
@@ -34,7 +34,7 @@ export const Cart: React.FC<{}> = () => {
       <div>
         <p>You have 0 items in cart </p>
         <br />
-        <Link className='btn-second' to='/restaurant'>
+        <Link className='restaurant-cart__link-second' to='/restaurant'>
           Return to the Menu &rarr;
         </Link>
       </div>
@@ -74,3 +74,5 @@ export const Cart: React.FC<{}> = () => {
     </section>
   );
 };
+
+export default Cart;

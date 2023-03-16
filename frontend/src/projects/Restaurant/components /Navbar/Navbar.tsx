@@ -2,6 +2,8 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
 import useCart from "../../../../hooks/useCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function RestaurantNavbar() {
   const { totalItems } = useCart();
@@ -23,10 +25,18 @@ function RestaurantNavbar() {
           </li>
           <li>
             <NavLink
-              to='/restaurant/reservation'
+              to='reservation'
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Reservation
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='admin'
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Admin
             </NavLink>
           </li>
           <li>
@@ -38,7 +48,8 @@ function RestaurantNavbar() {
                   : "restaurant-nav__cart"
               }
             >
-              <img src={icon} className='restaurant-nav__icon'></img>
+              <FontAwesomeIcon icon={faCartShopping} />
+              {/* <img src={icon} className='restaurant-nav__icon'></img> */}
               <span className='restaurant-nav__badge'>{totalItems}</span>
             </NavLink>
           </li>

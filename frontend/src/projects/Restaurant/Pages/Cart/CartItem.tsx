@@ -27,8 +27,6 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     setAmount(value);
   };
 
-  const maxAmount: number = item.amount > 10 ? 10 : item.amount;
-
   const onChangeAmt = (e: ChangeEvent<HTMLButtonElement>) => {
     dispatch({
       type: REDUCER_ACTIONS.QUANTITY,
@@ -49,8 +47,9 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     }
   };
   const incrementHandler = () => {
-    // console.log(`clicked: incrementHandler; amount: ${amount}`);
-    setAmount(amount + 1);
+    if (amount < 10) {
+      setAmount(amount + 1);
+    }
   };
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+e.target.value);
@@ -70,7 +69,7 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
           {/* notes */}
         </div>
       </div>
-      <div className='restaurant-cart__meal-price'>
+      <div className='restaurant-cart__price'>
         {new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "CAD",
