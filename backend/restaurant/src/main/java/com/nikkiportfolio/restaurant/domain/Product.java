@@ -1,5 +1,6 @@
 package com.nikkiportfolio.restaurant.domain;
 
+import com.nikkiportfolio.restaurant.domain.dto.request.ProductRequestDto;
 import com.nikkiportfolio.restaurant.domain.entity.ProductEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,12 @@ public class Product {
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
 //        this.img = productEntity.getImg();
+    }
+
+    public Product(ProductRequestDto productRequestDto){
+        this.name = productRequestDto.getName();
+        this.category = productRequestDto.getCategory();
+        this.description = productRequestDto.getDescription();
+        this.price = productRequestDto.getPrice();
     }
 }

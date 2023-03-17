@@ -2,9 +2,7 @@ package com.nikkiportfolio.restaurant.api;
 
 import com.nikkiportfolio.restaurant.domain.Product;
 import com.nikkiportfolio.restaurant.domain.dto.request.ProductRequestDto;
-import com.nikkiportfolio.restaurant.domain.dto.response.ProductResponseDto;
 import com.nikkiportfolio.restaurant.service.AdminService;
-import com.nikkiportfolio.restaurant.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,20 +12,25 @@ import org.springframework.web.bind.annotation.*;
 public class AdminApi {
 
     @Autowired
-    private ProductService productService;
-
-    @Autowired
     private AdminService adminService;
 
+    //TESTED - WORK
     @PostMapping("/add-product")
-    public ProductResponseDto postProduct(@RequestBody ProductRequestDto productRequestDto){
-        Product product = adminService.postProduct(productRequestDto.toProduct());
-        return new ProductResponseDto(product);
+    public void postProduct(@RequestBody ProductRequestDto productRequestDto){
+        adminService.postProduct(productRequestDto.toProduct());
     }
-//
-//    @DeleteMapping("/remove-product")
-//    public ProductResponseDto removeProduct(@PathVariable(required= true) String id){
-//        Product product = adminService.postProduct(productRequestDto.toProduct());
-//        return new ProductResponseDto(product);
 
+    //TESTED - WORK
+    @DeleteMapping("/remove-product")
+    public void removeProduct(@RequestParam(required= true) Long productId) throws Exception{
+        adminService.removeProduct(productId);
+    }
+
+
+    @PutMapping("/update-product")
+    public void updateProduct(@RequestParam(required= true) Long productId,
+                              @RequestBody ProductRequestDto productRequestDto) throws Exception{
+        Product product = new Product(productRequestDto);
+        adminService.updateProduct(productId, product);
+    }
 }
