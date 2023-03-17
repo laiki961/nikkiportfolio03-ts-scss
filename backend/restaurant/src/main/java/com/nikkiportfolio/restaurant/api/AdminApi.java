@@ -26,7 +26,7 @@ public class AdminApi {
         adminService.removeProduct(productId);
     }
 
-
+    //TESTED - WORK
     @PutMapping("/update-product")
     public void updateProduct(@RequestParam(required= true) Long productId,
                               @RequestBody ProductRequestDto productRequestDto) throws Exception{
