@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface ProductRepository extends  JpaRepository<ProductEntity, Long> {
 
+    ProductEntity findFirstById(Long productId);
     //List<ProductEntity> findByCategory(@RequestParam("category") String category);
 //    Page<ProductEntity> findByCategory(@RequestParam("category") String category, Pageable pageable);
 
