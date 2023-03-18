@@ -1,3 +1,11 @@
+export type MealItemModel = {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+};
+
 class MealModel {
   id: number;
   name: string;

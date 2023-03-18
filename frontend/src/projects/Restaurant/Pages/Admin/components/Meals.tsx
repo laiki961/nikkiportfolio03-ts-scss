@@ -7,10 +7,21 @@ import Meal from "../../Menu/Meal";
 const Meals = () => {
   const { productEntities } = useMeals();
 
+  //rerender if deleted a meal / updated
+
+  const removeMealFromMenuHandler = () => {};
+
   let content: ReactElement | ReactElement[] = <Loading />;
   if (productEntities?.length) {
     content = productEntities.map((meal: MealModel) => {
-      return <Meal key={meal.id} meal={meal} className='admin' />;
+      return (
+        <Meal
+          key={meal.id}
+          meal={meal}
+          className='admin'
+          onClickRemove={removeMealFromMenuHandler}
+        />
+      );
     });
   }
 

@@ -20,7 +20,7 @@ const Cart: React.FC<{}> = () => {
   };
 
   const listTitle: ReactElement = (
-    <div className='restaurant-cart__card cart-title'>
+    <div className='restaurant-cart__card cart-title-item'>
       <span>Item(s)</span>
       <span>Price</span>
       <span>Amount</span>

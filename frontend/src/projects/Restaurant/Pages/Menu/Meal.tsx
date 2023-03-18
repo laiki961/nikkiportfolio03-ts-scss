@@ -15,10 +15,12 @@ type PropsType = {
   REDUCER_ACTIONS?: ReducerActionType;
   inCart?: boolean;
   className: string;
+  onClickRemove?: () => void;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
-  const { meal, dispatch, REDUCER_ACTIONS, inCart, className } = props;
+  const { meal, dispatch, REDUCER_ACTIONS, inCart, className, onClickRemove } =
+    props;
   const { id, name, price, description } = meal;
 
   // const img: string = new URL(`../../../images/${meal.id}.jpg`, import.meta.url).href;
@@ -37,12 +39,16 @@ const Meal: React.FC<PropsType> = (props) => {
       <MealForm key={id} onAddToCart={addToCartHandler} inCart={inCart} />
     );
   }
-  if (className === "admin") {
+  if (className === "admin" && onClickRemove !== undefined) {
     content = (
       <div className='restaurant-admin__features'>
         <div className='restaurant-admin__features-icon '>
           <FontAwesomeIcon icon={faPenToSquare} className='edit' />
-          <FontAwesomeIcon icon={faTrashCan} className='delete' />
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className='delete'
+            onClick={onClickRemove}
+          />
         </div>
       </div>
     );
