@@ -20,7 +20,6 @@ export const MealsProvider = ({ children }: ChildrenType): ReactElement => {
   const { isLoading, error, sendRequest: fetchMeals } = useHttp();
 
   useEffect(() => {
-    //Promise<MealModel[]> | Promise<any>
     const tranformMeals = (taskObj: any | Promise<MealModel[]>) => {
       const responseData = taskObj._embedded.productEntities;
       const loadedMeals: MealModel[] = [];
@@ -40,11 +39,10 @@ export const MealsProvider = ({ children }: ChildrenType): ReactElement => {
     const url: string = `${baseUrl}?page=0&size=9`;
 
     fetchMeals({ url: url }, tranformMeals);
-  }, []);
+  }, [fetchMeals]);
 
   return (
     <MealsContext.Provider value={{ productEntities }}>
-      {/* {children} */}
       {!isLoading && children}
       {isLoading && <Loading />}
       {error && <p>error</p>}

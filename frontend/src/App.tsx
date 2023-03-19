@@ -23,11 +23,12 @@ import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesP
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
-import { MealList } from "./projects/Restaurant/pages/Menu/MealList"; //loader as productsLoader,
+import { MenuList } from "./projects/Restaurant/pages/Menu/components/MenuList"; //loader as productsLoader,
 import RestaurantCartPage from "./projects/Restaurant/pages/Cart/Cart";
 import RestaurantOrderPage from "./projects/Restaurant/pages/Order/Order";
 import RestaurantReservationPage from "./projects/Restaurant/pages/Reservation/Reservation";
 import RestaurantAdminPage from "./projects/Restaurant/pages/Admin/Admin";
+import RestaurantMenuPage from "./projects/Restaurant/pages/Menu/Menu";
 
 const router = createBrowserRouter([
   {
@@ -95,7 +96,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <MealList />,
+            element: <RestaurantMenuPage />,
+          },
+          {
+            path: "/restaurant/menu",
+            element: <RestaurantMenuPage />,
           },
           {
             path: "/restaurant/cart",

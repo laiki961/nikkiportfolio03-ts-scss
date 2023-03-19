@@ -3,7 +3,7 @@ import { ReactElement, useState } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import Card from "../../../../components/Card/Card";
 import useCart from "../../../../hooks/useCart";
-import CartItem from "./CartItem";
+import CartItem from "./components/CartItem";
 
 const Cart: React.FC<{}> = () => {
   const [confirm, setConfrim] = useState<boolean>(false);

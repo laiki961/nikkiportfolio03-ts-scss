@@ -17,7 +17,7 @@ function RestaurantNavbar() {
         <ul className='restaurant-nav__list'>
           <li>
             <NavLink
-              to='/restaurant'
+              to='menu'
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Menu
@@ -41,7 +41,7 @@ function RestaurantNavbar() {
           </li>
           <li>
             <NavLink
-              to='/restaurant/cart'
+              to='cart'
               className={({ isActive }) =>
                 isActive
                   ? "active restaurant-nav__cart"
@@ -50,7 +50,7 @@ function RestaurantNavbar() {
             >
               <FontAwesomeIcon icon={faCartShopping} />
               {/* <img src={icon} className='restaurant-nav__icon'></img> */}
-              <span className='restaurant-nav__badge'>{totalItems}</span>
+              <span className={`restaurant-nav__badge`}>{totalItems}</span>
             </NavLink>
           </li>
         </ul>
