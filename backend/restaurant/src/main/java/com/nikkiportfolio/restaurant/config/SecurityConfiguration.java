@@ -16,10 +16,10 @@ public class SecurityConfiguration {
         http.csrf().disable();
 
         // Protect endpoints at /api/<type>/secure
-//        http.authorizeRequests(configurer -> configurer.antMatchers("restaurant/api/admin/secure/**")
-//                        .authenticated())
-//                .oauth2ResourceServer()
-//                .jwt();
+        http.authorizeRequests(configurer -> configurer.antMatchers("restaurant/api/admin/secure/**")
+                        .authenticated())
+                .oauth2ResourceServer()
+                .jwt();
 
         // Add CORS filter to our API endpoints
         http.cors();

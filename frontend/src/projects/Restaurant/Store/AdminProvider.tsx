@@ -108,11 +108,14 @@ export const AdminContext = createContext<UseAdminContextType>(
 type ChildrenType = { children?: ReactElement | ReactElement[] };
 
 export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
+  const [state, dispatch] = useReducer(reducer, initAdminState);
+  const { productEntities } = useMeals();
+
   const baseUrl: string = `${process.env.REACT_APP_RESTAURANT_API}/admin`;
-  const [response, setResponse] = useState<null | Response>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [apiResponse, setApiResponse] = useState<Response | null>(null);
+  const [availableMeals, setAvailableMeals] = useState<MealItemModel[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>();
-  // const { productEntities } = useMeals();
 
   const addMeal = useCallback(async (productReqDto: ProductReqDto) => {
     const addUrl: string = `${baseUrl}/add-product`; // POST
@@ -121,7 +124,7 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
     try {
       const response = await fetch(addUrl, {
         method: "POST",
-        headers: {},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productReqDto),
       });
       if (!response.ok) {
@@ -130,8 +133,9 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
         );
       }
       const data = await response.json();
+      setApiResponse(data);
       ///convert data?
-      setResponse(data);
+      setAvailableMeals(productEntities);
     } catch (error) {
       // if (typeof error === "string") {
       //   // setError(error.message || `Something went wrong`);
@@ -160,7 +164,8 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
       }
       const data = await response.json();
       ///convert data?
-      setResponse(data);
+      setApiResponse(data);
+      setAvailableMeals(productEntities);
     } catch (error) {
       if (error instanceof Error) {
         setError(error as any);
@@ -187,7 +192,8 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
         }
         const data = await response.json();
         ///convert data?
-        setResponse(data);
+        setApiResponse(data);
+        setAvailableMeals(productEntities);
       } catch (error) {
         if (error instanceof Error) {
           setError(error as any);
@@ -197,8 +203,6 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
     },
     []
   );
-
-  useEffect(() => {}, []);
 
   return (
     <AdminContext.Provider value={useAdminContext(initAdminState)}>

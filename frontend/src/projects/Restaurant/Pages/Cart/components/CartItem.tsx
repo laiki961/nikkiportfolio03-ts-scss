@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import QuantityControl from "../../../components /QuantityControl/QuantityControl";
+import QuantityControl from "../../../components/QuantityControl/QuantityControl";
 import { CartItemModel } from "../../../Models/CartModel";
 import { ReducerAction, ReducerActionType } from "../../../Store/CartProvider";
 

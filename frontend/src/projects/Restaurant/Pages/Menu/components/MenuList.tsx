@@ -5,7 +5,7 @@ import useCart from "../../../../../hooks/useCart";
 import useMeals from "../../../../../hooks/useMeals";
 import { ReactElement } from "react";
 
-export const MenuList: React.FC<{}> = () => {
+export const MenuList: React.FC = () => {
   const { productEntities } = useMeals();
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 

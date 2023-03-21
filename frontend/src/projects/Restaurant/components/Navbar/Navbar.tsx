@@ -1,12 +1,15 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
 import useCart from "../../../../hooks/useCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useOktaAuth } from "@okta/okta-react";
 
 function RestaurantNavbar() {
   const { totalItems } = useCart();
+
+  const { authState } = useOktaAuth();
 
   return (
     <Navbar id='restaurant-nav' className='restaurant-nav'>
@@ -31,14 +34,16 @@ function RestaurantNavbar() {
               Reservation
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to='admin'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
-              Admin
-            </NavLink>
-          </li>
+          {authState?.accessToken?.claims.userType === "admin" && (
+            <li>
+              <NavLink
+                to='admin'
+                className={({ isActive }) => (isActive ? "active" : undefined)}
+              >
+                Admin
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink
               to='cart'

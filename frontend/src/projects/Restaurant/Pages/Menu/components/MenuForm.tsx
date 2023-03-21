@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import QuantityControl from "../../../components /QuantityControl/QuantityControl";
+import QuantityControl from "../../../components/QuantityControl/QuantityControl";
 
 const MenuForm: React.FC<{
   key: number;

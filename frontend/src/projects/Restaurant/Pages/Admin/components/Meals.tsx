@@ -1,36 +1,61 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ReactElement } from "react";
+import { AuthState } from "@okta/okta-auth-js";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
-import useAdmin from "../../../../../hooks/useAdmin";
-import useMeals from "../../../../../hooks/useMeals";
 import MealModel from "../../../Models/MealModel";
+import { fetchMeals, removeMealById } from "../../../Store/adminSlice";
+import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import Meal from "../../Menu/components/Meal";
 
-const Meals = () => {
-  const { productEntities } = useMeals();
-  const { dispatch, REDUCER_ACTIONS } = useAdmin();
+type PropsType = {
+  authState: AuthState | null;
+};
 
-  //rerender if deleted a meal / updated
+const Meals: React.FC<PropsType> = (props) => {
+  const { authState } = props;
+  const meals = useAppSelector((state) => state.admin.meals);
+
+  const dispatch = useAppDispatch();
+
+  const fetchData = useCallback(() => {
+    dispatch(fetchMeals());
+  }, []);
+
+  // how to rerender whenever an item being remove / add / update
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const addMealHandler = () => {
     console.log(`Clicked Add`);
-    // dispatch!({
-    //   type: REDUCER_ACTIONS!.UPDATE,
-    //   payload: { ...meal },
-    // });
   };
 
+  const removeMealFromMenuHandler = (id: number) => {
+    console.log(`Clicked Removed: ${id}`);
+    if (authState !== undefined && authState !== null) {
+      dispatch(removeMealById({ id, authState }));
+    }
+  };
+
+  // const editMealFromMenuHandler = (id: number) => {
+  //   console.log(`Clicked Edit: ${id}`);
+  // };
+
+  console.log(`meals`);
+  console.log(meals);
+
   let content: ReactElement | ReactElement[] = <Loading />;
-  if (productEntities?.length) {
-    content = productEntities.map((meal: MealModel) => {
+
+  if (meals?.length) {
+    content = meals.map((meal: MealModel) => {
       return (
         <Meal
           className='admin'
           key={meal.id}
           meal={meal}
-          dispatchAdmin={dispatch}
-          ADMIN_REDUCER_ACTIONS={REDUCER_ACTIONS}
-          // onClickRemove={removeMealFromMenuHandler}
+          // onUpdate={editMealFromMenuHandler}
+          onRemove={removeMealFromMenuHandler}
         />
       );
     });

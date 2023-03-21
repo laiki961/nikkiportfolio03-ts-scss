@@ -9,11 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../../../components/Loading/Loading";
-import { ReactElement } from "react";
-import {
-  ReducerActionType as AdminReducerActionType,
-  ReducerAction as AdminReducerAction,
-} from "../../../Store/AdminProvider";
+import React, { ReactElement } from "react";
+import { useAppDispatch } from "../../../Store/store";
 
 type PropsType = {
   key: number;
@@ -22,22 +19,13 @@ type PropsType = {
   CART_REDUCER_ACTIONS?: CartReducerActionType;
   inCart?: boolean;
   className: string;
-  // onClickRemove?: () => void;
-  dispatchAdmin?: React.Dispatch<AdminReducerAction>;
-  ADMIN_REDUCER_ACTIONS?: AdminReducerActionType;
+  onRemove?: (id: number) => void;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
-  const {
-    meal,
-    dispatchCart,
-    CART_REDUCER_ACTIONS,
-    inCart,
-    className,
-    dispatchAdmin,
-    ADMIN_REDUCER_ACTIONS,
-  } = props;
+  const { meal, dispatchCart, CART_REDUCER_ACTIONS, inCart, className } = props;
   const { id, name, price, description } = meal;
+  const dispatch = useAppDispatch();
 
   // const img: string = new URL(`../../../images/${meal.id}.jpg`, import.meta.url).href;
   // console.log(img);
@@ -46,24 +34,6 @@ const Meal: React.FC<PropsType> = (props) => {
     dispatchCart!({
       type: CART_REDUCER_ACTIONS!.ADD,
       payload: { ...meal, amount: amount },
-    });
-  };
-
-  const removeMealFromMenuHandler = (id: number) => {
-    console.log(`Clicked Removed: ${id}`);
-    dispatchAdmin!({
-      type: ADMIN_REDUCER_ACTIONS!.REMOVE,
-      payload: { ...meal, id: id },
-    });
-  };
-
-  const editMealFromMenuHandler = (id: number) => {
-    console.log(`Clicked Edit: ${id}`);
-    //actions
-
-    dispatchAdmin!({
-      type: ADMIN_REDUCER_ACTIONS!.UPDATE,
-      payload: { ...meal },
     });
   };
 
@@ -78,21 +48,22 @@ const Meal: React.FC<PropsType> = (props) => {
       />
     );
   }
-  if (className === "admin") {
+  if (className === "admin" && props.onRemove !== undefined) {
     content = (
       <div className='restaurant-admin__features' key={id}>
         <div className='restaurant-admin__features-icon'>
           <button
             className='edit'
             type='button'
-            onClick={editMealFromMenuHandler.bind(null, id)}
+            // onClick={editMealFromMenuHandler.bind(null, id)}
           >
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
           <button
             className='delete'
             type='button'
-            onClick={removeMealFromMenuHandler.bind(null, id)}
+            // onClick={removeMealFromMenuHandler.bind(null, id)}
+            onClick={props.onRemove.bind(null, id)}
           >
             <FontAwesomeIcon icon={faTrashCan} />
           </button>
@@ -125,4 +96,4 @@ const Meal: React.FC<PropsType> = (props) => {
   );
 };
 
-export default Meal;
+export default React.memo(Meal);
