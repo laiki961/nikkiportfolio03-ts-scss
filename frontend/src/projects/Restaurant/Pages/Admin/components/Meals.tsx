@@ -8,11 +8,7 @@ import { fetchMeals, removeMealById } from "../../../Store/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import Meal from "../../Menu/components/Meal";
 
-type PropsType = {
-  authState: AuthState | null;
-};
-
-const Meals: React.FC<PropsType> = (props) => {
+const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
   const meals = useAppSelector((state) => state.admin.meals);
 
@@ -32,8 +28,8 @@ const Meals: React.FC<PropsType> = (props) => {
   };
 
   const removeMealFromMenuHandler = (id: number) => {
-    console.log(`Clicked Removed: ${id}`);
     if (authState !== undefined && authState !== null) {
+      console.log(`Clicked Removed: ${id}`);
       dispatch(removeMealById({ id, authState }));
     }
   };

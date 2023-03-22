@@ -37,13 +37,15 @@ public class AdminApi {
 
     //TESTED - WORK
     @DeleteMapping("/remove-product")
-    public void removeProduct(@RequestHeader(value="Authorization") String token,
+    public ProductResponseDto removeProduct(@RequestHeader(value="Authorization") String token,
                               @RequestParam(required= true) Long productId) throws Exception{
         String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
         if (admin == null || !admin.equals("admin")) {
             throw new Exception("Administration page only");
         }
+        ProductResponseDto productResponseDto = new ProductResponseDto(productService.getProductById(productId));
         adminService.removeProduct(productId);
+        return productResponseDto;
     }
 
     //TESTED - WORK
@@ -60,9 +62,21 @@ public class AdminApi {
     }
 
     //TESTED - WORK
-    @GetMapping("/product/{productId}")
-    public ProductResponseDto fetchProduct(@PathVariable(required = true) Long productId){
-        logger.debug(productId.toString());
-        return new ProductResponseDto(productService.getProduct(productId));
-    }
+//    @GetMapping("/product/{productId}")
+//    public ProductResponseDto fetchProduct(@PathVariable(required = true) Long productId){
+//        logger.debug(productId.toString());
+//        return new ProductResponseDto(productService.getProductById(productId));
+//    }
 }
+
+
+//TESTED - WORK
+//    @DeleteMapping("/remove-product")
+//    public void removeProduct(@RequestHeader(value="Authorization") String token,
+//                              @RequestParam(required= true) Long productId) throws Exception{
+//        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
+//        if (admin == null || !admin.equals("admin")) {
+//            throw new Exception("Administration page only");
+//        }
+//        adminService.removeProduct(productId);
+//    }

@@ -15,10 +15,14 @@ export interface MealItem {
 
 interface MealItemState {
   meals: MealItem[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 const initialState: MealItemState = {
   meals: [],
+  status: "idle",
+  error: null,
 };
 
 export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
@@ -56,7 +60,7 @@ export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
 
 export const removeMealById = createAsyncThunk(
   "admin/remove-product",
-  async (data: { id: number; authState: AuthState }) => {
+  async (data: { id: number; authState: AuthState }, thunkAPI) => {
     const { id, authState } = data;
     try {
       const response = await fetch(
@@ -76,9 +80,9 @@ export const removeMealById = createAsyncThunk(
           `Request Failed ${response.status}: ${response.statusText}`
         );
       }
-      return response.json();
-      // const status = response.status;
-      // return fetchMeals();
+      const data = await response.json();
+      return data;
+      return await response.json();
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -144,13 +148,33 @@ export const AdminSlice = createSlice({
     // ) => {},
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchMeals.pending, (state, action) => {
+      state.status = "loading";
+      console.log(`fetchMeals: loading`);
+    });
+
     builder.addCase(fetchMeals.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      console.log(action);
+      console.log(state);
       if (typeof action.payload !== "string" && action.payload !== undefined) {
         state.meals = action.payload;
       }
     });
 
+    builder.addCase(removeMealById.pending, (state, action) => {
+      state.status = "loading";
+      console.log(`removeMealById: loading`);
+    });
+    builder.addCase(removeMealById.rejected, (state, action) => {
+      state.status = "failed";
+      console.log(`removeMealById: failed`);
+    });
     builder.addCase(removeMealById.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      console.log(action);
+      // console.log(action.payload.id);
+      console.log(state);
       const index = state.meals.findIndex(
         (meal) => meal.id === action.payload.id
       );
@@ -159,6 +183,7 @@ export const AdminSlice = createSlice({
     });
 
     // builder.addCase(addMeal.fulfilled, (state, action) => {
+    // state.status = "succeeded";
     //   state.meals.push(action.payload);
     // });
   },
