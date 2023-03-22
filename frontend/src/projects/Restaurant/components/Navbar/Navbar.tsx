@@ -1,12 +1,15 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
 import useCart from "../../../../hooks/useCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useOktaAuth } from "@okta/okta-react";
 
 function RestaurantNavbar() {
   const { totalItems } = useCart();
+
+  const { authState } = useOktaAuth();
 
   return (
     <Navbar id='restaurant-nav' className='restaurant-nav'>
@@ -17,7 +20,7 @@ function RestaurantNavbar() {
         <ul className='restaurant-nav__list'>
           <li>
             <NavLink
-              to='/restaurant'
+              to='menu'
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Menu
@@ -31,17 +34,19 @@ function RestaurantNavbar() {
               Reservation
             </NavLink>
           </li>
+          {authState?.accessToken?.claims.userType === "admin" && (
+            <li>
+              <NavLink
+                to='admin'
+                className={({ isActive }) => (isActive ? "active" : undefined)}
+              >
+                Admin
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink
-              to='admin'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
-              Admin
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/restaurant/cart'
+              to='cart'
               className={({ isActive }) =>
                 isActive
                   ? "active restaurant-nav__cart"
@@ -50,7 +55,7 @@ function RestaurantNavbar() {
             >
               <FontAwesomeIcon icon={faCartShopping} />
               {/* <img src={icon} className='restaurant-nav__icon'></img> */}
-              <span className='restaurant-nav__badge'>{totalItems}</span>
+              <span className={`restaurant-nav__badge`}>{totalItems}</span>
             </NavLink>
           </li>
         </ul>

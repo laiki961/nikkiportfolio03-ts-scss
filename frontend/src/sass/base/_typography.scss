@@ -28,21 +28,18 @@
   }
 }
 
-.restaurant {
-  &__menu {
-    color: $color-restaurant;
+.restaurant-menu {
+  &__heading {
+    font-size: 4rem;
     text-transform: uppercase;
-  }
-
-  &__category {
-    text-transform: uppercase;
-    color: $color-restaurant-light;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   }
 }
 
 .error-text {
   color: $color-error-text;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .section-title {

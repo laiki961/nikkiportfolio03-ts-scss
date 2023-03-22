@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReviewModel from "../../../Models/ReviewModel";
-import { Pagination } from "../../../Utils/Pagination";
+import { Pagination } from "../../../../../components/Pagination/Pagination";
 import { Review } from "../../../Utils/Review";
 import { SpinnerLoading } from "../../../Utils/SpinnerLoading";
 

@@ -2,8 +2,10 @@ package com.nikkiportfolio.restaurant.domain.dto.request;
 
 import com.nikkiportfolio.restaurant.domain.Product;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ProductRequestDto {
     private String name;
 
@@ -15,7 +17,8 @@ public class ProductRequestDto {
 
 //    private Optional<String> img;
 
-public Product toProduct(){
+
+    public Product toProduct(){
     Product product = new Product();
     product.setName(name);
     product.setDescription(description);

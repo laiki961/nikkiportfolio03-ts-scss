@@ -1,8 +1,16 @@
 .restaurant-admin {
   font-size: $default-font-size;
 
-  // &__meals-list {
-  // }
+  &__header {
+    text-align: right;
+
+    & > .add-meal {
+      border: none;
+      background-color: $color-green;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+  }
 
   &__features {
     text-align: center;
@@ -10,10 +18,12 @@
   }
 
   &__features-icon {
-    & > svg {
+    & > button {
+      border: none;
       padding: 1rem;
       border-radius: 0.5rem;
       margin: 1rem;
+      width: 5rem;
     }
   }
   &__features-icon > .edit {
@@ -22,5 +32,18 @@
 
   &__features-icon > .delete {
     background-color: red;
+  }
+
+  &__modal-title {
+    font-size: $default-font-lg;
+  }
+
+  &__input-group {
+    font-size: $default-font-size;
+  }
+
+  &__form-control > input {
+    line-height: 2;
+    font-size: $default-font-sm;
   }
 }

@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import QuantityControl from "../../components /QuantityControl/QuantityControl";
+import { useEffect, useState } from "react";
+import QuantityControl from "../../../components/QuantityControl/QuantityControl";
 
-const MealForm: React.FC<{
+const MenuForm: React.FC<{
   key: number;
   onAddToCart: (amount: number) => void;
   inCart: boolean;
+  className: string;
 }> = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
-  // const amountInputRef = useRef<HTMLInputElement>(null);
   const [amount, setAmount] = useState<number>(1);
 
   const itemInCart = props.inCart ? (
@@ -16,9 +16,6 @@ const MealForm: React.FC<{
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-
-    // const enteredAmount: string = amountInputRef.current!.value;
-    // const enteredAmountNumber = +enteredAmount;
 
     if (amount === 0 || amount < 1 || amount > 5) {
       setAmountIsValid(false);
@@ -56,8 +53,6 @@ const MealForm: React.FC<{
     <form className='restaurant-card__cta' onSubmit={submitHandler}>
       <div className='restaurant-card__cta-meun'>
         <QuantityControl
-          // onValueChange={inputValue}
-          // ref={amountInputRef}
           className='menu'
           onDecrement={decrementHandler}
           onIncrement={incrementHandler}
@@ -74,4 +69,4 @@ const MealForm: React.FC<{
   );
 };
 
-export default MealForm;
+export default MenuForm;

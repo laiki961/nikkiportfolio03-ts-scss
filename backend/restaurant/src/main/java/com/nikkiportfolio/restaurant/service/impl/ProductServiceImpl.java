@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(Long productId){
+    public Product getProductById(Long productId){
         ProductEntity productEntity = productRepository.findFirstById(productId);
         return new Product(productEntity);
     }

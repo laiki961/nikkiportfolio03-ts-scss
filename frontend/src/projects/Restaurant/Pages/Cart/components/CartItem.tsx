@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import QuantityControl from "../../components /QuantityControl/QuantityControl";
-import { CartItemModel } from "../../Models/CartModel";
-import { ReducerAction, ReducerActionType } from "../../Store/CartProvider";
+import QuantityControl from "../../../components/QuantityControl/QuantityControl";
+import { CartItemModel } from "../../../Models/CartModel";
+import { ReducerAction, ReducerActionType } from "../../../Store/CartProvider";
 
 type PropsType = {
   item: CartItemModel;
@@ -57,14 +57,14 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
 
   return (
     <Card key={item.id} className='restaurant-cart__card '>
-      <div className='restaurant-cart__img-box'>
-        {/* <img
-                src={require("../../images/pad_thai.jpeg")}
-                alt={item.name}
-                className='meal-img'
-              ></img> */}
-        <div className='restaurant-cart__detail'>
-          <div className='restaurant-cart__meal-name'>{item.name}</div>
+      <div className='restaurant-cart__details-container'>
+        <img
+          src={require("../../../images/pad_thai.jpeg")}
+          alt={item.name}
+          className='meal-img'
+        />
+        <div className='cart_details'>
+          <p className='cart_meal-name'>{item.name}</p>
           {/* ingredients */}
           {/* notes */}
         </div>

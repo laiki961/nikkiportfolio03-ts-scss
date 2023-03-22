@@ -2,7 +2,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 // import AdminMessageRequest from '../../../models/AdminMessageRequest';
 import MessageModel from "../../../Models/MessageModel";
-import { Pagination } from "../../../Utils/Pagination";
+import { Pagination } from "../../../../../components/Pagination/Pagination";
 import Loading from "../../../../..//components/Loading/Loading";
 import { AdminMessage } from "./AdminMessage";
 import AdminMessageRequest from "../../../Models/AdminMessageRequest";

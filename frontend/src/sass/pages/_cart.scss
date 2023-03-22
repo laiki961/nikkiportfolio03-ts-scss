@@ -10,8 +10,20 @@
       [amount-end subtotal-start] minmax(15rem, min-content)
       [subtotal-end list-end];
   }
+  &__title {
+    font-size: $default-font-xl;
+    margin: 2rem 0;
+  }
 
-  &__card.cart-title {
+  &__list {
+    margin-top: 1rem;
+
+    border-radius: 1rem;
+    border: 2px solid;
+    padding: 1rem;
+  }
+
+  &__card.cart-title-item {
     border-radius: 1rem;
     border: 2px solid;
     padding: 1rem;
@@ -30,31 +42,25 @@
     align-items: center;
   }
 
-  &__img-box {
-    background-color: beige;
-  }
+  &__details-container {
+    background: transparent;
+    margin: auto;
+    display: block;
 
-  &__detail {
-    background-color: blueviolet;
-  }
+    & > img {
+      border-radius: 1rem;
+      width: 20%;
+      display: inline-block;
+    }
 
-  // &__meal-name {
-  //   background-color: burlywood;
-  // }
+    & > .cart_details {
+      display: inline-block;
+      margin-left: 2rem;
 
-  &__title {
-    font-size: $default-font-xl;
-    margin: 2rem 0;
-  }
-
-  &__list {
-    // min-height: 60vh;
-    margin-top: 1rem;
-
-    border-radius: 1rem;
-    border: 2px solid;
-    padding: 1rem;
-    background-color: $color-restaurant-light;
+      & > .cart_meal-name {
+        font-size: $default-font-lg;
+      }
+    }
   }
 
   &__summary {

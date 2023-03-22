@@ -52,12 +52,21 @@
     margin-left: 2rem;
   }
   &__cta-meun {
-    padding: 40% 0;
+    padding: 30% 0;
     text-align: center;
   }
 
-  &__quantity-control {
+  &__quantity-control.cart {
+    padding: 45% 0;
     text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__quantity-control.menu {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
   }
 
   &__quantity-control-button {

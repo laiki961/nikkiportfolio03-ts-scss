@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../../../../../components/Loading/Loading";
 import HistoryModel from "../../../Models/HistoryModel";
-import { Pagination } from "../../../Utils/Pagination";
+import { Pagination } from "../../../../../components/Pagination/Pagination";
 
 export const HistoryPage = () => {
   const { authState } = useOktaAuth();

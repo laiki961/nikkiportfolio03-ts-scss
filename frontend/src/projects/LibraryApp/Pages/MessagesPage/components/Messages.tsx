@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOktaAuth } from "@okta/okta-react";
 import MessageModel from "../../../Models/MessageModel";
-import { Pagination } from "../../../Utils/Pagination";
+import { Pagination } from "../../../../../components/Pagination/Pagination";
 import Loading from "../../../../../components/Loading/Loading";
 
 export const Messages = () => {

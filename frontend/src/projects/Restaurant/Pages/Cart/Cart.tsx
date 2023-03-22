@@ -3,7 +3,7 @@ import { ReactElement, useState } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import Card from "../../../../components/Card/Card";
 import useCart from "../../../../hooks/useCart";
-import CartItem from "./CartItem";
+import CartItem from "./components/CartItem";
 
 const Cart: React.FC<{}> = () => {
   const [confirm, setConfrim] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const Cart: React.FC<{}> = () => {
   };
 
   const listTitle: ReactElement = (
-    <div className='restaurant-cart__card cart-title'>
+    <div className='restaurant-cart__card cart-title-item'>
       <span>Item(s)</span>
       <span>Price</span>
       <span>Amount</span>

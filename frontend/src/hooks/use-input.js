@@ -1,5 +1,4 @@
-import { useContext, useReducer } from "react";
-import WeatherContext from "../projects/WeatherForecast/store/weather-context";
+import { useReducer } from "react";
 
 const initialInputState = {
   value: "",
@@ -23,7 +22,6 @@ const inputStateReducer = (state, action) => {
 };
 
 const useInput = (validationValue) => {
-  const { resetErrorHandler } = useContext(WeatherContext);
   const [inputState, dispatch] = useReducer(
     inputStateReducer,
     initialInputState
@@ -37,7 +35,6 @@ const useInput = (validationValue) => {
   };
 
   const inputBlurHandler = (e) => {
-    resetErrorHandler();
     dispatch({ type: "BLUR" });
   };
 
