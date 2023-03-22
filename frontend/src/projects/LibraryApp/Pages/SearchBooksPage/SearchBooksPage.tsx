@@ -1,7 +1,7 @@
 import classes from "../Library.module.css";
 import { useEffect, useState } from "react";
 import BookModel from "../../Models/BookModel";
-import { Pagination } from "../../Utils/Pagination";
+import { Pagination } from "../../../../components/Pagination/Pagination";
 import Loading from "../../../../components/Loading/Loading";
 import { SearchBook } from "./components/SearchBook";
 import { useOktaAuth } from "@okta/okta-react";
@@ -10,10 +10,12 @@ export const SearchBooksPage = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(5);
   const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+
   const [search, setSearch] = useState("");
   const [searchUrl, setSearchUrl] = useState("");
   const [categorySelection, setCategorySelection] = useState("Book category");

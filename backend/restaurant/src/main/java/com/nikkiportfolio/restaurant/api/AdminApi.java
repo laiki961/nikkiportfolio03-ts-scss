@@ -50,7 +50,7 @@ public class AdminApi {
 
     //TESTED - WORK
     @PutMapping("/update-product")
-    public void updateProduct(@RequestHeader(value="Authorization") String token,
+    public ProductResponseDto updateProduct(@RequestHeader(value="Authorization") String token,
                               @RequestParam(required= true) Long productId,
                               @RequestBody ProductRequestDto productRequestDto) throws Exception{
         String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
@@ -59,6 +59,7 @@ public class AdminApi {
         }
         Product product = new Product(productRequestDto);
         adminService.updateProduct(productId, product);
+        return new ProductResponseDto(productService.getProductById(productId));
     }
 
     //TESTED - WORK
@@ -79,4 +80,18 @@ public class AdminApi {
 //            throw new Exception("Administration page only");
 //        }
 //        adminService.removeProduct(productId);
+//    }
+
+
+//TESTED - WORK
+//    @PutMapping("/update-product")
+//    public void updateProduct(@RequestHeader(value="Authorization") String token,
+//                              @RequestParam(required= true) Long productId,
+//                              @RequestBody ProductRequestDto productRequestDto) throws Exception{
+//        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
+//        if (admin == null || !admin.equals("admin")) {
+//            throw new Exception("Administration page only");
+//        }
+//        Product product = new Product(productRequestDto);
+//        adminService.updateProduct(productId, product);
 //    }

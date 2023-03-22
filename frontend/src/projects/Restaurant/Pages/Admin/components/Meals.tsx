@@ -1,30 +1,42 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthState } from "@okta/okta-auth-js";
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, {
+  MouseEventHandler,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import Loading from "../../../../../components/Loading/Loading";
+import ModalComponent from "../../../components/Modal/Modal";
+import Search from "../../../components/Search/Search";
+import { ProductReqDto } from "../../../domain/dto/backend-dto";
 import MealModel from "../../../Models/MealModel";
-import { fetchMeals, removeMealById } from "../../../Store/adminSlice";
+import { addMeal, fetchMeals, removeMealById } from "../../../Store/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import Meal from "../../Menu/components/Meal";
 
 const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
   const meals = useAppSelector((state) => state.admin.meals);
-
   const dispatch = useAppDispatch();
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const fetchData = useCallback(() => {
     dispatch(fetchMeals());
   }, []);
 
-  // how to rerender whenever an item being remove / add / update
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const addMealHandler = () => {
-    console.log(`Clicked Add`);
+  const addMealHandler = (productReqDto: ProductReqDto) => {
+    if (authState !== undefined && authState !== null) {
+      console.log(`productReqDto`);
+      console.log(`Clicked Add ${productReqDto.name}`);
+      dispatch(addMeal({ productReqDto, authState }));
+    }
   };
 
   const removeMealFromMenuHandler = (id: number) => {
@@ -59,11 +71,27 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
 
   return (
     <div className='restaurant-admin__meals-list'>
-      <div className='restaurant-admin__feature'>
-        <button className='add-meal' type='button' onClick={addMealHandler}>
+      <div className='restaurant-admin__header'>
+        <Search className='restaurant-admin__search' />
+        <button
+          className='add-meal'
+          type='button'
+          onClick={() => {
+            setShowModal(!showModal);
+          }}
+        >
           <FontAwesomeIcon icon={faPlus} /> Add Meal
         </button>
       </div>
+      {showModal && (
+        <ModalComponent
+          addMeal={addMealHandler}
+          setShowModal={() => {
+            setShowModal(!showModal);
+          }}
+          showModal={showModal}
+        />
+      )}
       {content}
     </div>
   );

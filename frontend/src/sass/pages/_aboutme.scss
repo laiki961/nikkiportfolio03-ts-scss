@@ -1,0 +1,12 @@
+.about-me {
+  font-size: $default-font-size;
+}
+
+.my-picture {
+  max-width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid #f5751c;
+  border-radius: 25px;
+}

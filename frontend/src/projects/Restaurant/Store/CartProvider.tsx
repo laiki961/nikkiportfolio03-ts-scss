@@ -42,10 +42,10 @@ const reducer = (
       const amount: number = itemExists
         ? itemExists.amount + action.payload.amount
         : action.payload.amount;
-      if (itemExists) {
-        console.log(itemExists.amount);
-        console.log(price);
-      }
+      // if (itemExists) {
+      //   console.log(itemExists.amount);
+      //   console.log(price);
+      // }
 
       return {
         ...state,

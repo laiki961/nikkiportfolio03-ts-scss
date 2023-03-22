@@ -62,7 +62,6 @@ const Meal: React.FC<PropsType> = (props) => {
           <button
             className='delete'
             type='button'
-            // onClick={removeMealFromMenuHandler.bind(null, id)}
             onClick={props.onRemove.bind(null, id)}
           >
             <FontAwesomeIcon icon={faTrashCan} />

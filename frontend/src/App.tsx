@@ -23,12 +23,13 @@ import { MessagesPage } from "./projects/LibraryApp/Pages/MessagesPage/MessagesP
 import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage/ManageLibraryPage";
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
-import { MenuList } from "./projects/Restaurant/pages/Menu/components/MenuList"; //loader as productsLoader,
 import RestaurantCartPage from "./projects/Restaurant/pages/Cart/Cart";
 import RestaurantOrderPage from "./projects/Restaurant/pages/Order/Order";
 import RestaurantReservationPage from "./projects/Restaurant/pages/Reservation/Reservation";
 import RestaurantAdminPage from "./projects/Restaurant/pages/Admin/Admin";
 import RestaurantMenuPage from "./projects/Restaurant/pages/Menu/Menu";
+
+import AboutMe from "./projects/AboutMe/AboutMe";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       { path: "/callback", element: <LoginCallback /> },
       {
         path: "/about-me",
-        element: <LoginWidget config={oktaConfig} />,
+        element: <AboutMe />,
       },
       {
         path: "weather",

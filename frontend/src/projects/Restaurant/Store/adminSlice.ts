@@ -82,7 +82,6 @@ export const removeMealById = createAsyncThunk(
       }
       const data = await response.json();
       return data;
-      return await response.json();
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -92,13 +91,16 @@ export const removeMealById = createAsyncThunk(
   }
 );
 
+//ToDo
 export const addMeal = createAsyncThunk(
   "admin/add-product",
-  async (productReqDto: ProductReqDto) => {
+  async (data: { productReqDto: ProductReqDto; authState: AuthState }) => {
+    const { productReqDto, authState } = data;
     try {
       const response = await fetch(`${baseUrl}/admin/secure/add-product`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -123,45 +125,69 @@ export const addMeal = createAsyncThunk(
   }
 );
 
+export const updateMeal = createAsyncThunk(
+  "admin/update-product",
+  async (data: {
+    id: number;
+    productReqDto: ProductReqDto;
+    authState: AuthState;
+  }) => {
+    const { id, productReqDto, authState } = data;
+    try {
+      const response = await fetch(
+        `${baseUrl}/admin/secure/update-product?productId=${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: productReqDto.name,
+            description: productReqDto.description,
+            category: productReqDto.category,
+            price: productReqDto.price,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Request Failed ${response.status}: ${response.statusText}`
+        );
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+        return error.message;
+      }
+    }
+  }
+);
+
 export const AdminSlice = createSlice({
   name: "admin",
   initialState,
-  reducers: {
-    // addMeal: (state, action: PayloadAction<ProductReqDto>) => {
-    //   state.meals.push({
-    //     id: Math.floor(Math.random() * Date.now()),
-    //     name: action.payload.name,
-    //     description: action.payload.description,
-    //     category: action.payload.category,
-    //     price: action.payload.price,
-    //   });
-    // },
-    // removeMeal: (state, action: PayloadAction<{ id: number }>) => {
-    //   const index = state.meals.findIndex(
-    //     (meal) => meal.id === action.payload.id
-    //   );
-    //   console.log(index);
-    // },
-    // updateMeal: (
-    //   state,
-    //   action: PayloadAction<{ id: number; productReqDto: ProductReqDto }>
-    // ) => {},
-  },
+  reducers: {},
   extraReducers: (builder) => {
+    //fetchMeals
     builder.addCase(fetchMeals.pending, (state, action) => {
       state.status = "loading";
       console.log(`fetchMeals: loading`);
     });
-
+    builder.addCase(fetchMeals.rejected, (state, action) => {
+      state.status = "failed";
+      console.log(`fetchMeals: failed`);
+    });
     builder.addCase(fetchMeals.fulfilled, (state, action) => {
       state.status = "succeeded";
-      console.log(action);
-      console.log(state);
       if (typeof action.payload !== "string" && action.payload !== undefined) {
         state.meals = action.payload;
       }
     });
 
+    //removeMealById
     builder.addCase(removeMealById.pending, (state, action) => {
       state.status = "loading";
       console.log(`removeMealById: loading`);
@@ -172,20 +198,42 @@ export const AdminSlice = createSlice({
     });
     builder.addCase(removeMealById.fulfilled, (state, action) => {
       state.status = "succeeded";
-      console.log(action);
-      // console.log(action.payload.id);
-      console.log(state);
       const index = state.meals.findIndex(
         (meal) => meal.id === action.payload.id
       );
-      console.log(`index: ${index}`);
       state.meals.splice(index, 1);
     });
 
-    // builder.addCase(addMeal.fulfilled, (state, action) => {
-    // state.status = "succeeded";
-    //   state.meals.push(action.payload);
-    // });
+    //updateMeal
+    builder.addCase(updateMeal.pending, (state, action) => {
+      state.status = "loading";
+      console.log(`updateMeal: loading`);
+    });
+    builder.addCase(updateMeal.rejected, (state, action) => {
+      state.status = "failed";
+      console.log(`updateMeal: failed`);
+    });
+    builder.addCase(updateMeal.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      const index = state.meals.findIndex(
+        (meal) => meal.id === action.payload.id
+      );
+      state.meals[index] = action.payload;
+    });
+
+    //add meal
+    builder.addCase(addMeal.pending, (state, action) => {
+      state.status = "loading";
+      console.log(`addMeal: loading`);
+    });
+    builder.addCase(addMeal.rejected, (state, action) => {
+      state.status = "succeeded";
+      console.log(`addMeal: failed`);
+    });
+    builder.addCase(addMeal.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.meals.push(action.payload);
+    });
   },
 });
 
@@ -194,3 +242,22 @@ export default AdminSlice.reducer;
 // export const { removeMeal } = AdminSlice.actions;
 
 export const selectAllAdmin = (state: any) => state.meals.admin;
+// addMeal: (state, action: PayloadAction<ProductReqDto>) => {
+//   state.meals.push({
+//     id: Math.floor(Math.random() * Date.now()),
+//     name: action.payload.name,
+//     description: action.payload.description,
+//     category: action.payload.category,
+//     price: action.payload.price,
+//   });
+// },
+// removeMeal: (state, action: PayloadAction<{ id: number }>) => {
+//   const index = state.meals.findIndex(
+//     (meal) => meal.id === action.payload.id
+//   );
+//   console.log(index);
+// },
+// updateMeal: (
+//   state,
+//   action: PayloadAction<{ id: number; productReqDto: ProductReqDto }>
+// ) => {},

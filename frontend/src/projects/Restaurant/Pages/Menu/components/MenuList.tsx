@@ -3,11 +3,22 @@ import Meal from "./Meal";
 import MealModel from "../../../Models/MealModel";
 import useCart from "../../../../../hooks/useCart";
 import useMeals from "../../../../../hooks/useMeals";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
+import { Pagination } from "../../../../../components/Pagination/Pagination";
 
 export const MenuList: React.FC = () => {
-  const { productEntities } = useMeals();
+  const { productEntities, totalAmountOfItem, totalPages, itemsPerPage } =
+    useMeals();
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const paignate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  let lastItem =
+    itemsPerPage * currentPage <= totalAmountOfItem
+      ? itemsPerPage * currentPage
+      : totalAmountOfItem;
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
@@ -27,5 +38,16 @@ export const MenuList: React.FC = () => {
     });
   }
 
-  return <>{content}</>;
+  return (
+    <div className='restaurnat-menu__list'>
+      {content}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          paginate={paignate}
+        />
+      )}
+    </div>
+  );
 };

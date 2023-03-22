@@ -1,7 +1,7 @@
 .restaurant-admin {
   font-size: $default-font-size;
 
-  &__feature {
+  &__header {
     text-align: right;
 
     & > .add-meal {
@@ -32,5 +32,17 @@
 
   &__features-icon > .delete {
     background-color: red;
+  }
+
+  &__modal-title {
+    font-size: $default-font-lg;
+  }
+
+  &__input-group {
+    font-size: $default-font-size;
+  }
+
+  &__form-control {
+    line-height: 2;
   }
 }
