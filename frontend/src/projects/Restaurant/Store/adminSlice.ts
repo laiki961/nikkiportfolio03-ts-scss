@@ -27,7 +27,7 @@ const initialState: MealItemState = {
 
 export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
   try {
-    const response = await fetch(`${baseUrl}/productEntities?page=0&size=9`, {
+    const response = await fetch(`${baseUrl}/productEntities?page=0&size=30`, {
       method: "GET",
       headers: {},
       body: null,

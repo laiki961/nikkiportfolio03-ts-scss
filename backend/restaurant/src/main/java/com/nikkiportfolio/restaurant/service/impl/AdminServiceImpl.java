@@ -18,11 +18,19 @@ public class AdminServiceImpl implements AdminService {
     private ProductRepository productRepository;
 
     @Override
-    public void postProduct(Product product){
+    public Product postProduct(Product product){
         ProductEntity productEntity = new ProductEntity(product);
         productRepository.save(productEntity);
+        return new Product(productRepository.findTopByOrderByIdDesc());
 //        return new Product(productEntity); //should be void
     }
+
+
+//    @Override
+//    public void postProduct(Product product) {
+//        ProductEntity productEntity = new ProductEntity(product);
+//        productRepository.save(productEntity);
+//    }
 
     @Override
     public void removeProduct(Long productId)throws Exception{
@@ -45,5 +53,7 @@ public class AdminServiceImpl implements AdminService {
         existingProduct.get().setPrice(updatedProduct.getPrice());
         productRepository.save(existingProduct.get());
     }
+
+
 
 }

@@ -32,6 +32,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   }, [fetchData]);
 
   const addMealHandler = (productReqDto: ProductReqDto) => {
+    console.log(`addMealHandler`);
     if (authState !== undefined && authState !== null) {
       console.log(`productReqDto`);
       console.log(`Clicked Add ${productReqDto.name}`);

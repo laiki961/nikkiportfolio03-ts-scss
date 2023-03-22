@@ -22,6 +22,8 @@ export const MenuList: React.FC = () => {
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
+  console.log(productEntities);
+
   if (productEntities?.length) {
     content = productEntities.map((meal: MealModel) => {
       const inCart: boolean = cart.some((item) => item.id === meal.id);

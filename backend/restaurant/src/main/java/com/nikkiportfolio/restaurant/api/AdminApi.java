@@ -26,13 +26,13 @@ public class AdminApi {
 
     //TESTED - WORK
     @PostMapping("/add-product")
-    public void postProduct(@RequestHeader(value="Authorization") String token,
+    public ProductResponseDto postProduct(@RequestHeader(value="Authorization") String token,
                             @RequestBody ProductRequestDto productRequestDto) throws Exception {
         String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
         if (admin == null || !admin.equals("admin")) {
             throw new Exception("Administration page only");
         }
-        adminService.postProduct(productRequestDto.toProduct());
+        return new ProductResponseDto(adminService.postProduct(productRequestDto.toProduct()));
     }
 
     //TESTED - WORK
@@ -69,29 +69,3 @@ public class AdminApi {
 //        return new ProductResponseDto(productService.getProductById(productId));
 //    }
 }
-
-
-//TESTED - WORK
-//    @DeleteMapping("/remove-product")
-//    public void removeProduct(@RequestHeader(value="Authorization") String token,
-//                              @RequestParam(required= true) Long productId) throws Exception{
-//        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
-//        if (admin == null || !admin.equals("admin")) {
-//            throw new Exception("Administration page only");
-//        }
-//        adminService.removeProduct(productId);
-//    }
-
-
-//TESTED - WORK
-//    @PutMapping("/update-product")
-//    public void updateProduct(@RequestHeader(value="Authorization") String token,
-//                              @RequestParam(required= true) Long productId,
-//                              @RequestBody ProductRequestDto productRequestDto) throws Exception{
-//        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
-//        if (admin == null || !admin.equals("admin")) {
-//            throw new Exception("Administration page only");
-//        }
-//        Product product = new Product(productRequestDto);
-//        adminService.updateProduct(productId, product);
-//    }

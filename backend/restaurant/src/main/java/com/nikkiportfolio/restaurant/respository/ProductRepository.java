@@ -17,4 +17,6 @@ public interface ProductRepository extends  JpaRepository<ProductEntity, Long> {
     @Query("select o from ProductEntity o where id in :product_ids")
     List<ProductEntity> findProductsByProductIds(@Param("product_ids") List<Long> productId);
 
+
+    ProductEntity findTopByOrderByIdDesc();
 }

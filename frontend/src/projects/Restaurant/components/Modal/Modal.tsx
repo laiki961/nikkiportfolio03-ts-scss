@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { ProductReqDto } from "../../domain/dto/backend-dto";
@@ -43,7 +43,7 @@ const ModalComponent: React.FC<{
     valueChangeHandler: priceChangedHandler,
     inputBlurHandler: priceBlurHandler,
     reset: resetPriceInput,
-  } = useInput((value: string) => value.trim() !== "" && +value.trim() !== 0);
+  } = useInput((value: string) => value.trim() !== "");
 
   const DUMMY_PRODUCTDTO: ProductReqDto = {
     name: "testing",
@@ -52,10 +52,56 @@ const ModalComponent: React.FC<{
     price: 20.0,
   };
 
+  const nameInputClasses = nameInputHasError
+    ? "restaurant-admin__form-control invalid"
+    : "restaurant-admin__form-control";
+
+  const descriptionInputClasses = descriptionInputHasError
+    ? "restaurant-admin__form-control invalid"
+    : "restaurant-admin__form-control";
+
+  const categoryInputClasses = categoryInputHasError
+    ? "restaurant-admin__form-control invalid"
+    : "restaurant-admin__form-control";
+
+  const priceInputClasses = priceInputHasError
+    ? "restaurant-admin__form-control invalid"
+    : "restaurant-admin__form-control";
+
+  let formIsValid = false;
+
+  if (
+    enteredNameIsValid &&
+    enteredDescriptionIsValid &&
+    enteredCategoryIsValid &&
+    enteredPriceIsValid
+  ) {
+    formIsValid = true;
+  }
+
+  const resetAllInputs = () => {
+    resetNameInput();
+    resetDescriptionInput();
+    resetCategoryInput();
+    resetPriceInput();
+  };
+
   const submitHandler = (e: React.FormEvent) => {
-    console.log(`Clicked Submit`);
     e.preventDefault();
-    props.addMeal.bind(null, DUMMY_PRODUCTDTO);
+    console.log(`Clicked Submit`);
+    if (!formIsValid) {
+      console.log(`form is invalid`);
+      return;
+    }
+    const productReqDto: ProductReqDto = {
+      name: enteredName,
+      description: enteredDescription,
+      category: enteredCategory,
+      price: +enteredPrice,
+    };
+    props.addMeal(productReqDto);
+    resetAllInputs();
+    props.setShowModal();
   };
 
   return (
@@ -67,92 +113,95 @@ const ModalComponent: React.FC<{
         <Modal.Body>
           <Form onSubmit={submitHandler}>
             <Form.Group
-              className='mb-3 restaurant-admin__input-group'
+              className={`mb-3 restaurant-admin__input-group  ${nameInputClasses}`}
               controlId='mealName'
             >
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='name'
                 placeholder='Name'
-                className='restaurant-admin__form-control'
                 onChange={nameChangedHandler}
                 onBlur={nameBlurHandler}
                 value={enteredName}
               />
               {nameInputHasError && (
-                <Form.Text className='text-muted'>
+                <Form.Text className='error-text'>
                   Name must not be empty.
                 </Form.Text>
               )}
             </Form.Group>
 
             <Form.Group
-              className='mb-3 restaurant-admin__input-group'
+              className={`mb-3 restaurant-admin__input-group ${descriptionInputClasses}`}
               controlId='mealDescription'
             >
               <Form.Label>Description</Form.Label>
               <Form.Control
+                as='textarea'
+                rows={3}
                 type='description'
                 placeholder='Description'
-                className='restaurant-admin__form-control'
                 onChange={descriptionChangedHandler}
                 onBlur={descriptionBlurHandler}
                 value={enteredDescription}
               />
               {descriptionInputHasError && (
-                <Form.Text className='text-muted'>
+                <Form.Text className='error-text'>
                   Description must not be empty.
                 </Form.Text>
               )}
             </Form.Group>
 
             <Form.Group
-              className='mb-3 restaurant-admin__input-group'
+              className={`mb-3 restaurant-admin__input-group ${categoryInputClasses}`}
               controlId='mealCategory'
             >
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type='category'
                 placeholder='Category'
-                className='restaurant-admin__form-control'
                 onChange={categoryChangedHandler}
                 onBlur={categoryBlurHandler}
                 value={enteredCategory}
               />
               {categoryInputHasError && (
-                <Form.Text className='text-muted'>
+                <Form.Text className='error-text'>
                   Category must not be empty.
                 </Form.Text>
               )}
             </Form.Group>
 
             <Form.Group
-              className='mb-3 restaurant-admin__input-group'
+              className={`mb-3 restaurant-admin__input-group ${priceInputClasses}`}
               controlId='mealPrice'
             >
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type='price'
                 placeholder='Price'
-                className='restaurant-admin__form-control'
                 onChange={priceChangedHandler}
                 onBlur={priceBlurHandler}
                 value={enteredPrice}
               />
               {priceInputHasError && (
-                <Form.Text className='text-muted'>
+                <Form.Text className='error-text'>
                   Price must not be empty & greater than 0.
                 </Form.Text>
               )}
             </Form.Group>
+            <Modal.Footer>
+              <button
+                className='restaurant-btn seconday'
+                onClick={props.setShowModal}
+              >
+                Close
+              </button>
+              <button className='restaurant-btn' type='submit'>
+                Submit
+              </button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <button className='restaurant-btn seconday'>Close</button>
-          <button className='restaurant-btn' type='submit'>
-            Submit
-          </button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

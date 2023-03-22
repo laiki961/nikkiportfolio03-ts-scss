@@ -24,7 +24,7 @@ type PropsType = {
 
 const Meal: React.FC<PropsType> = (props) => {
   const { meal, dispatchCart, CART_REDUCER_ACTIONS, inCart, className } = props;
-  const { id, name, price, description } = meal;
+  const { id, name, price, description, img } = meal;
   const dispatch = useAppDispatch();
 
   // const img: string = new URL(`../../../images/${meal.id}.jpg`, import.meta.url).href;
@@ -74,11 +74,20 @@ const Meal: React.FC<PropsType> = (props) => {
   return (
     <Card className='restaurant-card'>
       <div className='restaurant-card__img-box'>
-        <img
+        {img ? (
+          <img src={img} className='meal-img' alt={name} />
+        ) : (
+          <img
+            src={require("../../../images/pad_thai.jpeg")}
+            alt={name}
+            className='meal-img'
+          />
+        )}
+        {/* <img
           src={require("../../../images/pad_thai.jpeg")}
           alt={name}
           className='meal-img'
-        ></img>
+        ></img> */}
       </div>
       <div className='restaurant-card__detail'>
         <div className='meal-name'>{name}</div>

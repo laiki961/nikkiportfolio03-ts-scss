@@ -118,7 +118,7 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
   const [error, setError] = useState<Error | null>();
 
   const addMeal = useCallback(async (productReqDto: ProductReqDto) => {
-    const addUrl: string = `${baseUrl}/add-product`; // POST
+    const addUrl: string = `${baseUrl}/secure/add-product`; // POST
     setIsLoading(true);
     setError(null);
     try {
@@ -148,7 +148,7 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
   }, []);
 
   const removeMeal = useCallback(async (id: number) => {
-    const removeUrl: string = `${baseUrl}/remove-product?productId=${id}`; //DELETE
+    const removeUrl: string = `${baseUrl}/secure/remove-product?productId=${id}`; //DELETE
     setIsLoading(true);
     setError(null);
     try {
@@ -176,7 +176,7 @@ export const AdminProvider = ({ children }: ChildrenType): ReactElement => {
 
   const updateMeal = useCallback(
     async (id: number, productReqDto: ProductReqDto) => {
-      const updateUrl: string = `${baseUrl}/update-product?productId=${id}`; //PUT
+      const updateUrl: string = `${baseUrl}/secure/update-product?productId=${id}`; //PUT
       setIsLoading(true);
       setError(null);
       try {
