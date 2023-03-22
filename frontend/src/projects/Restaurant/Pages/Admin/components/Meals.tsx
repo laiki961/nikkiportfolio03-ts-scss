@@ -13,7 +13,12 @@ import ModalComponent from "../../../components/Modal/Modal";
 import Search from "../../../components/Search/Search";
 import { ProductReqDto } from "../../../domain/dto/backend-dto";
 import MealModel from "../../../Models/MealModel";
-import { addMeal, fetchMeals, removeMealById } from "../../../Store/adminSlice";
+import {
+  addMeal,
+  fetchMeals,
+  removeMealById,
+  updateMeal,
+} from "../../../Store/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import Meal from "../../Menu/components/Meal";
 
@@ -22,6 +27,12 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const meals = useAppSelector((state) => state.admin.meals);
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalClassName, setModalClassName] = useState<string>("");
+  const [updateId, setUpdateId] = useState<number>();
+  // const [modalValue, setModalValue] = useState<{
+  //   className: string;
+  //   id?: number | undefined;
+  // }>();
 
   const fetchData = useCallback(() => {
     dispatch(fetchMeals());
@@ -47,12 +58,25 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
     }
   };
 
-  // const editMealFromMenuHandler = (id: number) => {
-  //   console.log(`Clicked Edit: ${id}`);
-  // };
+  const editMealFromMenuHandler = (
+    id: number,
+    productReqDto: ProductReqDto
+  ) => {
+    if (authState !== undefined && authState !== null) {
+      console.log(`Clicked Edit: ${id}`);
+      dispatch(updateMeal({ id, productReqDto, authState }));
+    }
+  };
 
-  console.log(`meals`);
-  console.log(meals);
+  const modalController = (className: string, mealId?: number) => {
+    setModalClassName(className);
+    // setModalValue({ className, id });
+    setShowModal(!showModal);
+    setUpdateId(mealId);
+  };
+
+  // console.log(`meals`);
+  // console.log(meals);
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
@@ -63,7 +87,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
           className='admin'
           key={meal.id}
           meal={meal}
-          // onUpdate={editMealFromMenuHandler}
+          onShowEditModal={modalController.bind(null, "update-meal", meal.id)}
           onRemove={removeMealFromMenuHandler}
         />
       );
@@ -77,16 +101,18 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
         <button
           className='add-meal'
           type='button'
-          onClick={() => {
-            setShowModal(!showModal);
-          }}
+          onClick={modalController.bind(null, "add-meal", undefined)}
         >
           <FontAwesomeIcon icon={faPlus} /> Add Meal
         </button>
       </div>
       {showModal && (
         <ModalComponent
+          // value={modalValue}
+          updateId={updateId}
+          className={modalClassName}
           addMeal={addMealHandler}
+          editMeal={editMealFromMenuHandler}
           setShowModal={() => {
             setShowModal(!showModal);
           }}

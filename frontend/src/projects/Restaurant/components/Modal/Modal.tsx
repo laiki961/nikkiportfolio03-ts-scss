@@ -5,7 +5,11 @@ import { ProductReqDto } from "../../domain/dto/backend-dto";
 import useInput from "../../../../hooks/use-input";
 
 const ModalComponent: React.FC<{
+  className: string;
+  updateId?: number;
+  // value: { className: string; id?: number | undefined };
   addMeal: (productReqDto: ProductReqDto) => void;
+  editMeal: (id: number, productReqDto: ProductReqDto) => void;
   setShowModal: () => void;
   showModal: boolean;
 }> = (props) => {
@@ -93,25 +97,41 @@ const ModalComponent: React.FC<{
       console.log(`form is invalid`);
       return;
     }
+
     const productReqDto: ProductReqDto = {
       name: enteredName,
       description: enteredDescription,
       category: enteredCategory,
       price: +enteredPrice,
     };
-    props.addMeal(productReqDto);
+
+    if (props.className === "add-meal") {
+      props.addMeal(productReqDto);
+    }
+    if (props.className === "update-meal" && props.updateId !== undefined) {
+      console.log(props.updateId);
+      props.editMeal(props.updateId, productReqDto);
+    }
     resetAllInputs();
     props.setShowModal();
   };
+
+  let title: string = "";
+  if (props.className === "update-meal") {
+    title = "Update Meal";
+  }
+  if (props.className === "add-meal") {
+    title = "Add Meal";
+  }
 
   return (
     <div className='restaurant-admin__modal'>
       <Modal show={props.showModal} onHide={props.setShowModal}>
         <Modal.Header closeButton>
-          <div className='restaurant-admin__modal-title'>Update / Add Meal</div>
+          <div className='restaurant-admin__modal-title'>{title}</div>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitHandler} className={props.className}>
             <Form.Group
               className={`mb-3 restaurant-admin__input-group  ${nameInputClasses}`}
               controlId='mealName'

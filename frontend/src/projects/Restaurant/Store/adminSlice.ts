@@ -91,7 +91,7 @@ export const removeMealById = createAsyncThunk(
   }
 );
 
-//ToDo
+//
 export const addMeal = createAsyncThunk(
   "admin/add-product",
   async (data: { productReqDto: ProductReqDto; authState: AuthState }) => {
@@ -221,7 +221,7 @@ export const AdminSlice = createSlice({
       state.meals[index] = action.payload;
     });
 
-    //add meal
+    //addMeal
     builder.addCase(addMeal.pending, (state, action) => {
       state.status = "loading";
       console.log(`addMeal: loading`);

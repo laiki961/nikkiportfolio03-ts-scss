@@ -9,8 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../../../components/Loading/Loading";
-import React, { ReactElement } from "react";
+import React, { MouseEventHandler, ReactElement, SetStateAction } from "react";
 import { useAppDispatch } from "../../../Store/store";
+import { ProductReqDto } from "../../../domain/dto/backend-dto";
 
 type PropsType = {
   key: number;
@@ -20,6 +21,8 @@ type PropsType = {
   inCart?: boolean;
   className: string;
   onRemove?: (id: number) => void;
+  onShowEditModal?: MouseEventHandler<HTMLButtonElement>;
+  // onEdit?: (id: number) => void;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
@@ -48,14 +51,19 @@ const Meal: React.FC<PropsType> = (props) => {
       />
     );
   }
-  if (className === "admin" && props.onRemove !== undefined) {
+
+  if (
+    className === "admin" &&
+    props.onRemove !== undefined
+    // && props.onEdit !== undefined
+  ) {
     content = (
       <div className='restaurant-admin__features' key={id}>
         <div className='restaurant-admin__features-icon'>
           <button
             className='edit'
             type='button'
-            // onClick={editMealFromMenuHandler.bind(null, id)}
+            onClick={props.onShowEditModal}
           >
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
