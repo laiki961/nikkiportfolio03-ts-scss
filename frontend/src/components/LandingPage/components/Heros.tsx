@@ -1,10 +1,6 @@
-// import { useOktaAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
-// import classes from "../LandingPage.module.css";
 
 export const Heros = () => {
-  //   const { authState } = useOktaAuth();
-
   return (
     <div className='landing-page-hero'>
       <div className='d-none d-lg-block'>
@@ -18,12 +14,6 @@ export const Heros = () => {
                 Weather Forecast <i className='text-3'>by Open Weather</i>
               </h1>
               <p className='lead text-1'>
-                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                tincidunt, leo eu vestibulum convallis, ante enim convallis
-                libero, et sodales arcu ipsum id nisl. Maecenas consequat, lacus
-                ut ultricies hendrerit, orci mauris imperdiet nibh, scelerisque
-                tristique dolor augue ut mauris. Quisque at varius mauris, vitae
-                maximus velit. Donec in aliquam. */}
                 This app is using the free API provided by Open Weather. It
                 allows user to query the upcoming 5 days weather forecast by
                 entering a city name. User can also check the weather details by
@@ -87,7 +77,9 @@ export const Heros = () => {
               <h1 className='heading-1'>Restaurant</h1>
               <p className='lead text-1'>
                 I built this application to utilize and pratice all the skills
-                that I have leant from the courses that I have taken before.
+                that I have leant. The menu is connected to the database using
+                JDBC. You can try to login as an Admin and test it out! (You
+                will see the login credential when you on the login page)
               </p>
               <Link className='btn btn-dark btn-lg' to='/restaurant'>
                 Check it out
@@ -95,18 +87,21 @@ export const Heros = () => {
               <div className='label__container'>
                 <span className='label'>TypeScript</span>
                 <span className='label'>React</span>
+                <span className='label'>Redux</span>
                 <span className='label'>Java</span>
                 <span className='label'>Spring Boot</span>
                 <span className='label'>JDBC</span>
                 <span className='label'>MySql</span>
+                <span className='label'>Stripe</span>
                 <span className='label'>Okta</span>
                 <span className='label'>HTML</span>
                 <span className='label'>SCSS</span>
+                <span className='label'>Bootstrap</span>
               </div>
             </div>
           </div>
           <div className='col-sm-6 col-md-6'>
-            <div className='col-image-ecomerce'></div>
+            <div className='col-image-restaurant'></div>
           </div>
         </div>
       </div>
