@@ -7,10 +7,12 @@
 
 @import "components/button";
 @import "components/card";
+@import "components/form";
 @import "components/input";
 @import "components/label";
 @import "components/loading";
 @import "components/search";
+@import "components/calendar";
 
 @import "layout/footer";
 @import "layout/header";
@@ -24,3 +26,4 @@
 @import "pages/restaurant";
 @import "pages/weather";
 @import "pages/aboutme";
+@import "pages/reservation";

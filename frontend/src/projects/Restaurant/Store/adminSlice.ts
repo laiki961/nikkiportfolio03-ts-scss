@@ -239,8 +239,6 @@ export const AdminSlice = createSlice({
 
 export default AdminSlice.reducer;
 
-// export const { removeMeal } = AdminSlice.actions;
-
 export const selectAllAdmin = (state: any) => state.meals.admin;
 // addMeal: (state, action: PayloadAction<ProductReqDto>) => {
 //   state.meals.push({

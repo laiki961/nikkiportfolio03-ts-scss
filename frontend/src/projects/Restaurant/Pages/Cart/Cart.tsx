@@ -1,7 +1,5 @@
-import { doesNotMatch } from "assert";
 import { ReactElement, useState } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
-import Card from "../../../../components/Card/Card";
 import useCart from "../../../../hooks/useCart";
 import CartItem from "./components/CartItem";
 

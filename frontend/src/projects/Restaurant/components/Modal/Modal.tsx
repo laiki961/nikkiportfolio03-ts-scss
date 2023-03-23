@@ -7,7 +7,6 @@ import useInput from "../../../../hooks/use-input";
 const ModalComponent: React.FC<{
   className: string;
   updateId?: number;
-  // value: { className: string; id?: number | undefined };
   addMeal: (productReqDto: ProductReqDto) => void;
   editMeal: (id: number, productReqDto: ProductReqDto) => void;
   setShowModal: () => void;
@@ -49,28 +48,21 @@ const ModalComponent: React.FC<{
     reset: resetPriceInput,
   } = useInput((value: string) => value.trim() !== "");
 
-  const DUMMY_PRODUCTDTO: ProductReqDto = {
-    name: "testing",
-    description: "testing",
-    category: "Noodles",
-    price: 20.0,
-  };
-
   const nameInputClasses = nameInputHasError
-    ? "restaurant-admin__form-control invalid"
-    : "restaurant-admin__form-control";
+    ? "restaurant__form-control invalid"
+    : "restaurant__form-control";
 
   const descriptionInputClasses = descriptionInputHasError
-    ? "restaurant-admin__form-control invalid"
-    : "restaurant-admin__form-control";
+    ? "restaurant__form-control invalid"
+    : "restaurant__form-control";
 
   const categoryInputClasses = categoryInputHasError
-    ? "restaurant-admin__form-control invalid"
-    : "restaurant-admin__form-control";
+    ? "restaurant__form-control invalid"
+    : "restaurant__form-control";
 
   const priceInputClasses = priceInputHasError
-    ? "restaurant-admin__form-control invalid"
-    : "restaurant-admin__form-control";
+    ? "restaurant__form-control invalid"
+    : "restaurant__form-control";
 
   let formIsValid = false;
 

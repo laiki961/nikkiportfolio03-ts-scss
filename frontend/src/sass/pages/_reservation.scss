@@ -1,0 +1,30 @@
+.restaurant-reservation {
+  &__left {
+    background-color: $color-restaurant-light;
+    font-size: $default-font-size;
+    border-radius: 0.5rem;
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  &__title {
+    font-size: $default-font-xl;
+    text-align: center;
+    margin: 2rem 0;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    padding: 5rem 0;
+  }
+}
+
+.reservation-img {
+  max-width: 100%;
+  height: auto;
+}

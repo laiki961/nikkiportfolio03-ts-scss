@@ -14,6 +14,12 @@ description text
 ALTER TABLE product 
 ADD COLUMN reivew_id INT;
 
+ALTER TABLE product
+ADD COLUMN img VARCHAR(250);
+
+ALTER TABLE product 
+DROP COLUMN img_url ;
+
 ALTER TABLE product 
 ADD COLUMN price decimal(2,2);
 

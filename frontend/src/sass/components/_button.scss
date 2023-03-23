@@ -73,6 +73,7 @@ button.disabled:active {
   font-size: $default-font-size;
   background-color: $color-restaurant-dark;
   color: $color-white;
+  text-transform: uppercase;
 }
 
 .restaurant-btn.seconday {

@@ -1,4 +1,4 @@
-class PaymentInfoRequest {
+export class PaymentInfoRequest {
   amount: number;
   currency: string;
   receiptEmail: string | undefined;
@@ -13,5 +13,3 @@ class PaymentInfoRequest {
     this.receiptEmail = receiptEmail;
   }
 }
-
-export default PaymentInfoRequest;

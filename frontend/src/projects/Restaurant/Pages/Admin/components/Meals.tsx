@@ -1,13 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthState } from "@okta/okta-auth-js";
-import React, {
-  MouseEventHandler,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import ModalComponent from "../../../components/Modal/Modal";
 import Search from "../../../components/Search/Search";
@@ -29,10 +23,6 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
-  // const [modalValue, setModalValue] = useState<{
-  //   className: string;
-  //   id?: number | undefined;
-  // }>();
 
   const fetchData = useCallback(() => {
     dispatch(fetchMeals());
@@ -70,7 +60,6 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
 
   const modalController = (className: string, mealId?: number) => {
     setModalClassName(className);
-    // setModalValue({ className, id });
     setShowModal(!showModal);
     setUpdateId(mealId);
   };
@@ -108,7 +97,6 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
       </div>
       {showModal && (
         <ModalComponent
-          // value={modalValue}
           updateId={updateId}
           className={modalClassName}
           addMeal={addMealHandler}
