@@ -28,6 +28,7 @@ import RestaurantOrderPage from "./projects/Restaurant/pages/Checkout/Checkout";
 import RestaurantReservationPage from "./projects/Restaurant/pages/Reservation/Reservation";
 import RestaurantAdminPage from "./projects/Restaurant/pages/Admin/Admin";
 import RestaurantMenuPage from "./projects/Restaurant/pages/Menu/Menu";
+import RestaurantPaymentCompleted from "./projects/Restaurant/pages/Checkout/components/PaymentCompleted";
 
 import AboutMe from "./projects/AboutMe/AboutMe";
 
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
           {
             path: "/restaurant/order",
             element: <RestaurantOrderPage />,
+          },
+          {
+            path: "/restaurant/payment-completed",
+            element: <RestaurantPaymentCompleted />,
           },
           {
             path: "/restaurant/reservation",

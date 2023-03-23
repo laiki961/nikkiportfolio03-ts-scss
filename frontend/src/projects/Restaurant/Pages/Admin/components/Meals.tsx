@@ -64,9 +64,6 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
     setUpdateId(mealId);
   };
 
-  // console.log(`meals`);
-  // console.log(meals);
-
   let content: ReactElement | ReactElement[] = <Loading />;
 
   if (meals?.length) {

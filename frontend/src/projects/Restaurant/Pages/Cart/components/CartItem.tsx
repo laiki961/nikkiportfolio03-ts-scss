@@ -17,10 +17,10 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   useEffect(() => {
     inputValue(amount);
     setSubTotal(amount * item.price);
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, amount: amount },
-    });
+    // dispatch({
+    //   type: REDUCER_ACTIONS.QUANTITY,
+    //   payload: { ...item, amount: amount },
+    // });
   }, [amount]);
 
   const inputValue = (value: number) => {

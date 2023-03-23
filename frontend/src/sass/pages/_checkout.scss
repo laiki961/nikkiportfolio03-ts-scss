@@ -20,3 +20,20 @@
   text-align: end;
   padding: 1rem;
 }
+
+.payment-completed {
+  text-align: center;
+  position: relative;
+
+  > .title {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    font-size: $default-font-xl;
+    font-weight: 600;
+  }
+}

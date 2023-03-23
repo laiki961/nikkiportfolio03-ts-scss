@@ -1,21 +1,25 @@
 import { useOktaAuth } from "@okta/okta-react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { CardElement } from "@stripe/react-stripe-js";
 import Loading from "../../../../components/Loading/Loading";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { PaymentInfoRequest } from "../../domain/dto/RequestDto";
 import useInput from "../../../../hooks/use-input";
-import useCart from "../../../../hooks/useCart";
 
 const Checkout: React.FC<{}> = () => {
   const { authState } = useOktaAuth();
-  const { totalPrice } = useCart();
+  const navigate = useNavigate();
 
-  // const [httpError, setHttpError] = useState(false);
-  // const [submitDisable, setSubmitDisable] = useState(false);
-  // const [fees, setFees] = useState(0);
-  // const [loadingFees, setLoadingFees] = useState(false);
+  const totalPriceConverted = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "CAD",
+  }).format(Number(localStorage.getItem("cartTotalPrice")));
+
+  const [httpError, setHttpError] = useState<boolean>(false);
+  const [submitDisable, setSubmitDisable] = useState<boolean>(false);
+  const [transactionCompleted, setTransactionCompleted] =
+    useState<boolean>(false);
 
   const {
     value: enteredFirstName,
@@ -57,6 +61,16 @@ const Checkout: React.FC<{}> = () => {
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
   );
 
+  let formIsValid = false;
+  if (
+    enteredFirstNameIsValid &&
+    enteredLastNameIsValid &&
+    enteredContactIsValid &&
+    enteredEmailIsValid
+  ) {
+    formIsValid = true;
+  }
+
   const firstNameInputClasses = firstNameInputHasError
     ? "restaurant__form-control invalid"
     : "restaurant__form-control";
@@ -80,126 +94,93 @@ const Checkout: React.FC<{}> = () => {
     resetEmailInput();
   };
 
-  const submitHandler = (e: React.FormEvent) => {
+  const elements = useElements();
+  const stripe = useStripe();
+
+  async function checkout(e: React.FormEvent) {
     e.preventDefault();
-    console.log(`Clicked Submit`);
+    if (!stripe || !elements || !elements.getElement(CardElement)) {
+      return;
+    }
+    setSubmitDisable(true);
+    let paymentInfo = new PaymentInfoRequest(
+      Number(localStorage.getItem("cartTotalPrice")) * 100,
+      "CAD",
+      authState?.accessToken?.claims.sub
+    );
 
-    //if success
+    const url = `${process.env.REACT_APP_RESTAURANT_API}/payment/secure/payment-intent`;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentInfo),
+    };
+    const stripeResponse = await fetch(url, requestOptions);
+    if (!stripeResponse.ok) {
+      setHttpError(true);
+      setSubmitDisable(false);
+      throw new Error("Something went wrong");
+    }
+    const stripeResponseJson = await stripeResponse.json();
 
-    //if failed
+    stripe
+      .confirmCardPayment(
+        stripeResponseJson.client_secret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement)!,
+            billing_details: {
+              email: authState?.accessToken?.claims.sub,
+            },
+          },
+        },
+        { handleActions: false }
+      )
+      .then(async function (result: any) {
+        if (result.error) {
+          setSubmitDisable(false);
+          alert("There was an error");
+        } else {
+          const url = `${process.env.REACT_APP_RESTAURANT_API}/payment/secure/payment-complete`;
+          const requestOptions = {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+              "Content-Type": "application/json",
+            },
+          };
+          const stripeResponse = await fetch(url, requestOptions);
+          if (!stripeResponse.ok) {
+            setHttpError(true);
+            setSubmitDisable(false);
+            throw new Error("Something went wrong");
+          }
+          setTransactionCompleted(true);
+          setSubmitDisable(false);
+        }
+      });
+    setHttpError(false);
+  }
 
-    // resetAllInputs();
-  };
+  if (httpError) {
+    <div className='container my-5 min-vh-100'>
+      <p>{httpError}</p>
+    </div>;
+  }
 
-  // useEffect(() => {
-  //   const fetchFees = async () => {
-  //     if (authState && authState.isAuthenticated) {
-  //       const url = `${process.env.REACT_APP_RESTAURANT_API}/paymentEntities/search/findByUserEmail?userEmail=${authState.accessToken?.claims.sub}`;
-  //       const requestOptions = {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       };
-  //       const paymentResponse = await fetch(url, requestOptions);
-  //       if (!paymentResponse.ok) {
-  //         throw new Error("Something went wrong!");
-  //       }
-  //       const paymentResponseJson = await paymentResponse.json();
-  //       setFees(paymentResponseJson.amount);
-  //       setLoadingFees(false);
-  //     }
-  //   };
-  //   fetchFees().catch((error: any) => {
-  //     setLoadingFees(false);
-  //     setHttpError(error.message);
-  //   });
-  // }, [authState]);
-
-  // const elements = useElements();
-  // const stripe = useStripe();
-
-  // async function checkout(e: React.FormEvent) {
-  //   e.preventDefault();
-  //   if (!stripe || !elements || !elements.getElement(CardElement)) {
-  //     return;
-  //   }
-  //   setSubmitDisable(true);
-  //   let paymentInfo = new PaymentInfoRequest(
-  //     Math.round(fees * 100),
-  //     "USD",
-  //     authState?.accessToken?.claims.sub
-  //   );
-
-  //   const url = `${process.env.REACT_APP_RESTAURANT_API}/payment/secure/payment-intent`;
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(paymentInfo),
-  //   };
-  //   const stripeResponse = await fetch(url, requestOptions);
-  //   if (!stripeResponse.ok) {
-  //     setHttpError(true);
-  //     setSubmitDisable(false);
-  //     throw new Error("Something went wrong");
-  //   }
-  //   const stripeResponseJson = await stripeResponse.json();
-
-  //   stripe
-  //     .confirmCardPayment(
-  //       stripeResponseJson.client_secret,
-  //       {
-  //         payment_method: {
-  //           card: elements.getElement(CardElement)!,
-  //           billing_details: {
-  //             email: authState?.accessToken?.claims.sub,
-  //           },
-  //         },
-  //       },
-  //       { handleActions: false }
-  //     )
-  //     .then(async function (result: any) {
-  //       if (result.error) {
-  //         setSubmitDisable(false);
-  //         alert("There was an error");
-  //       } else {
-  //         const url = `${process.env.REACT_APP_RESTAURANT_API}/payment/secure/payment-complete`;
-  //         const requestOptions = {
-  //           method: "PUT",
-  //           headers: {
-  //             Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
-  //             "Content-Type": "application/json",
-  //           },
-  //         };
-  //         const stripeResponse = await fetch(url, requestOptions);
-  //         if (!stripeResponse.ok) {
-  //           setHttpError(true);
-  //           setSubmitDisable(false);
-  //           throw new Error("Something went wrong");
-  //         }
-  //         setFees(0);
-  //         setSubmitDisable(false);
-  //       }
-  //     });
-  //   setHttpError(false);
-  // }
-
-  // if (loadingFees) {
-  //   return <Loading />;
-  // }
-
-  // if (httpError) {
-  //   <div className='container my-5 min-vh-100'>
-  //     <p>{httpError}</p>
-  //   </div>;
-  // }
+  if (transactionCompleted) {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("cartTotalItem");
+    localStorage.removeItem("cartPrice");
+    navigate("/restaurant/payment-completed");
+  }
 
   return authState?.isAuthenticated ? (
     <section className='restaurant-checkout container text-2 min-vh-100'>
-      <form>
+      <form onSubmit={checkout}>
         <div className='restaurant-checkout__user-info'>
           <div className='restaurant-checkout__title'>Contact Information</div>
           <div className={`form-group ${firstNameInputClasses}`}>
@@ -275,18 +256,23 @@ const Checkout: React.FC<{}> = () => {
             <CardElement id='card-element' />
           </div>
           <hr className='solid' />
-          <div className='form-group checkout-price'>{totalPrice}</div>
+          {totalPriceConverted && (
+            <div className='form-group checkout-price'>
+              {totalPriceConverted}
+            </div>
+          )}
           <div className='form-button'>
             <button
               type='submit'
               className='restaurant-btn'
-              // disabled={submitDisable}
+              disabled={submitDisable}
             >
               Place Order
             </button>
           </div>
         </div>
       </form>
+      {submitDisable && <Loading />}
     </section>
   ) : (
     <Navigate to={"/login"} />
