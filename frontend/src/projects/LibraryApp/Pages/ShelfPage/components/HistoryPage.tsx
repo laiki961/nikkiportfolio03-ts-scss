@@ -63,10 +63,10 @@ export const HistoryPage = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className='mt-2'>
+    <div className='mt-2 text-3'>
       {histories.length > 0 ? (
         <>
-          <h5>Recent History:</h5>
+          <h5 className='text-2'>Recent History:</h5>
 
           {histories.map((history) => (
             <div key={history.id}>
