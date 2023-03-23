@@ -42,10 +42,6 @@ const reducer = (
       const amount: number = itemExists
         ? itemExists.amount + action.payload.amount
         : action.payload.amount;
-      // if (itemExists) {
-      //   console.log(itemExists.amount);
-      //   console.log(price);
-      // }
 
       return {
         ...state,
@@ -57,6 +53,17 @@ const reducer = (
         throw new Error("action.payload missing in REMOVE action");
       }
       const { id } = action.payload;
+      // ////
+      //       const existingCartItemIndex = state.cart.findIndex(
+      //         item => item.id === id
+      //       )
+      //       const existingItem = state.cart[existingCartItemIndex];
+      //     if(existingItem.amount === 1){
+      //       const filteredCart: CartItemModel[] = state.cart.filter(
+      //         (item) => item.id !== id
+      //       );
+      //       }
+      ////
       const filteredCart: CartItemModel[] = state.cart.filter(
         (item) => item.id !== id
       );

@@ -6,6 +6,10 @@ import OktaSignInWidget from "./OktaSigninWidget";
 const LoginWidget = ({ config }) => {
   const { oktaAuth, authState } = useOktaAuth();
 
+  alert(
+    "Normal User:\nUsername: testuser@gmail.com\nPassword: test1234!\n\nAdmin Feature: \nUsername: adminuser@email.com\nPassword: test1234!"
+  );
+
   const onSuccess = (tokens) => {
     oktaAuth.handleLoginRedirect(tokens);
   };

@@ -68,7 +68,7 @@ const Cart: React.FC<{}> = () => {
           onClick={onSubmitOrderHandler}
           className='button'
         >
-          {isSubmitting ? "loading..." : "Place Order"}
+          {isSubmitting ? "loading..." : "Checkout"}
         </button>
       </div>
     </section>

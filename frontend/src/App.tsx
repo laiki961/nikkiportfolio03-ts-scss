@@ -24,7 +24,7 @@ import { ManageLibraryPage } from "./projects/LibraryApp/Pages/ManageLibraryPage
 
 import RestaurantRootLayout from "./projects/Restaurant/pages/Root";
 import RestaurantCartPage from "./projects/Restaurant/pages/Cart/Cart";
-import RestaurantOrderPage from "./projects/Restaurant/pages/Order/Order";
+import RestaurantOrderPage from "./projects/Restaurant/pages/Checkout/Checkout";
 import RestaurantReservationPage from "./projects/Restaurant/pages/Reservation/Reservation";
 import RestaurantAdminPage from "./projects/Restaurant/pages/Admin/Admin";
 import RestaurantMenuPage from "./projects/Restaurant/pages/Menu/Menu";

@@ -22,7 +22,6 @@ type PropsType = {
   className: string;
   onRemove?: (id: number) => void;
   onShowEditModal?: MouseEventHandler<HTMLButtonElement>;
-  // onEdit?: (id: number) => void;
 };
 
 const Meal: React.FC<PropsType> = (props) => {
@@ -54,8 +53,8 @@ const Meal: React.FC<PropsType> = (props) => {
 
   if (
     className === "admin" &&
-    props.onRemove !== undefined
-    // && props.onEdit !== undefined
+    props.onRemove !== undefined &&
+    props.onShowEditModal !== undefined
   ) {
     content = (
       <div className='restaurant-admin__features' key={id}>

@@ -21,7 +21,8 @@ const QuantityControl: React.FC<Props> = (props) => {
         id='meal-quantity'
         onChange={props.onInputChange}
         value={props.amount}
-        type='number'
+        // type='number'
+        type='text'
         min='1'
         max='10'
         className='restaurant-card__cta-input'
@@ -30,7 +31,6 @@ const QuantityControl: React.FC<Props> = (props) => {
         type='button'
         className='restaurant-card__quantity-control-button'
         onClick={props.onIncrement}
-        //onClick={incrementHandler.bind(null, props.key)}
       >
         +
       </button>

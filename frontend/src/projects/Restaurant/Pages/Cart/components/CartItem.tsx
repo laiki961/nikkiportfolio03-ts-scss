@@ -27,13 +27,6 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     setAmount(value);
   };
 
-  const onChangeAmt = (e: ChangeEvent<HTMLButtonElement>) => {
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, amount: Number(e.target.value) },
-    });
-  };
-
   const onRemoveFromCart = () => {
     dispatch({
       type: REDUCER_ACTIONS.REMOVE,
@@ -45,6 +38,9 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     if (amount > 1) {
       setAmount(amount - 1);
     }
+    if (amount === 1) {
+      onRemoveFromCart();
+    }
   };
   const incrementHandler = () => {
     if (amount < 10) {
@@ -52,7 +48,10 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     }
   };
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+e.target.value);
+    dispatch({
+      type: REDUCER_ACTIONS.QUANTITY,
+      payload: { ...item, amount: Number(e.target.value) },
+    });
   };
 
   return (

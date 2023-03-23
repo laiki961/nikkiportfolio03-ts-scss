@@ -69,7 +69,7 @@ button.disabled:active {
   border-radius: 0.5rem;
   margin: 1rem;
   width: 5rem;
-  min-width: min-content;
+  min-width: max-content;
   font-size: $default-font-size;
   background-color: $color-restaurant-dark;
   color: $color-white;
