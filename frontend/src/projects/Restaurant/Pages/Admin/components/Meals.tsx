@@ -14,7 +14,7 @@ import {
   updateMeal,
 } from "../../../Store/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
-import Meal from "../../Menu/components/Meal";
+import Meal from "../../Menu/components/MenuItem";
 
 const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;

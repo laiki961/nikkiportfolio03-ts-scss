@@ -1,5 +1,5 @@
 import Loading from "../../../../../components/Loading/Loading";
-import Meal from "./Meal";
+import MenuItem from "./MenuItem";
 import MealModel from "../../../Models/MealModel";
 import useCart from "../../../../../hooks/useCart";
 import useMeals from "../../../../../hooks/useMeals";
@@ -22,13 +22,11 @@ export const MenuList: React.FC = () => {
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
-  console.log(productEntities);
-
   if (productEntities?.length) {
     content = productEntities.map((meal: MealModel) => {
       const inCart: boolean = cart.some((item) => item.id === meal.id);
       return (
-        <Meal
+        <MenuItem
           className='menu'
           key={meal.id}
           meal={meal}

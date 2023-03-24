@@ -17,10 +17,10 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   useEffect(() => {
     inputValue(amount);
     setSubTotal(amount * item.price);
-    // dispatch({
-    //   type: REDUCER_ACTIONS.QUANTITY,
-    //   payload: { ...item, amount: amount },
-    // });
+    dispatch({
+      type: REDUCER_ACTIONS.QUANTITY,
+      payload: { ...item, amount: amount },
+    });
   }, [amount]);
 
   const inputValue = (value: number) => {
@@ -48,25 +48,30 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
     }
   };
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, amount: Number(e.target.value) },
-    });
+    setAmount(+e.target.value);
   };
 
   return (
     <Card key={item.id} className='restaurant-cart__card '>
-      <div className='restaurant-cart__details-container'>
-        <img
-          src={require("../../../images/pad_thai.jpeg")}
-          alt={item.name}
-          className='meal-img'
-        />
-        <div className='cart_details'>
-          <p className='cart_meal-name'>{item.name}</p>
-          {/* ingredients */}
-          {/* notes */}
-        </div>
+      <div className='img-box'>
+        {item.id ? (
+          <img
+            src={require(`../../../images/meals/meal-${item.id}.jpeg`)}
+            className='meal-img'
+            alt={item.name}
+          />
+        ) : (
+          <img
+            src={require("../../../../../components/no-image.jpg")}
+            alt={item.name}
+            className='meal-img'
+          />
+        )}
+      </div>
+      <div className='restaurant-cart__details'>
+        <p className='restaurant-cart__meal-name'>{item.name}</p>
+        {/* ingredients */}
+        {/* notes */}
       </div>
       <div className='restaurant-cart__price'>
         {new Intl.NumberFormat("en-US", {
@@ -75,7 +80,6 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
         }).format(item.price)}
       </div>
       <div className='restaurant-cart__quantity'>
-        {/* {item.amount} */}
         <QuantityControl
           className='cart'
           onDecrement={decrementHandler}

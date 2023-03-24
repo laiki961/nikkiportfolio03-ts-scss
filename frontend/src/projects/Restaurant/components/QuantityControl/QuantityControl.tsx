@@ -21,10 +21,9 @@ const QuantityControl: React.FC<Props> = (props) => {
         id='meal-quantity'
         onChange={props.onInputChange}
         value={props.amount}
-        // type='number'
         type='text'
         min='1'
-        max='10'
+        max='5'
         className='restaurant-card__cta-input'
       ></input>
       <button

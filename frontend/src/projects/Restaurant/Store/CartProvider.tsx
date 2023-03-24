@@ -1,6 +1,5 @@
 import { createContext, ReactElement, useMemo, useReducer } from "react";
 import { CartItemModel } from "../Models/CartModel";
-import CartItem from "../pages/Cart/components/CartItem";
 
 type CartStateType = {
   cart: CartItemModel[];
@@ -34,7 +33,6 @@ const reducer = (
         throw new Error("action.payload missing in ADD action");
       }
       const { id, name, price } = action.payload;
-      console.log(action.payload);
       const filteredCart: CartItemModel[] = state.cart.filter(
         (item) => item.id !== id
       );
@@ -44,32 +42,6 @@ const reducer = (
       const amount: number = itemExists
         ? itemExists.amount + action.payload.amount
         : action.payload.amount;
-
-      if (itemExists) {
-        console.log(`itemExists.amount: ${itemExists.amount}`);
-        console.log(`action.payload.amount: ${action.payload.amount}`);
-      }
-
-      // const nonUpdatedItemsAmount = filteredCart.reduce(
-      //   (preValue, cartItem) => {
-      //     return preValue + cartItem.amount;
-      //   },
-      //   0
-      // );
-
-      // const totalItems: number = itemExists
-      //   ? itemExists.amount + action.payload.amount + nonUpdatedItemsAmount
-      //   : state.totalItems + action.payload.amount;
-
-      // const nonUpdatedItemsPrice = filteredCart.reduce((preValue, cartItem) => {
-      //   return preValue + cartItem.amount * cartItem.price;
-      // }, 0);
-
-      // const totalPrice: number = itemExists
-      //   ? itemExists.price +
-      //     action.payload.amount * price +
-      //     nonUpdatedItemsPrice
-      //   : state.totalPrice + action.payload.amount * price;
 
       localStorage.setItem(
         "cart",
@@ -81,36 +53,19 @@ const reducer = (
         cart: [...filteredCart, { id, name, price, amount }],
       };
     }
-    // case REDUCER_ACTION_TYPE.REMOVE: {
-    //   if (!action.payload) {
-    //     throw new Error("action.payload missing in REMOVE action");
-    //   }
-    //   const { id } = action.payload;
-    //   const filteredCart: CartItemModel[] = state.cart.filter(
-    //     (item) => item.id !== id
-    //   );
+    case REDUCER_ACTION_TYPE.REMOVE: {
+      if (!action.payload) {
+        throw new Error("action.payload missing in REMOVE action");
+      }
+      const { id } = action.payload;
+      const filteredCart: CartItemModel[] = state.cart.filter(
+        (item) => item.id !== id
+      );
 
-    //   const totalItems: number = filteredCart.reduce(
-    //     (previousValue, cartItem) => {
-    //       return previousValue + cartItem.amount;
-    //     },
-    //     0
-    //   );
+      localStorage.setItem("cart", JSON.stringify([filteredCart]));
 
-    //   const totalPrice: number = filteredCart.reduce(
-    //     (previousValue, cartItem) => {
-    //       return previousValue + cartItem.price * cartItem.amount;
-    //     },
-    //     0
-    //   );
-
-    //   localStorage.setItem(
-    //     "cart",
-    //     JSON.stringify([filteredCart, totalItems, totalPrice])
-    //   );
-
-    //   return { ...state, cart: [...filteredCart], totalItems, totalPrice };
-    // }
+      return { ...state, cart: [...filteredCart] };
+    }
 
     case REDUCER_ACTION_TYPE.QUANTITY: {
       if (!action.payload) {
@@ -124,6 +79,13 @@ const reducer = (
       );
       if (!itemExists) {
         throw new Error("Item must exist in order to update quantity");
+      }
+
+      if (amount === 0) {
+        const filteredCart: CartItemModel[] = state.cart.filter(
+          (item) => item.id !== id
+        );
+        return { ...state, cart: [...filteredCart] };
       }
 
       const updatedItem: CartItemModel = { ...itemExists, amount };

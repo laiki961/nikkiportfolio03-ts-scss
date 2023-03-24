@@ -26,14 +26,14 @@ function RestaurantNavbar() {
               Menu
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to='reservation'
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Reservation
             </NavLink>
-          </li>
+          </li> */}
           {authState?.accessToken?.claims.userType === "admin" && (
             <li>
               <NavLink

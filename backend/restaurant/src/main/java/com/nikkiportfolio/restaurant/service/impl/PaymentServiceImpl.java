@@ -1,7 +1,6 @@
 package com.nikkiportfolio.restaurant.service.impl;
 
 import com.nikkiportfolio.restaurant.domain.dto.request.PaymentInfoRequestDto;
-import com.nikkiportfolio.restaurant.domain.entity.PaymentEntity;
 import com.nikkiportfolio.restaurant.respository.PaymentRepository;
 import com.nikkiportfolio.restaurant.service.PaymentService;
 import com.stripe.Stripe;
@@ -44,12 +43,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public ResponseEntity<String> stripePayment(String userEmail) throws Exception{
-        PaymentEntity paymentEntity = paymentRepository.findByUserEmail(userEmail);
-        if(paymentEntity == null){
-            throw  new Exception("Payment information is missing");
-        }
-        paymentEntity.setAmount(00.00);
-        paymentRepository.save(paymentEntity);
+//        PaymentEntity paymentEntity = paymentRepository.findByUserEmail(userEmail);
+//        if(paymentEntity == null){
+//            throw  new Exception("Payment information is missing");
+//        }
+//        paymentEntity.setAmount(00.00);
+//        paymentRepository.save(paymentEntity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

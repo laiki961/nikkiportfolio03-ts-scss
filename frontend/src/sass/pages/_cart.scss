@@ -4,12 +4,16 @@
   &__card {
     display: grid;
     grid-template-columns:
-      [list-start item-start] minmax(10rem, 1fr)
+      [list-start img-start] minmax(20rem, min-content)
+      [img-end item-start] minmax(20rem, 1fr)
       [item-end price-start] minmax(15rem, min-content)
       [price-end amount-start] minmax(15rem, min-content)
       [amount-end subtotal-start] minmax(15rem, min-content)
       [subtotal-end list-end];
+
+    //[full-start img-start] minmax(25rem, min-content) [img-end meal-detail-start] minmax(18rem, 1fr) [meal-detail-end] minmax(20rem, min-content) [full-end];
   }
+
   &__title {
     font-size: $default-font-xl;
     margin: 2rem 0;
@@ -42,26 +46,11 @@
     align-items: center;
   }
 
-  &__details-container {
-    background: transparent;
-    margin: auto;
-    display: block;
-
-    & > img {
-      border-radius: 1rem;
-      width: 20%;
-      display: inline-block;
-    }
-
-    & > .cart_details {
-      display: inline-block;
-      margin-left: 2rem;
-
-      & > .cart_meal-name {
-        font-size: $default-font-lg;
-      }
-    }
-  }
+  // &__details-container {
+  //   background: transparent;
+  //   margin: auto;
+  //   display: block;
+  // }
 
   &__summary {
     & > * {
@@ -82,5 +71,31 @@
       color: $color-primary-900;
     }
   }
+
+  &__details {
+    display: inline-block;
+    margin-left: 2rem;
+    position: relative;
+  }
+
+  &__meal-name {
+    font-size: $default-font-xl;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }
 ///////////////////////////////////////////
+
+.img-box {
+  border-radius: 1rem;
+  width: 100%;
+  display: block;
+}
+
+.meal-img {
+  max-height: 100%;
+  max-width: 100%;
+}
