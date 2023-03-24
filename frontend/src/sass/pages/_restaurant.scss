@@ -8,3 +8,12 @@
     height: 100%;
   }
 }
+
+.restaurant-menu {
+  &__heading {
+    font-size: 4rem;
+    text-transform: uppercase;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+}

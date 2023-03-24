@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import QuantityControl from "../../../components/QuantityControl/QuantityControl";
 import { CartItemModel } from "../../../Models/CartModel";
@@ -21,7 +21,7 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
       type: REDUCER_ACTIONS.QUANTITY,
       payload: { ...item, amount: amount },
     });
-  }, [amount]);
+  }, [amount, item]);
 
   const inputValue = (value: number) => {
     setAmount(value);
@@ -54,17 +54,17 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   return (
     <Card key={item.id} className='restaurant-cart__card '>
       <div className='img-box'>
-        {item.id ? (
+        {item.id > 12 ? (
           <img
-            src={require(`../../../images/meals/meal-${item.id}.jpeg`)}
+            src={require(`../../../../../components/no-image.jpg`)}
             className='meal-img'
             alt={item.name}
           />
         ) : (
           <img
-            src={require("../../../../../components/no-image.jpg")}
-            alt={item.name}
+            src={require(`../../../images/meals/meal-${item.id}.jpeg`)}
             className='meal-img'
+            alt={item.name}
           />
         )}
       </div>

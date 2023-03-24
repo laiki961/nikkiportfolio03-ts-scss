@@ -1,6 +1,5 @@
 import { Container, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import icon from "../../images/icon-portfolio/SVG/shopping-cart.svg";
 import useCart from "../../../../hooks/useCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -54,7 +53,6 @@ function RestaurantNavbar() {
               }
             >
               <FontAwesomeIcon icon={faCartShopping} />
-              {/* <img src={icon} className='restaurant-nav__icon'></img> */}
               <span className={`restaurant-nav__badge`}>{totalItems}</span>
             </NavLink>
           </li>

@@ -28,15 +28,6 @@
   }
 }
 
-.restaurant-menu {
-  &__heading {
-    font-size: 4rem;
-    text-transform: uppercase;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  }
-}
-
 .error-text {
   color: $color-error-text;
   font-size: 1.5rem;
@@ -47,4 +38,10 @@
   text-align: center;
   margin: 1rem 0;
   font-family: $font-display;
+}
+
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

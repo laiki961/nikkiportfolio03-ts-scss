@@ -7,8 +7,13 @@ import { ReactElement, useState } from "react";
 import { Pagination } from "../../../../../components/Pagination/Pagination";
 
 export const MenuList: React.FC = () => {
-  const { productEntities, totalAmountOfItem, totalPages, itemsPerPage } =
-    useMeals();
+  const {
+    productEntities,
+    totalAmountOfItem,
+    totalPages,
+    itemsPerPage,
+    error,
+  } = useMeals();
   const { dispatch, REDUCER_ACTIONS, cart } = useCart();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +26,12 @@ export const MenuList: React.FC = () => {
       : totalAmountOfItem;
 
   let content: ReactElement | ReactElement[] = <Loading />;
+
+  if (error) {
+    content = (
+      <div className='container min-vh-100 text-2 error-message'>{error}</div>
+    );
+  }
 
   if (productEntities?.length) {
     content = productEntities.map((meal: MealModel) => {
@@ -39,7 +50,7 @@ export const MenuList: React.FC = () => {
   }
 
   return (
-    <div className='restaurnat-menu__list'>
+    <div className='restaurant-menu__list'>
       {content}
       {totalPages > 1 && (
         <Pagination

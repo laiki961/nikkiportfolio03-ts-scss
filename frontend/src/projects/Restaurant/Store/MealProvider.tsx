@@ -10,6 +10,7 @@ export type UseMealsContextType = {
   totalAmountOfItem: number;
   totalPages: number;
   itemsPerPage: number;
+  error: any;
 };
 
 const initContextState: UseMealsContextType = {
@@ -17,6 +18,7 @@ const initContextState: UseMealsContextType = {
   totalAmountOfItem: 0,
   totalPages: 0,
   itemsPerPage: 20,
+  error: null,
 };
 
 const MealsContext = createContext<UseMealsContextType>(initContextState);
@@ -38,18 +40,6 @@ export const MealsProvider = ({ children }: ChildrenType): ReactElement => {
       setTotalAmountOfItem(taskObj.page.totalElement);
       setTotalPages(taskObj.page.totalPages);
       const responseData = taskObj._embedded.productEntities;
-
-      // const loadedMeals: MealModel[] = [];
-      // for (const key in responseData) {
-      //   loadedMeals.push({
-      //     id: responseData[key].id,
-      //     name: responseData[key].name,
-      //     description: responseData[key].description,
-      //     category: responseData[key].category,
-      //     price: responseData[key].price,
-      //   });
-      // }
-      // setProductEntities(loadedMeals);
       setProductEntities(responseData);
     };
 
@@ -61,11 +51,16 @@ export const MealsProvider = ({ children }: ChildrenType): ReactElement => {
 
   return (
     <MealsContext.Provider
-      value={{ productEntities, totalAmountOfItem, totalPages, itemsPerPage }}
+      value={{
+        productEntities,
+        totalAmountOfItem,
+        totalPages,
+        itemsPerPage,
+        error,
+      }}
     >
       {!isLoading && children}
       {isLoading && <Loading />}
-      {error && <p>error</p>}
     </MealsContext.Provider>
   );
 };

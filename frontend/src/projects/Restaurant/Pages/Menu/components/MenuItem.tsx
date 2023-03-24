@@ -75,11 +75,19 @@ const MenuItem: React.FC<PropsType> = (props) => {
   return (
     <Card className='restaurant-card'>
       <div className='restaurant-card__img-box'>
-        <img
-          src={require(`../../../images/meals/meal-${meal.id}.jpeg`)}
-          className='meal-img'
-          alt={name}
-        />
+        {id > 12 ? (
+          <img
+            src={require(`../../../../../components/no-image.jpg`)}
+            className='meal-img'
+            alt={name}
+          />
+        ) : (
+          <img
+            src={require(`../../../images/meals/meal-${meal.id}.jpeg`)}
+            className='meal-img'
+            alt={name}
+          />
+        )}
       </div>
       <div className='restaurant-card__detail'>
         <div className='meal-name'>{name}</div>

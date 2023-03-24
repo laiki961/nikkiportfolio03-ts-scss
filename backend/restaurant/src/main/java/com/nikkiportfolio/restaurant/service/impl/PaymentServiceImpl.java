@@ -43,12 +43,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public ResponseEntity<String> stripePayment(String userEmail) throws Exception{
-//        PaymentEntity paymentEntity = paymentRepository.findByUserEmail(userEmail);
-//        if(paymentEntity == null){
-//            throw  new Exception("Payment information is missing");
-//        }
-//        paymentEntity.setAmount(00.00);
-//        paymentRepository.save(paymentEntity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
