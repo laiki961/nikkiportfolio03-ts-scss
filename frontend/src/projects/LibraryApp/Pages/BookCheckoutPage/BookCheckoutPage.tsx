@@ -254,7 +254,7 @@ export const BookCheckoutPage = () => {
   }
 
   return (
-    <div className='min-vh-100'>
+    <div className='min-vh-100 text-2'>
       <div className='container d-none d-lg-block '>
         <div className='row mt-5'>
           <div className='col-sm-2 col-md-2'>

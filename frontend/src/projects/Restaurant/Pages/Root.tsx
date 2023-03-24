@@ -14,7 +14,7 @@ function RestaurantRootLayout() {
   });
 
   return (
-    <div className='restaurant__bg-image'>
+    <div className='restaurant__bg-image min-vh-100'>
       <MealsProvider>
         <CartProvider>
           <RestaurantNavbar />

@@ -13,7 +13,7 @@ export const ShelfPage = () => {
   const { authState } = useOktaAuth();
 
   return authState?.isAuthenticated ? (
-    <div className='container min-vh-100'>
+    <div className='container min-vh-100 text-2'>
       <div className='mt-3'>
         <nav>
           <div className='nav nav-tabs' id='nav-tab' role='tablist'>

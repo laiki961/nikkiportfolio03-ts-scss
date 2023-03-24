@@ -10,7 +10,7 @@ const HomePage = () => {
   // console.log(authState);
 
   return (
-    <section id={classes["library-section"]}>
+    <section id={classes["library-section"]} className='text-2'>
       <ExploreTopBooks />
       <Carousel />
       <Heros />

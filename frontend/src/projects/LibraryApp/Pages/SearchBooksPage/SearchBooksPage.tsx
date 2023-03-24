@@ -74,7 +74,7 @@ export const SearchBooksPage = () => {
 
   if (httpError) {
     return (
-      <div className='container m-5'>
+      <div className='container m-5 min-vh-100'>
         <p>{httpError}</p>
       </div>
     );

@@ -35,7 +35,7 @@ export const ManageLibraryPage = () => {
   }
 
   return authState?.isAuthenticated ? (
-    <div className='container min-vh-100'>
+    <div className='container min-vh-100 text-2'>
       <div className='my-5'>
         <h3>Manage Library</h3>
         <nav>

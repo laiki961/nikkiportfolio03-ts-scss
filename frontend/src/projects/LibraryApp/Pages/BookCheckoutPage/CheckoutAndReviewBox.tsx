@@ -68,9 +68,9 @@ export const CheckoutAndReviewBox: React.FC<{
         props.mobile ? "card d-flex mt-5" : "card col-3 container d-flex mb-5"
       }
     >
-      <div className='card-body container'>
+      <div className='card-body container text-2'>
         <div className='mt-3'>
-          <p className='text-2'>
+          <p>
             <b>{props.currentLoansCount}/5 </b>
             books checked out
           </p>

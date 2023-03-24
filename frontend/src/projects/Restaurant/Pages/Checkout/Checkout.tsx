@@ -265,7 +265,7 @@ const Checkout: React.FC<{}> = () => {
             <button
               type='submit'
               className='restaurant-btn'
-              disabled={submitDisable}
+              disabled={!formIsValid}
             >
               Place Order
             </button>
