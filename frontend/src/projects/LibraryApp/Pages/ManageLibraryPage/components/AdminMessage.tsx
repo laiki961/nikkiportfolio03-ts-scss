@@ -19,11 +19,11 @@ export const AdminMessage: React.FC<{
 
   return (
     <div key={props.message.id}>
-      <div className='card mt-2 shadow p-3 bg-body rounded'>
-        <h5>
+      <div className='card mt-2 shadow p-3 bg-body rounded '>
+        <h5 className='text-2'>
           Case #{props.message.id}: {props.message.title}
         </h5>
-        <h6>{props.message.userEmail}</h6>
+        <h6 className='text-3'>{props.message.userEmail}</h6>
         <p>{props.message.question}</p>
         <hr />
         <div>
