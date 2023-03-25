@@ -8,6 +8,7 @@ export interface MealItem {
   description: string;
   category: string;
   price: number;
+  img: string;
 }
 
 interface MealItemState {
@@ -48,6 +49,7 @@ export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
         description: responseData[key].description,
         category: responseData[key].category,
         price: responseData[key].price,
+        img: responseData[key].img,
       });
     }
     return loadedMeals;
@@ -87,6 +89,7 @@ export const fetchMealByName = createAsyncThunk(
           description: responseData[key].description,
           category: responseData[key].category,
           price: responseData[key].price,
+          img: responseData[key].img,
         });
       }
       console.log(loadedMeals);
@@ -128,9 +131,9 @@ export const fetchMealByCategory = createAsyncThunk(
           description: responseData[key].description,
           category: responseData[key].category,
           price: responseData[key].price,
+          img: responseData[key].img,
         });
       }
-      console.log(loadedMeals);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -152,7 +155,6 @@ export const MealSlice = createSlice({
     });
     builder.addCase(fetchMeals.rejected, (state, action) => {
       state.status = "failed";
-      console.log(`fetchMeals: failed`);
       if (action.error.message) {
         state.error = action.error.message;
       }
@@ -167,11 +169,9 @@ export const MealSlice = createSlice({
     //fetchMealsByName
     builder.addCase(fetchMealByName.pending, (state) => {
       state.status = "loading";
-      console.log(`fetchMealByName: loading`);
     });
     builder.addCase(fetchMealByName.rejected, (state, action) => {
       state.status = "failed";
-      console.log(`fetchMealByName: failed`);
       if (action.error.message) {
         state.error = action.error.message;
       }
@@ -186,11 +186,9 @@ export const MealSlice = createSlice({
     //fetchMealByCategory
     builder.addCase(fetchMealByCategory.pending, (state) => {
       state.status = "loading";
-      console.log(`fetchMealByCategory: loading`);
     });
     builder.addCase(fetchMealByCategory.rejected, (state, action) => {
       state.status = "failed";
-      console.log(`fetchMealByCategory: failed`);
       if (action.error.message) {
         state.error = action.error.message;
       }

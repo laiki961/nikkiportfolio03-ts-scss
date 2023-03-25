@@ -28,6 +28,9 @@ public class ProductEntity {
     @Column (name = "price")
     private double price;
 
+    @Column(name = "img")
+    private String img;
+
     @Override
     public String toString() {
         return "ProductEntity{" +
@@ -45,7 +48,7 @@ public class ProductEntity {
         this.category = product.getCategory();
         this.description = product.getDescription();
         this.price = product.getPrice();
-//        this.img = product.getImg();
+        this.img = product.getImg();
     }
 
 

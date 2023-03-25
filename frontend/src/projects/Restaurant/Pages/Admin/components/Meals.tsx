@@ -9,13 +9,13 @@ import { ProductReqDto } from "../../../domain/dto/backend-dto";
 import MealModel from "../../../Models/MealModel";
 import {
   addMeal,
-  fetchMeals,
+  fetchAllMeals,
   removeMealById,
   updateMeal,
 } from "../../../Store/adminSlice";
 import { fetchMealByName } from "../../../Store/mealSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
-import Meal from "../../Menu/components/MenuItem";
+import MealItem from "../../Menu/components/MenuItem";
 
 const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
@@ -24,25 +24,24 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
 
-  const { meals, status, error } = useAppSelector((state) => state.meals);
+  const {
+    meals: mealsAdmin,
+    status: statusAdmin,
+    error: errorAdmin,
+  } = useAppSelector((state) => state.admin);
+
   const dispatch = useAppDispatch();
 
-  const fetchData = useCallback(() => {
-    dispatch(fetchMeals());
-  }, [fetchMeals]);
-
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    dispatch(fetchAllMeals());
+  }, [dispatch]);
 
   const mealsSearchByName = (name: string) => {
     dispatch(fetchMealByName(name));
   };
 
   const addMealHandler = (productReqDto: ProductReqDto) => {
-    console.log(`addMealHandler`);
     if (authState !== undefined && authState !== null) {
-      console.log(`productReqDto`);
       console.log(`Clicked Add ${productReqDto.name}`);
       dispatch(addMeal({ productReqDto, authState }));
     }
@@ -73,22 +72,24 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
-  if (status === "loading") {
+  if (statusAdmin === "loading") {
     content = (
       <div className='container min-vh-100'>
         <Loading />
       </div>
     );
   }
-  console.log(error);
-  if (error) {
-    content = <div className='container min-vh-100 error-message'>{error}</div>;
+
+  if (errorAdmin) {
+    content = (
+      <div className='container min-vh-100 error-message'>{errorAdmin}</div>
+    );
   }
 
-  if (meals?.length) {
-    content = meals.map((meal: MealModel) => {
+  if (mealsAdmin?.length) {
+    content = mealsAdmin.map((meal: MealModel) => {
       return (
-        <Meal
+        <MealItem
           className='admin'
           key={meal.id}
           meal={meal}

@@ -20,7 +20,7 @@ public class Product {
 
     private double price;
 
-//    private Optional<String> img;
+    private String img;
 
 
     public Product(ProductEntity productEntity){
@@ -29,7 +29,7 @@ public class Product {
         this.category = productEntity.getCategory();
         this.description = productEntity.getDescription();
         this.price = productEntity.getPrice();
-//        this.img = productEntity.getImg();
+        this.img = productEntity.getImg();
     }
 
     public Product(ProductRequestDto productRequestDto){
@@ -37,6 +37,6 @@ public class Product {
         this.category = productRequestDto.getCategory();
         this.description = productRequestDto.getDescription();
         this.price = productRequestDto.getPrice();
-//        this.img = productRequestDto.getImg();
+        this.img = productRequestDto.getImg();
     }
 }

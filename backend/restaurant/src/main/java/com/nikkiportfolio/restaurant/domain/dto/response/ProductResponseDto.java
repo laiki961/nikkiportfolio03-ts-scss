@@ -13,7 +13,7 @@ public class ProductResponseDto {
     private String category;
     private String description;
     private double price;
-//    private Optional<String> img;
+    private String img;
 
 
     public ProductResponseDto (Product product){
@@ -22,7 +22,7 @@ public class ProductResponseDto {
         this.category = product.getCategory();
         this.description = product.getDescription();
         this.price = product.getPrice();
-//        this.img = product.getImg();
+        this.img = product.getImg();
     }
 
     @Override

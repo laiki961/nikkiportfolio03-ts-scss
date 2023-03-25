@@ -32,7 +32,10 @@ public class AdminApi {
         if (admin == null || !admin.equals("admin")) {
             throw new Exception("Administration page only");
         }
-        return new ProductResponseDto(adminService.postProduct(productRequestDto.toProduct()));
+
+//        logger.error(productRequestDto.toString());
+        Product product = new Product(productRequestDto);
+        return new ProductResponseDto(adminService.postProduct(product));
     }
 
     //TESTED - WORK

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { ProductReqDto } from "../../domain/dto/backend-dto";
@@ -48,6 +48,27 @@ const ModalComponent: React.FC<{
     reset: resetPriceInput,
   } = useInput((value: string) => value.trim() !== "");
 
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+
+  //Allow user to upload an image and convert the image into a base64 so that it can be send over to the spring boot application
+  async function base64ConversionForImages(e: any) {
+    if (e.target.files[0]) {
+      getBase64(e.target.files[0]);
+    }
+  }
+
+  function getBase64(file: any) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+      setSelectedImage(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log("Error", error);
+    };
+  }
+
   const nameInputClasses = nameInputHasError
     ? "restaurant__form-control invalid"
     : "restaurant__form-control";
@@ -65,7 +86,6 @@ const ModalComponent: React.FC<{
     : "restaurant__form-control";
 
   let formIsValid = false;
-
   if (
     enteredNameIsValid &&
     enteredDescriptionIsValid &&
@@ -95,7 +115,9 @@ const ModalComponent: React.FC<{
       description: enteredDescription,
       category: enteredCategory,
       price: +enteredPrice,
+      img: selectedImage,
     };
+    console.log(productReqDto);
 
     if (props.className === "add-meal") {
       props.addMeal(productReqDto);
@@ -186,6 +208,12 @@ const ModalComponent: React.FC<{
                   Price must not be empty & greater than 0.
                 </Form.Text>
               )}
+            </div>
+            <div className={`form-group`}>
+              <input
+                type='file'
+                onChange={(e) => base64ConversionForImages(e)}
+              />
             </div>
             <Modal.Footer>
               <button

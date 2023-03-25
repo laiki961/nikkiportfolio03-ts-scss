@@ -4,6 +4,7 @@ export type MealItemModel = {
   description: string;
   category: string;
   price: number;
+  img: string;
 };
 
 class MealModel {
@@ -11,23 +12,23 @@ class MealModel {
   name: string;
   category: string;
   description: string;
-  img?: string;
   price: number;
+  img?: string;
 
   constructor(
     id: number,
     name: string,
     description: string,
     category: string,
-    img: string,
-    price: number
+    price: number,
+    img?: string
   ) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.category = category;
-    this.img = img;
     this.price = price;
+    this.img = img;
   }
 }
 

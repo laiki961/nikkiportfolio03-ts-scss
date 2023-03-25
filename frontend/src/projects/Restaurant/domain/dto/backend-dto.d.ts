@@ -3,6 +3,7 @@ export type ProductReqDto = {
   description: string;
   category: string;
   price: number;
+  img?: string;
 };
 
 export type PaymentInfoRequestDto = {

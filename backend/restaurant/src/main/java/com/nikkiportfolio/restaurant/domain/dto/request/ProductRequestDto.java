@@ -1,6 +1,5 @@
 package com.nikkiportfolio.restaurant.domain.dto.request;
 
-import com.nikkiportfolio.restaurant.domain.Product;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,16 +14,16 @@ public class ProductRequestDto {
 
     private double price;
 
-//    private Optional<String> img;
+    private String img;
 
-
-    public Product toProduct(){
-    Product product = new Product();
-    product.setName(name);
-    product.setDescription(description);
-    product.setCategory(category);
-    product.setPrice(price);
-//    product.setImg(img);
-    return product;
+    @Override
+    public String toString() {
+        return "ProductRequestDto{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", img='" + img + '\'' +
+                '}';
     }
 }

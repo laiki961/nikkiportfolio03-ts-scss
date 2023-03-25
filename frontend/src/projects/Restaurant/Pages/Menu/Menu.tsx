@@ -9,17 +9,15 @@ const Menu = () => {
   const { meals, status, error } = useAppSelector((state) => state.meals);
   const dispatch = useAppDispatch();
 
-  const fetchData = useCallback(() => {
-    dispatch(fetchMeals());
-  }, [fetchMeals]);
-
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    dispatch(fetchMeals());
+  }, [dispatch]);
 
   const mealsSearchByName = (name: string) => {
     dispatch(fetchMealByName(name));
   };
+
+  console.log(meals);
 
   return (
     <section className='restaurant-menu container-sm py-5'>

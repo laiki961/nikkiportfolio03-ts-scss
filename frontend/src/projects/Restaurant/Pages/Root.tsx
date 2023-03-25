@@ -2,16 +2,10 @@ import { Outlet } from "react-router-dom";
 import RestaurantNavbar from "../components/Navbar/Navbar";
 
 import { CartProvider } from "../Store/CartProvider";
-import { useAppDispatch } from "../Store/store";
-import { useEffect } from "react";
-import { fetchMeals } from "../Store/adminSlice";
+// import { useAppDispatch } from "../Store/store";
 
 function RestaurantRootLayout() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchMeals());
-  });
+  // const dispatch = useAppDispatch();
 
   return (
     <div className='restaurant__bg-image min-vh-100'>
