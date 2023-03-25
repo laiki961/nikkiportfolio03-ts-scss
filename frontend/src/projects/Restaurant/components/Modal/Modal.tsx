@@ -77,7 +77,7 @@ const ModalComponent: React.FC<{
   if (
     enteredNameIsValid &&
     enteredDescriptionIsValid &&
-    enteredCategoryIsValid &&
+    // enteredCategoryIsValid &&
     enteredPriceIsValid
   ) {
     formIsValid = true;
@@ -200,83 +200,6 @@ const ModalComponent: React.FC<{
             </div>
           </form>
           <Form onSubmit={submitHandler} className={props.className}>
-            {/* <Form.Group
-              className={`mb-3 restaurant-admin__input-group ${nameInputClasses}`}
-              controlId='mealName'
-            >
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Name'
-                onChange={nameChangedHandler}
-                onBlur={nameBlurHandler}
-                value={enteredName}
-              />
-              {nameInputHasError && (
-                <Form.Text className='error-text'>
-                  Name must not be empty.
-                </Form.Text>
-              )}
-            </Form.Group>
-
-            <Form.Group
-              className={`mb-3 restaurant-admin__input-group ${descriptionInputClasses}`}
-              controlId='mealDescription'
-            >
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as='textarea'
-                rows={3}
-                type='description'
-                placeholder='Description'
-                onChange={descriptionChangedHandler}
-                onBlur={descriptionBlurHandler}
-                value={enteredDescription}
-              />
-              {descriptionInputHasError && (
-                <Form.Text className='error-text'>
-                  Description must not be empty.
-                </Form.Text>
-              )}
-            </Form.Group>
-
-            <Form.Group
-              className={`mb-3 restaurant-admin__input-group ${categoryInputClasses}`}
-              controlId='mealCategory'
-            >
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type='category'
-                placeholder='Category'
-                onChange={categoryChangedHandler}
-                onBlur={categoryBlurHandler}
-                value={enteredCategory}
-              />
-              {categoryInputHasError && (
-                <Form.Text className='error-text'>
-                  Category must not be empty.
-                </Form.Text>
-              )}
-            </Form.Group>
-
-            <Form.Group
-              className={`mb-3 restaurant-admin__input-group ${priceInputClasses}`}
-              controlId='mealPrice'
-            >
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type='price'
-                placeholder='Price'
-                onChange={priceChangedHandler}
-                onBlur={priceBlurHandler}
-                value={enteredPrice}
-              />
-              {priceInputHasError && (
-                <Form.Text className='error-text'>
-                  Price must not be empty & greater than 0.
-                </Form.Text>
-              )}
-            </Form.Group> */}
             <Modal.Footer>
               <button
                 className='restaurant-btn seconday'
@@ -284,7 +207,11 @@ const ModalComponent: React.FC<{
               >
                 Close
               </button>
-              <button className='restaurant-btn' type='submit'>
+              <button
+                className='restaurant-btn'
+                type='submit'
+                disabled={!formIsValid}
+              >
                 Submit
               </button>
             </Modal.Footer>
