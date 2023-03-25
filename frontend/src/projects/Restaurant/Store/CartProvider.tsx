@@ -14,6 +14,7 @@ const REDUCER_ACTION_TYPE = {
   REMOVE: "REMOVE",
   QUANTITY: "QUANTITY",
   SUBMIT: "SUBMIT",
+  COMPLETED: "COMPLETED",
 };
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
@@ -112,8 +113,16 @@ const reducer = (
 
       localStorage.setItem("cartTotalItems", JSON.stringify(totalItems));
       localStorage.setItem("cartTotalPrice", JSON.stringify(totalPrice));
+      return { ...state };
+    }
+
+    case REDUCER_ACTION_TYPE.COMPLETED: {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cartTotalItem");
+      localStorage.removeItem("cartPrice");
       return { ...state, cart: [] };
     }
+
     default:
       throw new Error("Unidentified reducer action type");
   }

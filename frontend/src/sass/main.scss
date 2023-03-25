@@ -18,12 +18,12 @@
 @import "layout/header";
 @import "layout/mainNav";
 
-@import "pages/admin";
-@import "pages/home";
-@import "pages/cart";
-@import "pages/checkout";
 @import "pages/pageContent";
-@import "pages/restaurant";
-@import "pages/weather";
+@import "pages/home";
 @import "pages/aboutme";
-@import "pages/reservation";
+@import "pages/weather/weather";
+@import "pages/restaurant/restaurant";
+@import "pages/restaurant/cart";
+@import "pages/restaurant/checkout";
+@import "pages/restaurant/admin";
+@import "pages/restaurant/reservation";

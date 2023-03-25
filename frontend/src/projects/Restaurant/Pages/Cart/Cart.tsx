@@ -4,7 +4,6 @@ import useCart from "../../../../hooks/useCart";
 import CartItem from "./components/CartItem";
 
 const Cart: React.FC<{}> = () => {
-  const [confirm, setConfrim] = useState<boolean>(false);
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
   const navigate = useNavigate();
   const navigation = useNavigation();
@@ -13,12 +12,12 @@ const Cart: React.FC<{}> = () => {
 
   const onSubmitOrderHandler = () => {
     dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-    setConfrim(true);
     navigate("/restaurant/order");
   };
 
   const listTitle: ReactElement = (
     <div className='restaurant-cart__card cart-title-item'>
+      <span></span>
       <span>Item(s)</span>
       <span>Price</span>
       <span>Amount</span>
@@ -37,10 +36,6 @@ const Cart: React.FC<{}> = () => {
         </Link>
       </div>
     );
-  }
-
-  if (confirm) {
-    <h2>Thank you for your order</h2>;
   }
 
   return (

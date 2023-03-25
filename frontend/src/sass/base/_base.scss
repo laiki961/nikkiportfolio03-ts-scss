@@ -52,6 +52,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.input {
-  font-size: $default-font-size;
+textarea {
+  display: block;
+  width: 100%;
 }

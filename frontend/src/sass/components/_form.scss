@@ -24,7 +24,9 @@
 }
 
 .restaurant {
-  &__form-control > input {
-    line-height: 2;
+  &__form-control > input,
+  &__form-control > textarea {
+    border: 1px solid $color-restaurant-dark;
+    border-radius: 0.5rem;
   }
 }

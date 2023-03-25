@@ -9,6 +9,15 @@
   }
 }
 
+.restaurant-menu,
+.restaurant-admin {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 .restaurant-menu {
   &__heading {
     font-size: 4rem;

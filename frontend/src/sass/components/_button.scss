@@ -28,7 +28,6 @@
   color: white;
   padding: 0.2rem 1rem;
   cursor: pointer;
-  /* float: right; */
   border-radius: 4px;
 }
 
@@ -41,11 +40,6 @@
 .button:focus {
   outline: none;
 }
-
-/* to seperate buttons in the feature column */
-/* span .clearfix:not(:first-child) {
-    margin-left: 0.5rem;
-} */
 
 button:disabled,
 button:disabled:hover,

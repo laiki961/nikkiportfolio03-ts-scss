@@ -26,7 +26,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
 
   const fetchData = useCallback(() => {
     dispatch(fetchMeals());
-  }, []);
+  }, [fetchMeals]);
 
   useEffect(() => {
     fetchData();
@@ -83,7 +83,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   return (
     <div className='restaurant-admin__meals-list'>
       <div className='restaurant-admin__header'>
-        <Search className='restaurant-admin__search' />
+        <Search className='restaurant__search' />
         <button
           className='add-meal'
           type='button'

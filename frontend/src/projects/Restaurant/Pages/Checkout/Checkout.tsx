@@ -6,8 +6,10 @@ import { useState } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { PaymentInfoRequest } from "../../domain/dto/RequestDto";
 import useInput from "../../../../hooks/use-input";
+import useCart from "../../../../hooks/useCart";
 
 const Checkout: React.FC<{}> = () => {
+  const { dispatch, REDUCER_ACTIONS } = useCart();
   const { authState } = useOktaAuth();
   const navigate = useNavigate();
 
@@ -172,9 +174,7 @@ const Checkout: React.FC<{}> = () => {
   }
 
   if (transactionCompleted) {
-    localStorage.removeItem("cart");
-    localStorage.removeItem("cartTotalItem");
-    localStorage.removeItem("cartPrice");
+    dispatch({ type: REDUCER_ACTIONS.COMPLETED });
     navigate("/restaurant/payment-completed");
   }
 
@@ -265,14 +265,13 @@ const Checkout: React.FC<{}> = () => {
             <button
               type='submit'
               className='restaurant-btn'
-              disabled={!formIsValid}
+              disabled={!formIsValid || submitDisable}
             >
               Place Order
             </button>
           </div>
         </div>
       </form>
-      {submitDisable && <Loading />}
     </section>
   ) : (
     <Navigate to={"/login"} />

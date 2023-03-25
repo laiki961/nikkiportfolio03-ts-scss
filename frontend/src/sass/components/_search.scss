@@ -1,27 +1,26 @@
-.restaurant-menu,
-.restaurant-admin {
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+.restaurant {
   &__search {
     position: relative;
 
     & > .input {
-      height: 2.6rem;
+      height: 2.9rem;
       width: 20rem;
-      margin-right: 2.6rem;
+      margin-right: 2.9rem;
     }
+
     & > button {
-      background-color: transparent;
-      border: none;
-      height: 2.6rem;
-      width: 2.6rem;
+      height: 2.9rem;
+      width: 2.9rem;
       position: absolute;
       bottom: 0;
       right: 0;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: $color-restaurant-light;
+
+      :hover {
+        color: $color-primary-900;
+      }
     }
 
     & > button > svg {

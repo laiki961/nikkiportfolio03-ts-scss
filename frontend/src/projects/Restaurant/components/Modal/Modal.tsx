@@ -7,6 +7,7 @@ import useInput from "../../../../hooks/use-input";
 const ModalComponent: React.FC<{
   className: string;
   updateId?: number;
+  // value: { className: string; id?: number | undefined };
   addMeal: (productReqDto: ProductReqDto) => void;
   editMeal: (id: number, productReqDto: ProductReqDto) => void;
   setShowModal: () => void;
@@ -47,6 +48,13 @@ const ModalComponent: React.FC<{
     inputBlurHandler: priceBlurHandler,
     reset: resetPriceInput,
   } = useInput((value: string) => value.trim() !== "");
+
+  const DUMMY_PRODUCTDTO: ProductReqDto = {
+    name: "testing",
+    description: "testing",
+    category: "Noodles",
+    price: 20.0,
+  };
 
   const nameInputClasses = nameInputHasError
     ? "restaurant__form-control invalid"
@@ -123,9 +131,77 @@ const ModalComponent: React.FC<{
           <div className='restaurant-admin__modal-title'>{title}</div>
         </Modal.Header>
         <Modal.Body>
+          <form
+            onSubmit={submitHandler}
+            className={`${props.className} text-2`}
+          >
+            <div className={`form-group ${nameInputClasses}`}>
+              <label htmlFor='Name'>Name</label>
+              <input
+                type='text'
+                placeholder='Name'
+                onChange={nameChangedHandler}
+                onBlur={nameBlurHandler}
+                value={enteredName}
+              ></input>
+              {nameInputHasError && (
+                <Form.Text className='error-text'>
+                  Name must not be empty.
+                </Form.Text>
+              )}
+            </div>
+
+            <div className={`form-group ${descriptionInputClasses}`}>
+              <label htmlFor='Description'>Description</label>
+              <textarea
+                rows={3}
+                placeholder='Description'
+                onChange={descriptionChangedHandler}
+                onBlur={descriptionBlurHandler}
+                value={enteredDescription}
+              ></textarea>
+              {descriptionInputHasError && (
+                <Form.Text className='error-text'>
+                  Description must not be empty.
+                </Form.Text>
+              )}
+            </div>
+
+            {/* <div className={`form-group ${nameInputClasses}`}>
+              <label htmlFor='Category'>Category</label>
+              <input
+                type='text'
+                placeholder='Category'
+                onChange={categoryChangedHandler}
+                onBlur={categoryBlurHandler}
+                value={enteredCategory}
+              ></input>
+              {categoryInputHasError && (
+                <Form.Text className='error-text'>
+                  Category must not be empty.
+                </Form.Text>
+              )}
+            </div> */}
+
+            <div className={`form-group ${priceInputClasses}`}>
+              <label htmlFor='Price'>Price</label>
+              <input
+                type='number'
+                placeholder='Price'
+                onChange={priceChangedHandler}
+                onBlur={priceBlurHandler}
+                value={enteredPrice}
+              ></input>
+              {priceInputHasError && (
+                <Form.Text className='error-text'>
+                  Price must not be empty & greater than 0.
+                </Form.Text>
+              )}
+            </div>
+          </form>
           <Form onSubmit={submitHandler} className={props.className}>
-            <Form.Group
-              className={`mb-3 restaurant-admin__input-group  ${nameInputClasses}`}
+            {/* <Form.Group
+              className={`mb-3 restaurant-admin__input-group ${nameInputClasses}`}
               controlId='mealName'
             >
               <Form.Label>Name</Form.Label>
@@ -200,7 +276,7 @@ const ModalComponent: React.FC<{
                   Price must not be empty & greater than 0.
                 </Form.Text>
               )}
-            </Form.Group>
+            </Form.Group> */}
             <Modal.Footer>
               <button
                 className='restaurant-btn seconday'

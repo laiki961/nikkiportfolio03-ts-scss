@@ -41,7 +41,7 @@ const MenuForm: React.FC<{
     }
   };
   const incrementHandler = () => {
-    if (amount < 10) {
+    if (amount < 5) {
       setAmount(amount + 1);
     }
   };

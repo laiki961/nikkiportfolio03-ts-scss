@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React from "react";
 
 interface Props {
   className: string;
@@ -7,6 +7,7 @@ interface Props {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   amount: number;
 }
+
 const QuantityControl: React.FC<Props> = (props) => {
   return (
     <div className={`restaurant-card__quantity-control ${props.className}`}>
@@ -17,15 +18,17 @@ const QuantityControl: React.FC<Props> = (props) => {
       >
         -
       </button>
-      <input
-        id='meal-quantity'
-        onChange={props.onInputChange}
-        value={props.amount}
-        type='text'
-        min='1'
-        max='5'
-        className='restaurant-card__cta-input'
-      ></input>
+      {props.className === "cart" ? (
+        <span>{props.amount}</span>
+      ) : (
+        <input
+          id='meal-quantity'
+          onChange={props.onInputChange}
+          value={props.amount}
+          type='text'
+          className='restaurant-card__cta-input'
+        ></input>
+      )}
       <button
         type='button'
         className='restaurant-card__quantity-control-button'

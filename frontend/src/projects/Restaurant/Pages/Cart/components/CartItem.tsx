@@ -17,10 +17,6 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   useEffect(() => {
     inputValue(amount);
     setSubTotal(amount * item.price);
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, amount: amount },
-    });
   }, [amount, item]);
 
   const inputValue = (value: number) => {
@@ -42,13 +38,19 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
       onRemoveFromCart();
     }
   };
+
   const incrementHandler = () => {
-    if (amount < 10) {
+    if (amount < 5) {
       setAmount(amount + 1);
     }
   };
+
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(+e.target.value);
+    dispatch({
+      type: REDUCER_ACTIONS.QUANTITY,
+      payload: { ...item, amount: amount },
+    });
   };
 
   return (
