@@ -171,7 +171,7 @@ const Checkout: React.FC<{}> = () => {
   }
 
   return authState?.isAuthenticated ? (
-    <section className='restaurant-checkout container min-vh-100'>
+    <section className='restaurant-checkout container'>
       <form onSubmit={checkout}>
         <div className='restaurant-checkout__user-info'>
           <div className='restaurant-checkout__title'>Contact Information</div>

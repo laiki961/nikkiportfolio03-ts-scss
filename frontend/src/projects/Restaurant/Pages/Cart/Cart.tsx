@@ -39,7 +39,7 @@ const Cart: React.FC<{}> = () => {
   }
 
   return (
-    <section className='restaurant-cart container min-vh-100'>
+    <section className='restaurant-cart container'>
       <div className='restaurant-cart__title'>Shopping Cart</div>
       {listTitle}
       <div className='restaurant-cart__list'>

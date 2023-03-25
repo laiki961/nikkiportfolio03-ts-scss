@@ -33,7 +33,7 @@ export const MenuList: React.FC = () => {
 
   if (status === "loading") {
     content = (
-      <div className='container min-vh-100'>
+      <div className='container'>
         <Loading />
       </div>
     );

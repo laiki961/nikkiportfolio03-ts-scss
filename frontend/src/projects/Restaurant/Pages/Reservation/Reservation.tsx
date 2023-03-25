@@ -115,7 +115,7 @@ const Reservation = () => {
   }
 
   return (
-    <section className='min-vh-100 container'>
+    <section className='container'>
       <Container>
         <Row>
           <Col lg={7} className='restaurant-reservation__left'>

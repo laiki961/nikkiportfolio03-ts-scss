@@ -4,8 +4,6 @@ import com.nikkiportfolio.restaurant.domain.dto.request.PaymentInfoRequestDto;
 import com.nikkiportfolio.restaurant.service.PaymentService;
 import com.nikkiportfolio.restaurant.utils.ExtractJWT;
 import com.stripe.model.PaymentIntent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +27,6 @@ public class PaymentApi {
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfoRequestDto paymentInfoRequest) throws Exception{
         PaymentIntent paymentIntent = paymentService.createPaymentIntent(paymentInfoRequest);
         String paymentStr = paymentIntent.toJson();
-
         return new ResponseEntity<>(paymentStr, HttpStatus.OK);
     }
 
