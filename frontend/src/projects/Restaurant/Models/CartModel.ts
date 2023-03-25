@@ -3,6 +3,7 @@ export type CartItemModel = {
   name: string;
   price: number;
   amount: number;
+  img?: string;
 };
 
 class CartModel {

@@ -56,7 +56,16 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   return (
     <Card key={item.id} className='restaurant-cart__card '>
       <div className='img-box'>
-        {item.id > 12 ? (
+        {item.img !== null ? (
+          <img src={item.img} className='meal-img' alt={item.name} />
+        ) : (
+          <img
+            src={require(`../../../../../components/no-image.jpg`)}
+            className='meal-img'
+            alt='no-image'
+          />
+        )}
+        {/* {item.id > 12 ? (
           <img
             src={require(`../../../../../components/no-image.jpg`)}
             className='meal-img'
@@ -68,7 +77,7 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
             className='meal-img'
             alt={item.name}
           />
-        )}
+        )} */}
       </div>
       <div className='restaurant-cart__details'>
         <p className='restaurant-cart__meal-name'>{item.name}</p>

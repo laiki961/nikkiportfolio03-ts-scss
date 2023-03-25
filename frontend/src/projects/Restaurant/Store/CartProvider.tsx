@@ -33,7 +33,8 @@ const reducer = (
       if (!action.payload) {
         throw new Error("action.payload missing in ADD action");
       }
-      const { id, name, price } = action.payload;
+      console.log(action.payload);
+      const { id, name, price, img } = action.payload;
       const filteredCart: CartItemModel[] = state.cart.filter(
         (item) => item.id !== id
       );
@@ -51,7 +52,7 @@ const reducer = (
 
       return {
         ...state,
-        cart: [...filteredCart, { id, name, price, amount }],
+        cart: [...filteredCart, { id, name, price, amount, img }],
       };
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
