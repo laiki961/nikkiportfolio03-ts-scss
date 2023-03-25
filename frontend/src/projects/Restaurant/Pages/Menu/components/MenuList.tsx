@@ -2,10 +2,9 @@ import Loading from "../../../../../components/Loading/Loading";
 import MenuItem from "./MenuItem";
 import MealModel from "../../../Models/MealModel";
 import useCart from "../../../../../hooks/useCart";
-// import useMeals from "../../../../../hooks/useMeals";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Pagination } from "../../../../../components/Pagination/Pagination";
-//
+
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import { fetchMeals } from "../../../Store/mealSlice";
 
