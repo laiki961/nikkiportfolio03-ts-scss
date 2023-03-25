@@ -66,7 +66,7 @@ export const AdminMessages = () => {
 
   if (httpError) {
     return (
-      <div className='container m-5 text-2 min-vh-100'>
+      <div className='container m-5 min-vh-100'>
         <p>{httpError}</p>
       </div>
     );
@@ -102,7 +102,7 @@ export const AdminMessages = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className='mt-3 text-2'>
+    <div className='mt-3'>
       {messages.length > 0 ? (
         <>
           <h5>Pending Q/A: </h5>

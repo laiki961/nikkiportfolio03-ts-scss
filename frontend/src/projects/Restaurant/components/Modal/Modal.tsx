@@ -7,7 +7,6 @@ import useInput from "../../../../hooks/use-input";
 const ModalComponent: React.FC<{
   className: string;
   updateId?: number;
-  // value: { className: string; id?: number | undefined };
   addMeal: (productReqDto: ProductReqDto) => void;
   editMeal: (id: number, productReqDto: ProductReqDto) => void;
   setShowModal: () => void;
@@ -131,10 +130,7 @@ const ModalComponent: React.FC<{
           <div className='restaurant-admin__modal-title'>{title}</div>
         </Modal.Header>
         <Modal.Body>
-          <form
-            onSubmit={submitHandler}
-            className={`${props.className} text-2`}
-          >
+          <form onSubmit={submitHandler} className={`${props.className}`}>
             <div className={`form-group ${nameInputClasses}`}>
               <label htmlFor='Name'>Name</label>
               <input

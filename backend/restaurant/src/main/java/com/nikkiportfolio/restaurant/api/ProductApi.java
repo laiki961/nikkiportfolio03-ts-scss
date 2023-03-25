@@ -21,7 +21,6 @@ public class ProductApi {
         this.productService = productService;
     }
 
-
 //    @GetMapping("/{category}")
 //    public List<ProductResponseDto> fetchProductsByCategory(@RequestParam (required = true) String category){
 //        List<ProductResponseDto> responseDtos = new ArrayList<>();
@@ -32,5 +31,6 @@ public class ProductApi {
 //        }
 //        return responseDtos;
 //    }
+
 
 }

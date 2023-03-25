@@ -1,11 +1,15 @@
 package com.nikkiportfolio.restaurant.service.impl;
 
+import com.nikkiportfolio.restaurant.domain.Payment;
 import com.nikkiportfolio.restaurant.domain.dto.request.PaymentInfoRequestDto;
+import com.nikkiportfolio.restaurant.domain.entity.PaymentEntity;
 import com.nikkiportfolio.restaurant.respository.PaymentRepository;
 import com.nikkiportfolio.restaurant.service.PaymentService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class PaymentServiceImpl implements PaymentService {
+    Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     private PaymentRepository paymentRepository;
 
@@ -38,6 +43,10 @@ public class PaymentServiceImpl implements PaymentService {
         params.put("amount", paymentInfoRequestDto.getAmount());
         params.put("currency", paymentInfoRequestDto.getCurrency());
         params.put("payment_method_types", paymentMethodTypes);
+
+        //Save order details to database
+        logger.debug(paymentInfoRequestDto.toString());
+        paymentRepository.save(new PaymentEntity(new Payment(paymentInfoRequestDto)));
 
         return PaymentIntent.create(params);
     }

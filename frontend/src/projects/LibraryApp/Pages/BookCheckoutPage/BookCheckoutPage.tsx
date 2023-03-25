@@ -254,7 +254,7 @@ export const BookCheckoutPage = () => {
   }
 
   return (
-    <div className='min-vh-100 text-2'>
+    <div className='min-vh-100'>
       <div className='container d-none d-lg-block '>
         <div className='row mt-5'>
           <div className='col-sm-2 col-md-2'>
@@ -272,7 +272,7 @@ export const BookCheckoutPage = () => {
           <div className='col-4 col-md-4 container'>
             <div className='ml-2'>
               <h2 className='text-1'>{book?.title}</h2>
-              <h5 className='text-primary text-2'>{book?.author}</h5>
+              <h5 className='text-primary'>{book?.author}</h5>
               <p className='lead text-3'>{book?.description}</p>
               <StarsReview rating={totalStars} size={32} />
             </div>

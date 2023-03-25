@@ -92,14 +92,14 @@ export const Loans = () => {
   return (
     <div>
       {/* Desktop */}
-      <div className='d-none d-lg-block mt-2 text-2'>
+      <div className='d-none d-lg-block mt-2'>
         {shelfCurrentLoans.length > 0 ? (
           <>
-            <h5 className='text-2'>Current Loans: </h5>
+            <h5>Current Loans: </h5>
 
             {shelfCurrentLoans.map((shelfCurrentLoan) => (
               <div key={shelfCurrentLoan.book.id}>
-                <div className='row mt-3 mb-3 text-2'>
+                <div className='row mt-3 mb-3'>
                   <div className='col-4 col-md-4 container'>
                     {shelfCurrentLoan.book?.img ? (
                       <img
@@ -120,7 +120,7 @@ export const Loans = () => {
                   <div className='card col-3 col-md-3 container d-flex'>
                     <div className='card-body'>
                       <div className='mt-3'>
-                        <h4 className='text-2'>Loan Options</h4>
+                        <h4>Loan Options</h4>
                         {shelfCurrentLoan.daysLeft > 0 && (
                           <p className='text-secondary'>
                             Due in {shelfCurrentLoan.daysLeft} days.

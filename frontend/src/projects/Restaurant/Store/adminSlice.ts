@@ -25,6 +25,10 @@ const initialState: MealItemState = {
   error: null,
 };
 
+function rejectWithValue(message: string) {
+  throw new Error("Function not implemented.");
+}
+
 export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
   try {
     const response = await fetch(`${baseUrl}/productEntities?page=0&size=30`, {
@@ -53,7 +57,7 @@ export const fetchMeals = createAsyncThunk("fetchMeals", async () => {
   } catch (error) {
     if (error instanceof Error) {
       console.log(error);
-      return error.message;
+      return rejectWithValue(error.message);
     }
   }
 });
@@ -76,6 +80,7 @@ export const removeMealById = createAsyncThunk(
         }
       );
       if (!response.ok) {
+        console.log(response.ok);
         throw new Error(
           `Request Failed ${response.status}: ${response.statusText}`
         );
@@ -85,7 +90,7 @@ export const removeMealById = createAsyncThunk(
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        return error.message;
+        return rejectWithValue(error.message);
       }
     }
   }
@@ -119,7 +124,7 @@ export const addMeal = createAsyncThunk(
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        return error.message;
+        return rejectWithValue(error.message);
       }
     }
   }
@@ -160,7 +165,7 @@ export const updateMeal = createAsyncThunk(
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
-        return error.message;
+        return rejectWithValue(error.message);
       }
     }
   }
@@ -178,6 +183,9 @@ export const AdminSlice = createSlice({
     });
     builder.addCase(fetchMeals.rejected, (state, action) => {
       state.status = "failed";
+      if (action.error.message) {
+        state.error = action.error.message;
+      }
       console.log(`fetchMeals: failed`);
     });
     builder.addCase(fetchMeals.fulfilled, (state, action) => {
@@ -240,6 +248,7 @@ export const AdminSlice = createSlice({
 export default AdminSlice.reducer;
 
 export const selectAllAdmin = (state: any) => state.meals.admin;
+
 // addMeal: (state, action: PayloadAction<ProductReqDto>) => {
 //   state.meals.push({
 //     id: Math.floor(Math.random() * Date.now()),

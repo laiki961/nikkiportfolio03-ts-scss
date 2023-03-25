@@ -12,7 +12,7 @@ export const LibraryServices = () => {
           <h1 className='display-4 fw-bold'>
             Can't find what you are looking for?
           </h1>
-          <p className='lead text-2'>
+          <p className='lead'>
             If you cannot find what you are looking for, send our library
             admin's a personal message!
           </p>

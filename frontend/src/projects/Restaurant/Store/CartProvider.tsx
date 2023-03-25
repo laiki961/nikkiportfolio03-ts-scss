@@ -118,8 +118,8 @@ const reducer = (
 
     case REDUCER_ACTION_TYPE.COMPLETED: {
       localStorage.removeItem("cart");
-      localStorage.removeItem("cartTotalItem");
-      localStorage.removeItem("cartPrice");
+      localStorage.removeItem("cartTotalItems");
+      localStorage.removeItem("cartTotalPrice");
       return { ...state, cart: [] };
     }
 

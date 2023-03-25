@@ -1,12 +1,15 @@
 package com.nikkiportfolio.restaurant.domain.entity;
 
+import com.nikkiportfolio.restaurant.domain.Payment;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "payment")
 @Data
+@NoArgsConstructor
 public class PaymentEntity {
 
     @Id
@@ -21,5 +24,8 @@ public class PaymentEntity {
     private double amount;
 
 
-
+    public PaymentEntity(Payment payment){
+        this.userEmail = payment.getReceiptEmail();
+        this.amount = payment.getAmount();
+    }
 }

@@ -126,7 +126,7 @@ export const SearchBooksPage = () => {
             <div className='col-6'>
               <div className='d-flex'>
                 <input
-                  className='form-control me-2 text-2'
+                  className='form-control me-2'
                   type='search'
                   placeholder='Search'
                   aria-labelledby='Search'
@@ -192,7 +192,7 @@ export const SearchBooksPage = () => {
                   Number of result: ({totalAmountOfBooks})
                 </span>
               </div>
-              <p className='text-2'>
+              <p>
                 {indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks}{" "}
                 items:
               </p>

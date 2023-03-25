@@ -18,8 +18,10 @@ import Meal from "../../Menu/components/MenuItem";
 
 const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
-  const meals = useAppSelector((state) => state.admin.meals);
+
+  const { meals, status, error } = useAppSelector((state) => state.admin);
   const dispatch = useAppDispatch();
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
@@ -65,6 +67,18 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   };
 
   let content: ReactElement | ReactElement[] = <Loading />;
+
+  if (status === "loading") {
+    content = (
+      <div className='container min-vh-100'>
+        <Loading />
+      </div>
+    );
+  }
+  console.log(error);
+  if (error) {
+    content = <div className='container min-vh-100 error-message'>{error}</div>;
+  }
 
   if (meals?.length) {
     content = meals.map((meal: MealModel) => {

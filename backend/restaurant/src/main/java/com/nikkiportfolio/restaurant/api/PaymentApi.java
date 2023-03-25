@@ -4,6 +4,8 @@ import com.nikkiportfolio.restaurant.domain.dto.request.PaymentInfoRequestDto;
 import com.nikkiportfolio.restaurant.service.PaymentService;
 import com.nikkiportfolio.restaurant.utils.ExtractJWT;
 import com.stripe.model.PaymentIntent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("restaurant/api/payment/secure")
 public class PaymentApi {
+
+
     private PaymentService paymentService;
 
     @Autowired

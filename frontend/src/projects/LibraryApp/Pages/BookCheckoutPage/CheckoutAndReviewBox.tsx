@@ -25,7 +25,7 @@ export const CheckoutAndReviewBox: React.FC<{
         );
       } else if (props.isCheckedOut) {
         return (
-          <p className='text-2'>
+          <p>
             <b>Book checked out. Enjoy!</b>
           </p>
         );
@@ -49,7 +49,7 @@ export const CheckoutAndReviewBox: React.FC<{
       );
     } else if (props.isAuthenticated && props.isReviewLeft) {
       return (
-        <p className='text-2'>
+        <p>
           <b>Thank you for your review!</b>
         </p>
       );
@@ -68,7 +68,7 @@ export const CheckoutAndReviewBox: React.FC<{
         props.mobile ? "card d-flex mt-5" : "card col-3 container d-flex mb-5"
       }
     >
-      <div className='card-body container text-2'>
+      <div className='card-body container'>
         <div className='mt-3'>
           <p>
             <b>{props.currentLoansCount}/5 </b>
@@ -83,11 +83,11 @@ export const CheckoutAndReviewBox: React.FC<{
             <h4 className='text-danger text-1'>Wait List</h4>
           )}
           <div className='row'>
-            <p className='col-6 lead text-2'>
+            <p className='col-6 lead'>
               <b>{props.book?.copies} </b>
               copies
             </p>
-            <p className='col-6 lead text-2'>
+            <p className='col-6 lead'>
               <b>{props.book?.copiesAvailable} </b>
               available
             </p>

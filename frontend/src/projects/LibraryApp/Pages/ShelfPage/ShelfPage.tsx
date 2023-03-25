@@ -13,13 +13,13 @@ export const ShelfPage = () => {
   const { authState } = useOktaAuth();
 
   return authState?.isAuthenticated ? (
-    <div className='container min-vh-100 text-2'>
+    <div className='container min-vh-100'>
       <div className='mt-3'>
         <nav>
           <div className='nav nav-tabs' id='nav-tab' role='tablist'>
             <button
               onClick={() => setHistoryClick(false)}
-              className='nav-link active text-2'
+              className='nav-link active'
               id='nav-loans-tab'
               data-bs-toggle='tab'
               data-bs-target='#nav-loans'
@@ -32,7 +32,7 @@ export const ShelfPage = () => {
             </button>
             <button
               onClick={() => setHistoryClick(true)}
-              className='nav-link text-2'
+              className='nav-link'
               id='nav-history-tab'
               data-bs-toggle='tab'
               data-bs-target='#nav-history'

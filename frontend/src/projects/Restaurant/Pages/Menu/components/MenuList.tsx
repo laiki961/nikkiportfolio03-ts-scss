@@ -2,47 +2,58 @@ import Loading from "../../../../../components/Loading/Loading";
 import MenuItem from "./MenuItem";
 import MealModel from "../../../Models/MealModel";
 import useCart from "../../../../../hooks/useCart";
-import useMeals from "../../../../../hooks/useMeals";
-import { ReactElement, useState } from "react";
+// import useMeals from "../../../../../hooks/useMeals";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Pagination } from "../../../../../components/Pagination/Pagination";
+//
+import { useAppDispatch, useAppSelector } from "../../../Store/store";
+import { fetchMeals } from "../../../Store/mealSlice";
 
 export const MenuList: React.FC = () => {
   const {
-    productEntities,
-    totalAmountOfItem,
-    totalPages,
-    itemsPerPage,
-    error,
-  } = useMeals();
-  const { dispatch, REDUCER_ACTIONS, cart } = useCart();
+    dispatch: dispatchCart,
+    REDUCER_ACTIONS: CART_REDUCER_ACTIONS,
+    cart,
+  } = useCart();
+
+  const { meals, status, error } = useAppSelector((state) => state.meals);
+  const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-
   const paignate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  let lastItem =
-    itemsPerPage * currentPage <= totalAmountOfItem
-      ? itemsPerPage * currentPage
-      : totalAmountOfItem;
+  const fetchData = useCallback(() => {
+    dispatch(fetchMeals());
+  }, [fetchMeals]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   let content: ReactElement | ReactElement[] = <Loading />;
 
-  if (error) {
+  if (status === "loading") {
     content = (
-      <div className='container min-vh-100 text-2 error-message'>{error}</div>
+      <div className='container min-vh-100'>
+        <Loading />
+      </div>
     );
   }
 
-  if (productEntities?.length) {
-    content = productEntities.map((meal: MealModel) => {
+  if (error) {
+    content = <div className='container min-vh-100 error-message'>{error}</div>;
+  }
+
+  if (meals?.length) {
+    content = meals.map((meal: MealModel) => {
       const inCart: boolean = cart.some((item) => item.id === meal.id);
       return (
         <MenuItem
           className='menu'
           key={meal.id}
           meal={meal}
-          dispatchCart={dispatch}
-          CART_REDUCER_ACTIONS={REDUCER_ACTIONS}
+          dispatchCart={dispatchCart}
+          CART_REDUCER_ACTIONS={CART_REDUCER_ACTIONS}
           inCart={inCart}
         />
       );
@@ -52,13 +63,13 @@ export const MenuList: React.FC = () => {
   return (
     <div className='restaurant-menu__list'>
       {content}
-      {totalPages > 1 && (
+      {/* {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           paginate={paignate}
         />
-      )}
+      )} */}
     </div>
   );
 };

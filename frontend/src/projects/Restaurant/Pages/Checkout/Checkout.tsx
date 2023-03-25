@@ -2,7 +2,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { CardElement } from "@stripe/react-stripe-js";
 import Loading from "../../../../components/Loading/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { PaymentInfoRequest } from "../../domain/dto/RequestDto";
 import useInput from "../../../../hooks/use-input";
@@ -23,13 +23,20 @@ const Checkout: React.FC<{}> = () => {
   const [transactionCompleted, setTransactionCompleted] =
     useState<boolean>(false);
 
+  useEffect(() => {
+    if (transactionCompleted) {
+      dispatch({ type: REDUCER_ACTIONS.COMPLETED });
+      navigate("/restaurant/payment-completed");
+    }
+  }, [transactionCompleted]);
+
   const {
     value: enteredFirstName,
     isValid: enteredFirstNameIsValid,
     hasError: firstNameInputHasError,
     valueChangeHandler: firstNameChangedHandler,
     inputBlurHandler: firstNameBlurHandler,
-    reset: resetFirstNameInput,
+    // reset: resetFirstNameInput,
   } = useInput((value: string) => value.trim() !== "");
 
   const {
@@ -38,7 +45,6 @@ const Checkout: React.FC<{}> = () => {
     hasError: lastNameInputHasError,
     valueChangeHandler: lastNameChangedHandler,
     inputBlurHandler: lastNameBlurHandler,
-    reset: resetLastNameInput,
   } = useInput((value: string) => value.trim() !== "");
 
   const {
@@ -47,7 +53,6 @@ const Checkout: React.FC<{}> = () => {
     hasError: contactInputHasError,
     valueChangeHandler: contactChangedHandler,
     inputBlurHandler: contactBlurHandler,
-    reset: resetContactInput,
   } = useInput((value: string) =>
     /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(value)
   );
@@ -58,7 +63,6 @@ const Checkout: React.FC<{}> = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangedHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value: string) =>
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
   );
@@ -88,13 +92,6 @@ const Checkout: React.FC<{}> = () => {
   const emailInputClasses = emailInputHasError
     ? "restaurant__form-control invalid"
     : "restaurant__form-control";
-
-  const resetAllInputs = () => {
-    resetFirstNameInput();
-    resetLastNameInput();
-    resetContactInput();
-    resetEmailInput();
-  };
 
   const elements = useElements();
   const stripe = useStripe();
@@ -173,13 +170,8 @@ const Checkout: React.FC<{}> = () => {
     </div>;
   }
 
-  if (transactionCompleted) {
-    dispatch({ type: REDUCER_ACTIONS.COMPLETED });
-    navigate("/restaurant/payment-completed");
-  }
-
   return authState?.isAuthenticated ? (
-    <section className='restaurant-checkout container text-2 min-vh-100'>
+    <section className='restaurant-checkout container min-vh-100'>
       <form onSubmit={checkout}>
         <div className='restaurant-checkout__user-info'>
           <div className='restaurant-checkout__title'>Contact Information</div>

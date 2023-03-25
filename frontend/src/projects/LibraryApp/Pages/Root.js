@@ -3,7 +3,7 @@ import { Navbar } from "../Components/NavbarAndFooter/Navbar";
 
 function LibraryRootLayout() {
   return (
-    <section className='libraryRootLayout min-vh-100 text-2'>
+    <section className='libraryRootLayout min-vh-100'>
       <Navbar />
       <Outlet />
     </section>

@@ -9,7 +9,7 @@ export const MessagesPage = () => {
   const [messagesClick, setMessagesClick] = useState(false);
 
   return authState?.isAuthenticated ? (
-    <div className='container min-vh-100 text-2'>
+    <div className='container min-vh-100'>
       <div className='mt-3 mb-2'>
         <nav>
           <div className='nav nav-tabs' id='nav-tab' role='tablist'>
