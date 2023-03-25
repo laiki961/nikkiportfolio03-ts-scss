@@ -13,18 +13,19 @@ import {
   removeMealById,
   updateMeal,
 } from "../../../Store/adminSlice";
+import { fetchMealByName } from "../../../Store/mealSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 import Meal from "../../Menu/components/MenuItem";
 
 const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
 
-  const { meals, status, error } = useAppSelector((state) => state.admin);
-  const dispatch = useAppDispatch();
-
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
+
+  const { meals, status, error } = useAppSelector((state) => state.meals);
+  const dispatch = useAppDispatch();
 
   const fetchData = useCallback(() => {
     dispatch(fetchMeals());
@@ -33,6 +34,10 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const mealsSearchByName = (name: string) => {
+    dispatch(fetchMealByName(name));
+  };
 
   const addMealHandler = (productReqDto: ProductReqDto) => {
     console.log(`addMealHandler`);
@@ -97,7 +102,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   return (
     <div className='restaurant-admin__meals-list'>
       <div className='restaurant-admin__header'>
-        <Search className='restaurant__search' />
+        <Search className='restaurant__search' onClick={mealsSearchByName} />
         <button
           className='add-meal'
           type='button'

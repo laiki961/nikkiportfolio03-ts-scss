@@ -48,13 +48,6 @@ const ModalComponent: React.FC<{
     reset: resetPriceInput,
   } = useInput((value: string) => value.trim() !== "");
 
-  const DUMMY_PRODUCTDTO: ProductReqDto = {
-    name: "testing",
-    description: "testing",
-    category: "Noodles",
-    price: 20.0,
-  };
-
   const nameInputClasses = nameInputHasError
     ? "restaurant__form-control invalid"
     : "restaurant__form-control";
@@ -194,11 +187,10 @@ const ModalComponent: React.FC<{
                 </Form.Text>
               )}
             </div>
-          </form>
-          <Form onSubmit={submitHandler} className={props.className}>
             <Modal.Footer>
               <button
                 className='restaurant-btn seconday'
+                type='button'
                 onClick={props.setShowModal}
               >
                 Close
@@ -211,7 +203,7 @@ const ModalComponent: React.FC<{
                 Submit
               </button>
             </Modal.Footer>
-          </Form>
+          </form>
         </Modal.Body>
       </Modal>
     </div>

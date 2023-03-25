@@ -81,9 +81,6 @@ export const Heros = () => {
                 JDBC. You can try to login as an Admin and test it out! (You
                 will see the login credential when you on the login page)
               </p>
-              <Link className='btn btn-dark btn-lg' to='/restaurant'>
-                Check it out
-              </Link>
               <div className='label__container'>
                 <span className='label'>TypeScript</span>
                 <span className='label'>React</span>
@@ -98,6 +95,9 @@ export const Heros = () => {
                 <span className='label'>SCSS</span>
                 <span className='label'>Bootstrap</span>
               </div>
+              <Link className='btn btn-dark btn-lg' to='/restaurant'>
+                Check it out
+              </Link>
             </div>
           </div>
           <div className='col-sm-6 col-md-6'>

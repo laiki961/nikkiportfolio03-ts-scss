@@ -2,13 +2,13 @@
   &__search {
     position: relative;
 
-    & > .input {
+    & > form > .input {
       height: 2.9rem;
       width: 20rem;
       margin-right: 2.9rem;
     }
 
-    & > button {
+    & > form > button {
       height: 2.9rem;
       width: 2.9rem;
       position: absolute;

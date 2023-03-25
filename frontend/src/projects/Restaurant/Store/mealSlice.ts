@@ -77,6 +77,20 @@ export const fetchMealByName = createAsyncThunk(
           `Request Failed ${response.status}: ${response.statusText}`
         );
       }
+      const data = await response.json();
+      const responseData = data._embedded.productEntities;
+      const loadedMeals: MealItem[] = [];
+      for (const key in responseData) {
+        loadedMeals.push({
+          id: responseData[key].id,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          category: responseData[key].category,
+          price: responseData[key].price,
+        });
+      }
+      console.log(loadedMeals);
+      return loadedMeals;
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
@@ -104,6 +118,19 @@ export const fetchMealByCategory = createAsyncThunk(
           `Request Failed ${response.status}: ${response.statusText}`
         );
       }
+      const data = await response.json();
+      const responseData = data._embedded.productEntities;
+      const loadedMeals: MealItem[] = [];
+      for (const key in responseData) {
+        loadedMeals.push({
+          id: responseData[key].id,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          category: responseData[key].category,
+          price: responseData[key].price,
+        });
+      }
+      console.log(loadedMeals);
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);
