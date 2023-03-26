@@ -14,9 +14,9 @@ const MenuForm: React.FC<{
     <p className='menu-card__noti'>Item in Cart 🛒</p>
   ) : null;
 
-  const blurHandler = () => {
-    setAmountIsValid(false);
-  };
+  // const blurHandler = () => {
+  //   setAmountIsValid(false);
+  // };
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();

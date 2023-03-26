@@ -1,10 +1,10 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import useCart from "../../../../hooks/useCart";
 import CartItem from "./components/CartItem";
 
 const Cart: React.FC<{}> = () => {
-  const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
+  const { dispatch, REDUCER_ACTIONS, cart, totalItems, totalPrice } = useCart();
   const navigate = useNavigate();
   const navigation = useNavigation();
 
@@ -54,8 +54,10 @@ const Cart: React.FC<{}> = () => {
         ))}
       </div>
       <div className='restaurant-cart__summary'>
+        {/* <p>Total Item(s): {totalItems}</p> */}
         <p>Total Item(s): {totalItems}</p>
         <p>Total Price: {totalPrice}</p>
+        {/* <p>Total Price: {totalPrice}</p> */}
         <button
           disabled={isSubmitting || totalItems === 0}
           onClick={onSubmitOrderHandler}

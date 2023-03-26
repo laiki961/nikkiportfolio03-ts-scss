@@ -4,7 +4,7 @@ interface Props {
   className: string;
   onDecrement: () => void;
   onIncrement: () => void;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   amount: number;
 }
 

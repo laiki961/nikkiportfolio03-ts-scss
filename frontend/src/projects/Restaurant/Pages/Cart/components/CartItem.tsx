@@ -32,7 +32,12 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
 
   const decrementHandler = () => {
     if (amount > 1) {
+      console.log(`decrementHandler: ${amount}`);
       setAmount(amount - 1);
+      dispatch!({
+        type: REDUCER_ACTIONS!.DECREMENT,
+        payload: { ...item, amount: amount },
+      });
     }
     if (amount === 1) {
       onRemoveFromCart();
@@ -42,16 +47,21 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
   const incrementHandler = () => {
     if (amount < 5) {
       setAmount(amount + 1);
+      console.log(`incrementHandler: ${amount}`);
+      dispatch!({
+        type: REDUCER_ACTIONS!.INCREMENT,
+        payload: { ...item, amount: amount },
+      });
     }
   };
 
-  const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+e.target.value);
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...item, amount: amount },
-    });
-  };
+  // const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAmount(+e.target.value);
+  //   dispatch({
+  //     type: REDUCER_ACTIONS.QUANTITY,
+  //     payload: { ...item, amount: amount },
+  //   });
+  // };
 
   return (
     <Card key={item.id} className='restaurant-cart__card '>
@@ -82,7 +92,7 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
           className='cart'
           onDecrement={decrementHandler}
           onIncrement={incrementHandler}
-          onInputChange={amountChangeHandler}
+          // onInputChange={amountChangeHandler}
           amount={amount}
         />
       </div>
