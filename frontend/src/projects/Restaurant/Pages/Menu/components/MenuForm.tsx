@@ -14,14 +14,16 @@ const MenuForm: React.FC<{
     <p className='menu-card__noti'>Item in Cart 🛒</p>
   ) : null;
 
+  const blurHandler = () => {
+    setAmountIsValid(false);
+  };
+
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-
     if (amount === 0 || amount < 1 || amount > 5) {
       setAmountIsValid(false);
       return;
     }
-
     props.onAddToCart(amount);
   };
 
@@ -62,7 +64,9 @@ const MenuForm: React.FC<{
         <button type='submit' className='menu-card__cta-button'>
           Add To Cart
         </button>
-        {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
+        {!amountIsValid && (
+          <p className='menu-card__noti'>Please enter a valid amount (1-5).</p>
+        )}
         {itemInCart}
       </div>
     </form>

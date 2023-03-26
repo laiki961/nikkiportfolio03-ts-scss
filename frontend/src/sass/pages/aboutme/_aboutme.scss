@@ -1,0 +1,31 @@
+.about-me {
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__greetings-container {
+    height: 30vh;
+    background-image: url(../../../projects/AboutMe/images/sb-blog-programming.png);
+    position: relative;
+  }
+
+  &__greetings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  &__picture {
+    max-width: 50%;
+  }
+
+  &__subject {
+    font-size: $default-font-xl;
+  }
+
+  &__paragraph {
+    margin: 1.5rem 0;
+  }
+}
