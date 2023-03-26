@@ -10,8 +10,6 @@
       [price-end amount-start] minmax(15rem, min-content)
       [amount-end subtotal-start] minmax(15rem, min-content)
       [subtotal-end list-end];
-
-    //[full-start img-start] minmax(25rem, min-content) [img-end meal-detail-start] minmax(18rem, 1fr) [meal-detail-end] minmax(20rem, min-content) [full-end];
   }
 
   &__title {
@@ -98,4 +96,8 @@
 .meal-img {
   max-height: 100%;
   max-width: 100%;
+}
+
+.cart-amount {
+  padding: 0 0.5rem;
 }

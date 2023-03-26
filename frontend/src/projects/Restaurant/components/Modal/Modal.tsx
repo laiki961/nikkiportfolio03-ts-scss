@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { ProductReqDto } from "../../domain/dto/backend-dto";
 import useInput from "../../../../hooks/use-input";
-import { MealItemModel } from "../../Models/MealModel";
 
 const ModalComponent: React.FC<{
   className: string;

@@ -11,7 +11,7 @@ const MenuForm: React.FC<{
   const [amount, setAmount] = useState<number>(1);
 
   const itemInCart = props.inCart ? (
-    <p className='restaurant-card__noti'>Item in Cart 🛒</p>
+    <p className='menu-card__noti'>Item in Cart 🛒</p>
   ) : null;
 
   const submitHandler = (event: React.FormEvent) => {
@@ -50,8 +50,8 @@ const MenuForm: React.FC<{
   };
 
   return (
-    <form className='restaurant-card__cta' onSubmit={submitHandler}>
-      <div className='restaurant-card__cta-meun'>
+    <form className='menu-card__cta' onSubmit={submitHandler}>
+      <div className='menu-card__cta-menu'>
         <QuantityControl
           className='menu'
           onDecrement={decrementHandler}
@@ -59,8 +59,8 @@ const MenuForm: React.FC<{
           onInputChange={amountChangeHandler}
           amount={amount}
         />
-        <button type='submit' className='restaurant-card__cta-button'>
-          Add
+        <button type='submit' className='menu-card__cta-button'>
+          Add To Cart
         </button>
         {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
         {itemInCart}

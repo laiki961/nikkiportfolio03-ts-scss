@@ -10,10 +10,10 @@ interface Props {
 
 const QuantityControl: React.FC<Props> = (props) => {
   return (
-    <div className={`restaurant-card__quantity-control ${props.className}`}>
+    <div className={`menu-card__quantity-control ${props.className}`}>
       <button
         type='button'
-        className='restaurant-card__quantity-control-button'
+        className='menu-card__quantity-control-button'
         onClick={props.onDecrement}
       >
         -
@@ -26,12 +26,12 @@ const QuantityControl: React.FC<Props> = (props) => {
           onChange={props.onInputChange}
           value={props.amount}
           type='text'
-          className='restaurant-card__cta-input'
+          className='menu-card__cta-input'
         ></input>
       )}
       <button
         type='button'
-        className='restaurant-card__quantity-control-button'
+        className='menu-card__quantity-control-button'
         onClick={props.onIncrement}
       >
         +

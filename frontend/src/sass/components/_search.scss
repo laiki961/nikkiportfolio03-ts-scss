@@ -1,5 +1,6 @@
 .restaurant {
   &__search {
+    display: inline-block;
     position: relative;
 
     & > form > .input {

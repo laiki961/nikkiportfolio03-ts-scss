@@ -16,15 +16,15 @@ import {
 } from "../../../Store/adminSlice";
 import { fetchMealByName } from "../../../Store/mealSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
-import MealItem from "../../Menu/components/MenuItem";
+import NewMealItem from "../../Menu/components/MenuItem";
 
-const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
+const AdminMeals: React.FC<{ authState: AuthState | null }> = (props) => {
   const { authState } = props;
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
-  const [updateDetails, setUpdateDetails] = useState<MealItemModel>();
+  // const [updateDetails, setUpdateDetails] = useState<MealItemModel>();
 
   const {
     meals: mealsAdmin,
@@ -100,7 +100,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   if (mealsAdmin?.length) {
     content = mealsAdmin.map((meal: MealModel) => {
       return (
-        <MealItem
+        <NewMealItem
           className='admin'
           key={meal.id}
           meal={meal}
@@ -112,8 +112,8 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   }
 
   return (
-    <div className='restaurant-admin__meals-list'>
-      <div className='restaurant-admin__header'>
+    <div className='restaurant-admin-meals'>
+      <div className='restaurant-admin-meals__header'>
         <Search className='restaurant__search' onClick={mealsSearchByName} />
         <button
           className='add-meal'
@@ -136,9 +136,9 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
           showModal={showModal}
         />
       )}
-      {content}
+      <div className='admin-cards'>{content}</div>
     </div>
   );
 };
 
-export default Meals;
+export default AdminMeals;

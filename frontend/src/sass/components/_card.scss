@@ -1,59 +1,71 @@
-////////////////////////////////
-/// RESTAURANT CARD
-.restaurant-card {
-  border: 0.2rem solid $color-gray-300;
-  padding: 0.5rem;
-  background-color: $color-gray-300;
-  margin: 1.5rem 0;
-
-  border-radius: 20px;
+.menu-cards,
+.admin-cards {
   display: grid;
-  grid-template-columns:
-    [full-start img-start] minmax(25rem, min-content)
-    [img-end meal-detail-start] minmax(18rem, 1fr)
-    [meal-detail-end] minmax(20rem, min-content) [full-end];
+  grid-column: center-start / center-end;
+  margin: 5rem 0;
 
-  &__img-box {
-    background: transparent;
-    margin: auto;
-    display: block;
+  grid-template-columns: repeat(4, minmax(25rem, 1fr));
+  grid-gap: 7rem;
 
-    & > * {
-      border-radius: 1rem;
-      width: 100%;
-      display: block;
-    }
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: repeat(2, minmax(25rem, 1fr));
+    grid-gap: 4rem;
   }
 
-  &__detail {
-    // border: 0.5rem solid $color-gray-300;
-    margin: 2rem 0;
-    margin-left: 2rem;
-    font-family: "Open Sans", sans-serif;
-    display: grid;
+  @media only screen and (max-width: $bp-large) {
+    grid-template-columns: repeat(2, minmax(25rem, 1fr));
+    grid-gap: 2rem;
+  }
+}
 
-    & > .meal-name {
-      font-size: $default-font-xl;
-      text-transform: uppercase;
-    }
+.menu-card,
+.admin-card {
+  display: grid;
 
-    & > .meal-description {
-      font-size: $default-font-lg;
-    }
-    & > .meal-price {
-      font-size: $default-font-lg;
-      text-align: right;
-    }
+  grid-template-rows:
+    [card-start image-start] max-content
+    [image-end name-start] min-content
+    [name-end description-start] max-content
+    [description-end price-start] min-content
+    [price-end cta-start]min-content
+    [cta-end card-end];
+
+  align-self: start;
+
+  &__meal-img {
+    width: 100%;
   }
 
-  &__cta {
-    // padding: 50% 0; // center the entire element
-    display: inline-block;
-    margin-left: 2rem;
-  }
-  &__cta-meun {
-    padding: 30% 0;
+  &__meal-name {
+    background-color: $color-restaurant-blue;
+    padding: 0.5rem 0;
     text-align: center;
+
+    color: $color-restaurant-yellow;
+    font-size: $default-font-lg;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    padding: 1rem;
+  }
+
+  &__price {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: $default-font-lg;
+  }
+
+  &__cta-button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0;
+    background-color: $color-restaurant-yellow;
+    color: $color-restaurant-blue;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   &__quantity-control.cart {
@@ -95,22 +107,6 @@
     height: 3rem;
   }
 
-  &__cta-button {
-    background-color: $color-restaurant-dark;
-    color: $color-white;
-    font-weight: 600;
-    font-size: $default-font-size;
-
-    //center the button
-    display: block;
-    margin: 0 auto;
-    margin-top: 1rem;
-
-    border: none;
-    border-radius: 10%;
-    padding: 0.5rem 1.2rem;
-  }
-
   &__noti {
     font-size: $default-font-size;
     text-align: center;
@@ -118,6 +114,21 @@
   }
 }
 
-.cart-amount {
-  padding: 0 0.5rem;
+///////////////////////////////
+/// ADMIN FEATURES BUTTONS
+.admin-card {
+  &__features {
+    & > button {
+      display: block;
+      width: 100%;
+      border: none;
+      padding: 0.5rem 0;
+    }
+    & > .edit {
+      background-color: $color-restaurant-yellow;
+    }
+    & > .delete {
+      background-color: $color-error-text;
+    }
+  }
 }

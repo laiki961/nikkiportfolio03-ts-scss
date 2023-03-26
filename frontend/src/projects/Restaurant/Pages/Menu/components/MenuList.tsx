@@ -1,10 +1,10 @@
 import Loading from "../../../../../components/Loading/Loading";
-import MenuItem from "./MenuItem";
 import MealModel from "../../../Models/MealModel";
 import useCart from "../../../../../hooks/useCart";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Pagination } from "../../../../../components/Pagination/Pagination";
 import { MealItem } from "../../../Store/mealSlice";
+import NewMenuItem from "./MenuItem";
 
 export const MenuList: React.FC<{
   meals: MealItem[];
@@ -40,7 +40,7 @@ export const MenuList: React.FC<{
     content = props.meals.map((meal: MealModel) => {
       const inCart: boolean = cart.some((item) => item.id === meal.id);
       return (
-        <MenuItem
+        <NewMenuItem
           className='menu'
           key={meal.id}
           meal={meal}
@@ -53,7 +53,8 @@ export const MenuList: React.FC<{
   }
 
   return (
-    <div className='restaurant-menu__list'>
+    // <div className='restaurant-menu__list'>
+    <div className='menu-cards'>
       {content}
       {/* {totalPages > 1 && (
         <Pagination

@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "react-bootstrap";
-import Meals from "./components/Meals";
+import Meals from "./components/AdminMeals";
 // import Bookings from "./components/Bookings";
 import { useOktaAuth } from "@okta/okta-react";
 import { Navigate } from "react-router-dom";

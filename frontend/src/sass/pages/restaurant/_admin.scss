@@ -1,3 +1,17 @@
+.restaurant-admin-meals {
+  &__header {
+    margin: 1rem 0;
+
+    & > .add-meal {
+      border: none;
+      background-color: $color-green;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      float: right;
+    }
+  }
+}
+
 .restaurant-admin {
   font-size: $default-font-size;
 

@@ -10,6 +10,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../../../../../components/Loading/Loading";
 import React, { MouseEventHandler, ReactElement } from "react";
+import NewMenuForm from "./MenuForm";
 
 type PropsType = {
   key: number;
@@ -51,49 +52,44 @@ const MenuItem: React.FC<PropsType> = (props) => {
     props.onShowEditModal !== undefined
   ) {
     content = (
-      <div className='restaurant-admin__features' key={id}>
-        <div className='restaurant-admin__features-icon'>
-          <button
-            className='edit'
-            type='button'
-            onClick={props.onShowEditModal}
-          >
-            <FontAwesomeIcon icon={faPenToSquare} />
-          </button>
-          <button
-            className='delete'
-            type='button'
-            onClick={props.onRemove.bind(null, id)}
-          >
-            <FontAwesomeIcon icon={faTrashCan} />
-          </button>
-        </div>
+      <div className={`${className}-card__features`} key={id}>
+        <button className='edit' type='button' onClick={props.onShowEditModal}>
+          <FontAwesomeIcon icon={faPenToSquare} />
+        </button>
+        <button
+          className='delete'
+          type='button'
+          onClick={props.onRemove.bind(null, id)}
+        >
+          <FontAwesomeIcon icon={faTrashCan} />
+        </button>
       </div>
     );
   }
 
   return (
-    <Card className='restaurant-card'>
-      <div className='restaurant-card__img-box'>
-        {meal.img !== null ? (
-          <img src={meal.img} className='meal-img' alt={name} />
-        ) : (
-          <img
-            src={require(`../../../../../components/no-image.jpg`)}
-            className='meal-img'
-            alt={name}
-          />
-        )}
-      </div>
-      <div className='restaurant-card__detail'>
-        <div className='meal-name'>{name}</div>
-        <i className='meal-description'>{description}</i>
-        <div className='meal-price'>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "CAD",
-          }).format(price)}
-        </div>
+    <Card className={`${className}-card`}>
+      {meal.img !== null ? (
+        <img
+          src={meal.img}
+          className={`${className}-card__meal-img`}
+          alt={name}
+        />
+      ) : (
+        <img
+          src={require(`../../../../../components/no-image.jpg`)}
+          className={`${className}-card__meal-img`}
+          alt={name}
+        />
+      )}
+
+      <div className={`${className}-card__meal-name`}>{name}</div>
+      <i className={`${className}-card__description`}>{description}</i>
+      <div className={`${className}-card__price`}>
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "CAD",
+        }).format(price)}
       </div>
       {content}
     </Card>
