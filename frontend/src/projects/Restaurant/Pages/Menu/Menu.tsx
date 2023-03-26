@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import Search from "../../components/Search/Search";
 import { fetchMealByName, fetchMeals } from "../../Store/mealSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/store";
@@ -16,8 +16,6 @@ const Menu = () => {
   const mealsSearchByName = (name: string) => {
     dispatch(fetchMealByName(name));
   };
-
-  console.log(meals);
 
   return (
     <section className='restaurant-menu container-sm py-5'>

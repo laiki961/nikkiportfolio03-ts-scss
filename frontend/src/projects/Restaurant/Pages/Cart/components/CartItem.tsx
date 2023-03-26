@@ -65,19 +65,6 @@ const CartItem: React.FC<PropsType> = ({ item, dispatch, REDUCER_ACTIONS }) => {
             alt='no-image'
           />
         )}
-        {/* {item.id > 12 ? (
-          <img
-            src={require(`../../../../../components/no-image.jpg`)}
-            className='meal-img'
-            alt={item.name}
-          />
-        ) : (
-          <img
-            src={require(`../../../images/meals/meal-${item.id}.jpeg`)}
-            className='meal-img'
-            alt={item.name}
-          />
-        )} */}
       </div>
       <div className='restaurant-cart__details'>
         <p className='restaurant-cart__meal-name'>{item.name}</p>

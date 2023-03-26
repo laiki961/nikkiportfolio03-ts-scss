@@ -19,7 +19,7 @@ const QuantityControl: React.FC<Props> = (props) => {
         -
       </button>
       {props.className === "cart" ? (
-        <span>{props.amount}</span>
+        <span className='cart-amount'>{props.amount}</span>
       ) : (
         <input
           id='meal-quantity'

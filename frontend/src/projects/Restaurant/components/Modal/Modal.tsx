@@ -3,10 +3,12 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { ProductReqDto } from "../../domain/dto/backend-dto";
 import useInput from "../../../../hooks/use-input";
+import { MealItemModel } from "../../Models/MealModel";
 
 const ModalComponent: React.FC<{
   className: string;
   updateId?: number;
+  // mealDetails?: MealItemModel | null;
   addMeal: (productReqDto: ProductReqDto) => void;
   editMeal: (id: number, productReqDto: ProductReqDto) => void;
   setShowModal: () => void;
@@ -149,6 +151,7 @@ const ModalComponent: React.FC<{
             <div className={`form-group ${nameInputClasses}`}>
               <label htmlFor='Name'>Name</label>
               <input
+                id='existingName'
                 type='text'
                 placeholder='Name'
                 onChange={nameChangedHandler}

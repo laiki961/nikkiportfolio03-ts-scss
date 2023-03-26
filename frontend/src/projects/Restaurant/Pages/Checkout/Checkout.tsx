@@ -1,7 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { CardElement } from "@stripe/react-stripe-js";
-import Loading from "../../../../components/Loading/Loading";
 import { useEffect, useState } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { PaymentInfoRequest } from "../../domain/dto/RequestDto";
@@ -259,7 +258,7 @@ const Checkout: React.FC<{}> = () => {
               className='restaurant-btn'
               disabled={!formIsValid || submitDisable}
             >
-              Place Order
+              {submitDisable === true ? "Loading..." : "Place Order"}
             </button>
           </div>
         </div>

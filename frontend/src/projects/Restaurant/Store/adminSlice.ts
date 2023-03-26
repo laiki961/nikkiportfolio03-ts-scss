@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { ProductReqDto } from "../domain/dto/backend-dto";
 
 import { AuthState } from "@okta/okta-auth-js";
+import { MealItemModel } from "../Models/MealModel";
 
 const baseUrl: string = `${process.env.REACT_APP_RESTAURANT_API}`;
 
@@ -16,12 +17,14 @@ export interface MealItem {
 
 interface MealItemState {
   meals: MealItem[];
+  updateMealDetails: MealItemModel | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: MealItemState = {
   meals: [],
+  updateMealDetails: null,
   status: "idle",
   error: null,
 };
@@ -98,7 +101,6 @@ export const removeMealById = createAsyncThunk(
   }
 );
 
-//
 export const addMeal = createAsyncThunk(
   "admin/add-product",
   async (data: { productReqDto: ProductReqDto; authState: AuthState }) => {
@@ -216,6 +218,41 @@ export const fetchMealByName = createAsyncThunk(
   }
 );
 
+export const fetchMealById = createAsyncThunk(
+  "search/Id",
+  async (id: number) => {
+    try {
+      const response = await fetch(`${baseUrl}/productEntities/${id}`, {
+        method: "GET",
+        headers: {},
+        body: null,
+      });
+      if (!response.ok) {
+        console.log(response.ok);
+        throw new Error(
+          `Request Failed ${response.status}: ${response.statusText}`
+        );
+      }
+      const data = await response.json();
+      const loadedMeal: MealItemModel = {
+        id: data.id,
+        name: data.name,
+        description: data.description,
+        category: data.category,
+        price: data.price,
+        img: data.img,
+      };
+      console.log(loadedMeal);
+      return loadedMeal;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 export const AdminSlice = createSlice({
   name: "admin",
   initialState,
@@ -249,8 +286,6 @@ export const AdminSlice = createSlice({
     builder.addCase(fetchAllMeals.fulfilled, (state, action) => {
       state.status = "succeeded";
       if (typeof action.payload !== "string" && action.payload !== undefined) {
-        console.log(action.payload);
-        console.log(state.meals);
         state.meals = action.payload;
       }
     });
@@ -287,7 +322,6 @@ export const AdminSlice = createSlice({
       const index = state.meals.findIndex(
         (meal) => meal.id === action.payload.id
       );
-      console.log(index);
       state.meals[index] = action.payload;
     });
 
@@ -320,6 +354,24 @@ export const AdminSlice = createSlice({
       state.status = "succeeded";
       if (typeof action.payload !== "string" && action.payload !== undefined) {
         state.meals = action.payload;
+      }
+    });
+
+    //fetchMealById
+    builder.addCase(fetchMealById.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchMealById.rejected, (state, action) => {
+      state.status = "failed";
+      if (action.error.message) {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(fetchMealById.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      if (typeof action.payload !== "string" && action.payload !== undefined) {
+        console.log(action.payload);
+        state.updateMealDetails = action.payload;
       }
     });
   },

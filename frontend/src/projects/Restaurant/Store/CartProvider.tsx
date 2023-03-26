@@ -33,7 +33,6 @@ const reducer = (
       if (!action.payload) {
         throw new Error("action.payload missing in ADD action");
       }
-      console.log(action.payload);
       const { id, name, price, img } = action.payload;
       const filteredCart: CartItemModel[] = state.cart.filter(
         (item) => item.id !== id

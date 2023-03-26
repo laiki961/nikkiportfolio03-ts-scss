@@ -6,10 +6,11 @@ import Loading from "../../../../../components/Loading/Loading";
 import ModalComponent from "../../../components/Modal/Modal";
 import Search from "../../../components/Search/Search";
 import { ProductReqDto } from "../../../domain/dto/backend-dto";
-import MealModel from "../../../Models/MealModel";
+import MealModel, { MealItemModel } from "../../../Models/MealModel";
 import {
   addMeal,
   fetchAllMeals,
+  fetchMealById,
   removeMealById,
   updateMeal,
 } from "../../../Store/adminSlice";
@@ -23,13 +24,14 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalClassName, setModalClassName] = useState<string>("");
   const [updateId, setUpdateId] = useState<number>();
+  const [updateDetails, setUpdateDetails] = useState<MealItemModel>();
 
   const {
     meals: mealsAdmin,
+    updateMealDetails: updateMealDetailsAdmin,
     status: statusAdmin,
     error: errorAdmin,
   } = useAppSelector((state) => state.admin);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -68,6 +70,15 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
     setModalClassName(className);
     setShowModal(!showModal);
     setUpdateId(mealId);
+    // existing values
+    // call api to fetch existing meal data
+    // if (mealId !== undefined) {
+    //   dispatch(fetchMealById(mealId));
+    //   console.log(updateMealDetailsAdmin);
+    //   if (updateMealDetailsAdmin !== null) {
+    //     setUpdateDetails(updateMealDetailsAdmin);
+    //   }
+    // }
   };
 
   let content: ReactElement | ReactElement[] = <Loading />;
@@ -115,6 +126,7 @@ const Meals: React.FC<{ authState: AuthState | null }> = (props) => {
       {showModal && (
         <ModalComponent
           updateId={updateId}
+          // mealDetails={updateMealDetailsAdmin}
           className={modalClassName}
           addMeal={addMealHandler}
           editMeal={editMealFromMenuHandler}
