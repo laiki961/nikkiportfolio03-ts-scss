@@ -3,8 +3,6 @@ package com.nikkiportfolio.restaurant.domain.dto.request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 public class ReservationInfoRequestDto {
@@ -15,7 +13,18 @@ public class ReservationInfoRequestDto {
 
     private String email;
 
-    private Date date;
+    private String date;
 
     private String time;
+
+    @Override
+    public String toString() {
+        return "ReservationInfoRequestDto{" +
+                "name='" + name + '\'' +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

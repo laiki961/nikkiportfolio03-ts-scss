@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { create } from "domain";
 import { ReservationInfoRequestDto } from "../domain/dto/backend-dto";
 const baseUrl: string = `${process.env.REACT_APP_RESTAURANT_API}`;
 
@@ -81,6 +80,26 @@ export const reservationSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    //makeReservation
+    builder.addCase(makeReservation.pending, (state, action) => {
+      state.status = "loading";
+      console.log(`makeReservation: loading`);
+    });
+    builder.addCase(makeReservation.rejected, (state, action) => {
+      state.status = "failed";
+      if (action.error.message !== undefined) {
+        state.error = action.error.message;
+      }
+      console.log(`makeReservation: failed`);
+    });
+    builder.addCase(makeReservation.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      console.log(`makeReservation:  fulfilled`);
+      if (typeof action.payload !== "string" && action.payload !== undefined) {
+        state.bookings = action.payload;
+      }
+    });
+
     //fetchBookings
     builder.addCase(fetchBookings.pending, (state, action) => {
       state.status = "loading";

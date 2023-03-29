@@ -16,6 +16,6 @@ export type ReservationInfoRequestDto = {
   name: string;
   contact: string;
   email: string;
-  date: Date;
-  time: Date;
+  date: string;
+  time: string;
 };

@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import useInput from "../../../../hooks/use-input";
 import { ReservationInfoRequestDto } from "../../domain/dto/backend-dto";
+import { makeReservation } from "../../Store/reservationSlice";
+import { useAppDispatch, useAppSelector } from "../../Store/store";
 
 const Reservation = () => {
+  const { bookings, status, error } = useAppSelector(
+    (state) => state.reservation
+  );
+  const dispatch = useAppDispatch();
+  const [message, setMessage] = useState<string>("");
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -72,16 +81,20 @@ const Reservation = () => {
     };
 
     console.log(reservationInfoRequestDto);
-    console.log(typeof enteredTime);
     //if success
-
+    dispatch(makeReservation(reservationInfoRequestDto));
     //if failed
 
-    resetAllInputs();
+    if (status === "succeeded") {
+      resetAllInputs();
+      setMessage(
+        "We have received your booking information! Can't wait to see you!"
+      );
+    }
+    if (error !== null) {
+      setMessage(error);
+    }
   };
-
-  const successMessage =
-    "We have received your booking information! Can't wait to see you!";
 
   const nameInputClasses = nameInputHasError
     ? "restaurant__form-control invalid"
@@ -204,6 +217,7 @@ const Reservation = () => {
                 </Col>
               </Row>
               <div className='form-button'>
+                <span className={`form-group`}>{message}</span>
                 <button className='restaurant-btn' disabled={!formIsValid}>
                   Book a table
                 </button>

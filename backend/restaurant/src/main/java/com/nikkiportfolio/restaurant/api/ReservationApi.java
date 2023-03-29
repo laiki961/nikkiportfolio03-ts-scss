@@ -1,12 +1,14 @@
 package com.nikkiportfolio.restaurant.api;
 
+import com.nikkiportfolio.restaurant.domain.Reservation;
+import com.nikkiportfolio.restaurant.domain.dto.request.ReservationInfoRequestDto;
 import com.nikkiportfolio.restaurant.service.ReservationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -17,9 +19,9 @@ public class ReservationApi {
     @Autowired
     private ReservationService reservationService;
 
-//    @PostMapping("/make-reservation")
-//    public ReservationResponseDto postReservation(@RequestBody ReservationInfoRequestDto reservationInfoRequestDto) {
-//
-//        return new ReservationResponseDto(reservation);
-//    }
+    @PostMapping("/make-reservation")
+    public Long postReservation(@RequestBody ReservationInfoRequestDto reservationInfoRequestDto) throws ParseException {
+        Long reservationId =  reservationService.makeReservation(new Reservation(reservationInfoRequestDto));
+        return reservationId;
+    }
 }

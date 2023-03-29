@@ -1,5 +1,6 @@
 package com.nikkiportfolio.restaurant.domain.entity;
 
+import com.nikkiportfolio.restaurant.domain.Reservation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class ReservationEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
@@ -25,9 +27,15 @@ public class ReservationEntity {
     @Column (name ="email")
     private String email;
 
-    @Column (name = "date")
-    private Date date;
+    @Column (name ="date_time", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 
-    @Column (name = "time")
-    private String time;
+
+    public ReservationEntity(Reservation reservation){
+        this.name = reservation.getName();
+        this.contact = reservation.getName();
+        this.email = reservation.getEmail();
+        this.dateTime = reservation.getDateTime();
+    }
 }

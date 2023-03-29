@@ -2,12 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AdminSlice } from "./adminSlice";
 import { MealSlice } from "./mealSlice";
-import mealSlice from "./mealSlice";
+import { reservationSlice } from "./reservationSlice";
 
 export const store = configureStore({
   reducer: {
     meals: MealSlice.reducer,
     admin: AdminSlice.reducer,
+    reservation: reservationSlice.reducer,
   },
 });
 
