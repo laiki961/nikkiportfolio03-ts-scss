@@ -34,7 +34,7 @@ public class ReservationEntity {
 
     public ReservationEntity(Reservation reservation){
         this.name = reservation.getName();
-        this.contact = reservation.getName();
+        this.contact = reservation.getContact();
         this.email = reservation.getEmail();
         this.dateTime = reservation.getDateTime();
     }

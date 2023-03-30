@@ -22,6 +22,15 @@ const Reservation = () => {
   } = useInput((value: string) => value.trim() !== "");
 
   const {
+    value: enteredPersons,
+    isValid: enteredPersonsIsValid,
+    hasError: personsInputHasError,
+    valueChangeHandler: personsChangedHandler,
+    inputBlurHandler: personsBlurHandler,
+    reset: resetPersonsInput,
+  } = useInput((value: string) => value.trim() !== "");
+
+  const {
     value: enteredContact,
     isValid: enteredContactIsValid,
     hasError: contactInputHasError,
@@ -63,28 +72,44 @@ const Reservation = () => {
 
   const resetAllInputs = () => {
     resetNameInput();
+    resetPersonsInput();
     resetContactInput();
     resetEmailInput();
     resetDateInput();
     resetTimeInput();
   };
 
+  function convertPhoneNumber(phoneNumber: string) {
+    // Remove all non-digit characters
+    const digits = phoneNumber.replace(/\D/g, "");
+
+    // Use regex to match the digits to the US format
+    const regex = /^(\d{3})(\d{3})(\d{4})$/;
+    const match = digits.match(regex);
+
+    // If there is a match, format the phone number
+    if (match) {
+      return `(${match[1]}) ${match[2]}-${match[3]}`;
+    }
+
+    // Otherwise, return the original phone number
+    return phoneNumber;
+  }
+
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Clicked Submit`);
+
     const reservationInfoRequestDto: ReservationInfoRequestDto = {
       name: enteredName,
-      contact: enteredContact,
+      contact: convertPhoneNumber(enteredContact),
       email: enteredEmail,
       date: enteredDate,
       time: enteredTime,
+      persons: enteredPersons,
     };
-
     console.log(reservationInfoRequestDto);
-    //if success
     dispatch(makeReservation(reservationInfoRequestDto));
-    //if failed
-
     if (status === "succeeded") {
       resetAllInputs();
       setMessage(
@@ -97,6 +122,10 @@ const Reservation = () => {
   };
 
   const nameInputClasses = nameInputHasError
+    ? "restaurant__form-control invalid"
+    : "restaurant__form-control";
+
+  const personsInputClasses = personsInputHasError
     ? "restaurant__form-control invalid"
     : "restaurant__form-control";
 
@@ -139,19 +168,40 @@ const Reservation = () => {
               onSubmit={submitHandler}
               className='restaurant-reservation__form'
             >
-              <div className={`form-group ${nameInputClasses}`}>
-                <label htmlFor='Name'>Name</label>
-                <input
-                  type='text'
-                  placeholder='Name'
-                  onChange={nameChangedHandler}
-                  onBlur={nameBlurHandler}
-                  value={enteredName}
-                ></input>
-                {nameInputHasError && (
-                  <div className='error-text'>Name must not be empty.</div>
-                )}
-              </div>
+              <Row>
+                <Col>
+                  <div className={`form-group ${nameInputClasses}`}>
+                    <label htmlFor='Name'>Name</label>
+                    <input
+                      type='text'
+                      placeholder='Name'
+                      onChange={nameChangedHandler}
+                      onBlur={nameBlurHandler}
+                      value={enteredName}
+                    ></input>
+                    {nameInputHasError && (
+                      <div className='error-text'>Name must not be empty.</div>
+                    )}
+                  </div>
+                </Col>
+                <Col>
+                  <div className={`form-group ${personsInputClasses}`}>
+                    <label htmlFor='person'>No. of person(s)</label>
+                    <input
+                      type='number'
+                      placeholder='No. of person(s)'
+                      onChange={personsChangedHandler}
+                      onBlur={personsBlurHandler}
+                      value={enteredPersons}
+                    ></input>
+                    {personsInputHasError && (
+                      <div className='error-text'>
+                        Please enter a number greater than 0.
+                      </div>
+                    )}
+                  </div>
+                </Col>
+              </Row>
               <div className={`form-group ${contactInputClasses}`}>
                 <label htmlFor='contact'>Contact Number</label>
                 <input

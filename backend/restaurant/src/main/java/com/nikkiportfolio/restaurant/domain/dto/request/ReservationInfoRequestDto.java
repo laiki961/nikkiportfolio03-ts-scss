@@ -17,6 +17,8 @@ public class ReservationInfoRequestDto {
 
     private String time;
 
+    private String persons;
+
     @Override
     public String toString() {
         return "ReservationInfoRequestDto{" +
@@ -25,6 +27,7 @@ public class ReservationInfoRequestDto {
                 ", email='" + email + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", persons='" + persons + '\'' +
                 '}';
     }
 }

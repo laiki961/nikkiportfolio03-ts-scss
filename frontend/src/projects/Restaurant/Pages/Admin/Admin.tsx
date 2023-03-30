@@ -1,6 +1,6 @@
 import { Tab, Tabs } from "react-bootstrap";
 import Meals from "./components/AdminMeals";
-// import Bookings from "./components/Bookings";
+import Bookings from "./components/Bookings";
 import { useOktaAuth } from "@okta/okta-react";
 import { Navigate } from "react-router-dom";
 
@@ -20,9 +20,9 @@ const Admin = () => {
         <Tab eventKey='meals' title='Meals'>
           <Meals authState={authState} />
         </Tab>
-        {/* <Tab eventKey='booking' title='Booking'>
+        <Tab eventKey='booking' title='Booking'>
           <Bookings authState={authState} />
-        </Tab> */}
+        </Tab>
       </Tabs>
     </section>
   ) : (

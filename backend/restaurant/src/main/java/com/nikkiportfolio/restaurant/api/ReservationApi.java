@@ -12,6 +12,7 @@ import java.text.ParseException;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
+//@RequestMapping("restaurant/api/reservation")
 @RequestMapping("restaurant/api/reservation")
 public class ReservationApi {
     Logger logger = LoggerFactory.getLogger(ReservationApi.class);

@@ -1,6 +1,7 @@
 package com.nikkiportfolio.restaurant.domain;
 
 import com.nikkiportfolio.restaurant.domain.dto.request.ReservationInfoRequestDto;
+import com.nikkiportfolio.restaurant.domain.entity.ReservationEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
@@ -30,6 +31,14 @@ public class Reservation {
         String combined = dateString + " " + timeString;
         this.dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(combined);
         logger.error(this.dateTime.toString());
+    }
+
+    public Reservation (ReservationEntity reservationEntity){
+        this.id = reservationEntity.getId();
+        this.name = reservationEntity.getName();
+        this.contact = reservationEntity.getContact();
+        this.email = reservationEntity.getEmail();
+        this.dateTime = reservationEntity.getDateTime();
     }
 
 
