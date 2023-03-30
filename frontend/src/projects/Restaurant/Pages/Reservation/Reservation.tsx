@@ -82,16 +82,13 @@ const Reservation = () => {
   function convertPhoneNumber(phoneNumber: string) {
     // Remove all non-digit characters
     const digits = phoneNumber.replace(/\D/g, "");
-
     // Use regex to match the digits to the US format
     const regex = /^(\d{3})(\d{3})(\d{4})$/;
     const match = digits.match(regex);
-
     // If there is a match, format the phone number
     if (match) {
       return `(${match[1]}) ${match[2]}-${match[3]}`;
     }
-
     // Otherwise, return the original phone number
     return phoneNumber;
   }
