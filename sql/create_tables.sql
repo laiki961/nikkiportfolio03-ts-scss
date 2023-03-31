@@ -74,4 +74,13 @@ sale BOOLEAN,
 discount VARCHAR(10)
 );
 
+create table reservation(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(20),
+contact VARCHAR(11),
+email VARCHAR(45),
+date_time DATETIME
+);
+
+
 show tables;
