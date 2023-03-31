@@ -21,6 +21,7 @@ public class Reservation {
     private String contact;
     private String email;
     private Date dateTime;
+    private Integer persons;
 
     public Reservation (ReservationInfoRequestDto reservationInfoRequestDto) throws ParseException {
         this.name = reservationInfoRequestDto.getName();
@@ -30,6 +31,7 @@ public class Reservation {
         String timeString = reservationInfoRequestDto.getTime();
         String combined = dateString + " " + timeString;
         this.dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(combined);
+        this.persons = Integer.parseInt(reservationInfoRequestDto.getPersons());
         logger.error(this.dateTime.toString());
     }
 
@@ -39,6 +41,7 @@ public class Reservation {
         this.contact = reservationEntity.getContact();
         this.email = reservationEntity.getEmail();
         this.dateTime = reservationEntity.getDateTime();
+        this.persons = reservationEntity.getPersons();
     }
 
 

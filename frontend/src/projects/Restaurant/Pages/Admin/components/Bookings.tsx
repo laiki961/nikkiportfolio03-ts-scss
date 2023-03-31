@@ -1,10 +1,8 @@
 import { AuthState } from "@okta/okta-auth-js";
 import { ReactElement, useEffect } from "react";
 import Loading from "../../../../../components/Loading/Loading";
-import {
-  fetchBookings,
-  ReservationInfo,
-} from "../../../Store/reservationSlice";
+import { ReservationInfoResponseDto } from "../../../domain/dto/backend-dto";
+import { fetchBookings } from "../../../Store/reservationSlice";
 import { useAppDispatch, useAppSelector } from "../../../Store/store";
 
 type PropsType = {
@@ -37,7 +35,7 @@ const Bookings: React.FC<PropsType> = () => {
 
   console.log(bookings);
   if (bookings?.length) {
-    content = bookings.map((booking: ReservationInfo) => {
+    content = bookings.map((booking: ReservationInfoResponseDto) => {
       return (
         <div className='card' key={booking.id}>
           <div>
@@ -46,19 +44,15 @@ const Bookings: React.FC<PropsType> = () => {
           </div>
           <div>
             <span>Date: </span>
-            {booking.dateTime.toLocaleDateString("en-GB", {
-              weekday: "short",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
+            {booking.date}
           </div>
           <div>
             <span>Time: </span>
-            {booking.dateTime.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
+            {booking.time}
+          </div>
+          <div>
+            <span>No. of person(s): </span>
+            {booking.persons}
           </div>
           <div>
             <span>Contact: </span>
@@ -67,6 +61,10 @@ const Bookings: React.FC<PropsType> = () => {
           <div>
             <span>Email: </span>
             {booking.email}
+          </div>
+          <div className='restaurant-admin__bookings-features'>
+            <button className='restaurant-btn'>Check-in</button>
+            <button className='restaurant-btn seconday'>Cancel</button>
           </div>
         </div>
       );

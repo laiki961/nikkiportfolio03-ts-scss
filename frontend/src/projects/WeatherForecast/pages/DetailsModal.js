@@ -11,10 +11,8 @@ const WeatherDetailsModalOverlay = (props) => {
     <Card className='weather__modal'>
       <section className='weather__details-modal'>
         <div>
-          <h3 className='heading-2 u-margin-tb-sm'>
-            <span className='heading-2--up '>
-              {props.city}, {props.country}
-            </span>
+          <h3 className='weather__location heading-2 u-margin-tb-sm'>
+            {props.city}, {props.country}
           </h3>
           <p>{` ${props.formattedDate.day}, ${props.formattedDate.month} ${props.formattedDate.date}`}</p>
         </div>
@@ -23,8 +21,8 @@ const WeatherDetailsModalOverlay = (props) => {
         </div>
         <div className='weather__details'>
           <p>{props.details.description}</p>
-          <p>{`Min Temp: ${props.details.minTemp}°C`}</p>
-          <p>{`Max Temp: ${props.details.maxTemp}°C`}</p>
+          <p>{`Min Temp: ${Math.round(props.details.minTemp * 10) / 10}°C`}</p>
+          <p>{`Max Temp: ${Math.round(props.details.maxTemp * 10) / 10}°C`}</p>
           <p>{`Humidity: ${props.details.humidity}`}</p>
         </div>
       </section>

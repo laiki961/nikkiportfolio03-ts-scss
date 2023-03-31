@@ -95,5 +95,9 @@
 
   &__details {
     font-size: 1.5rem;
+
+    & > p {
+      text-transform: capitalize;
+    }
   }
 }

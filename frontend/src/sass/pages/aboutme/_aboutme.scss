@@ -1,10 +1,11 @@
 .about-me {
   &__title {
     text-transform: uppercase;
+    margin: 2rem 0;
   }
 
   &__greetings-container {
-    height: 30vh;
+    height: 40vh;
     background-image: url(../../../projects/AboutMe/images/sb-blog-programming.png);
     position: relative;
   }
@@ -15,6 +16,7 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    color: $color-white;
   }
 
   &__picture {
@@ -27,5 +29,25 @@
 
   &__paragraph {
     margin: 1.5rem 0;
+  }
+
+  &__paragraphs {
+    display: grid;
+    grid-template-columns:
+      [column-start title-start] minmax(min-content, 40rem)
+      [title-end paragraph-start] minmax(60rem, 1fr)
+      [paragraph-end column-end];
+    gap: 3rem;
+  }
+
+  &__courses > li > span:first-child {
+    display: inline-block;
+    min-width: 50rem;
+    padding: 1rem 0;
+  }
+
+  &__course-institution {
+    padding: 0 1rem;
+    font-style: italic;
   }
 }

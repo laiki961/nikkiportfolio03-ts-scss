@@ -106,7 +106,7 @@ const Checkout: React.FC<{}> = () => {
       "CAD",
       authState?.accessToken?.claims.sub
     );
-
+    console.log(paymentInfo);
     const url = `${process.env.REACT_APP_RESTAURANT_API}/payment/secure/payment-intent`;
     const requestOptions = {
       method: "POST",
@@ -203,7 +203,7 @@ const Checkout: React.FC<{}> = () => {
           <div className={`form-group ${contactInputClasses}`}>
             <label htmlFor='contact'>Contact Number</label>
             <input
-              type='text'
+              type='number'
               placeholder='Contact Number'
               onChange={contactChangedHandler}
               onBlur={contactBlurHandler}

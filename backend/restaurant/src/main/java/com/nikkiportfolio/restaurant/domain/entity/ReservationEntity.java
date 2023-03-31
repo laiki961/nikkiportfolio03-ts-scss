@@ -31,11 +31,15 @@ public class ReservationEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
+    @Column (name = "persons")
+    private Integer persons;
+
 
     public ReservationEntity(Reservation reservation){
         this.name = reservation.getName();
         this.contact = reservation.getContact();
         this.email = reservation.getEmail();
         this.dateTime = reservation.getDateTime();
+        this.persons = reservation.getPersons();
     }
 }

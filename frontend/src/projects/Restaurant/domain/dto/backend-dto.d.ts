@@ -20,3 +20,13 @@ export type ReservationInfoRequestDto = {
   time: string;
   persons: number;
 };
+
+export type ReservationInfoResponseDto = {
+  id: number;
+  name: string;
+  contact: string;
+  email: string;
+  date: string;
+  time: string;
+  persons: number;
+};

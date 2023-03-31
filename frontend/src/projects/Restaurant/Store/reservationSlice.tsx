@@ -1,18 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ReservationInfoRequestDto } from "../domain/dto/backend-dto";
+import {
+  ReservationInfoRequestDto,
+  ReservationInfoResponseDto,
+} from "../domain/dto/backend-dto";
 const baseUrl: string = `${process.env.REACT_APP_RESTAURANT_API}`;
 
-export interface ReservationInfo {
-  id: number;
-  name: string;
-  contact: string;
-  email: string;
-  dateTime: Date;
-  persons: number;
-}
-
 interface ReservationInfoState {
-  bookings: ReservationInfo[];
+  bookings: ReservationInfoResponseDto[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
@@ -40,14 +34,27 @@ export const fetchBookings = createAsyncThunk("fetchBookings", async () => {
     }
     const data = await response.json();
     const responseBookings = data._embedded.reservationEntities;
-    const formattedBookings: ReservationInfo[] = [];
+    const formattedBookings: ReservationInfoResponseDto[] = [];
     for (const key in responseBookings) {
       formattedBookings.push({
         id: responseBookings[key].id,
         name: responseBookings[key].name,
         contact: responseBookings[key].contact,
         email: responseBookings[key].email,
-        dateTime: new Date(responseBookings[key].dateTime),
+        // dateTime: new Date(responseBookings[key].dateTime),
+        time: new Date(responseBookings[key].dateTime).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        date: new Date(responseBookings[key].dateTime).toLocaleDateString(
+          "en-GB",
+          {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }
+        ),
         persons: responseBookings[key].persons,
       });
     }
