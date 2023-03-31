@@ -24,8 +24,7 @@ public class Payment {
     }
 
     public Payment (PaymentInfoRequestDto paymentInfoRequestDto){
-        logger.debug(paymentInfoRequestDto.toString());
-        this.amount = paymentInfoRequestDto.getAmount()/100;
+        this.amount = Double.valueOf(paymentInfoRequestDto.getAmount())/100;
         this.currency = paymentInfoRequestDto.getCurrency();
         this.receiptEmail = paymentInfoRequestDto.getReceiptEmail();
     }

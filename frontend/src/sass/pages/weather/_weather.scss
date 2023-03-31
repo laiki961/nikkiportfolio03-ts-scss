@@ -38,6 +38,7 @@
     text-align: center;
     border-color: transparent;
     background-color: transparent;
+    padding: 1rem;
   }
 
   // FIVE DAYS FORECASTS
@@ -94,5 +95,9 @@
 
   &__details {
     font-size: 1.5rem;
+
+    & > p {
+      text-transform: capitalize;
+    }
   }
 }

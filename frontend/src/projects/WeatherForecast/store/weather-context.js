@@ -65,46 +65,47 @@ export const WeatherContextProvider = (props) => {
         },
       });
     }
-    // //
+
     let filteredForecasts = [];
-    const forecastsCopy = [];
     const todayDate = new Date(); //Sat Jan 14 2023 14:49:09 GMT-0500 (Eastern Standard Time)
-    const dd = String(todayDate.getDate()).padStart(2, "0");
+    const forecastDays = 5;
+    const targetDateTimeStamp = todayDate.setDate(
+      todayDate.getDate() + forecastDays
+    ); //1680639107329
 
     for (const key in loadedWeatherForecast) {
       const unix_timeStamp_ms =
         +loadedWeatherForecast[key].unix_timeStamp * 1000;
       const date = new Date(unix_timeStamp_ms);
-      const formattedDate = date.getDate(unix_timeStamp_ms);
-      const formattedMonth = monthNames[date.getMonth()];
-      const formattedDay = dayNames[date.getUTCDay()];
       const formattedIcon = `http://openweathermap.org/img/wn/${loadedWeatherForecast[key].icon}@2x.png`;
 
-      forecastsCopy.push({
-        id: loadedWeatherForecast[key].id,
-        iconUrl: formattedIcon,
-        formattedDate: {
-          date: formattedDate,
-          month: formattedMonth,
-          day: formattedDay,
-        },
-        details: {
-          description: loadedWeatherForecast[key].details.description,
-          minTemp: loadedWeatherForecast[key].details.minTemp,
-          maxTemp: loadedWeatherForecast[key].details.maxTemp,
-          humidity: loadedWeatherForecast[key].details.humidity,
-        },
-      });
-
-      filteredForecasts = forecastsCopy
-        .filter((item) => item.formattedDate.date > +dd)
-        .filter(
-          (value, index, array) =>
-            array
-              .map((item) => item.formattedDate.date)
-              .indexOf(value.formattedDate.date) === index
-        );
+      if (targetDateTimeStamp > unix_timeStamp_ms) {
+        filteredForecasts.push({
+          id: loadedWeatherForecast[key].id,
+          iconUrl: formattedIcon,
+          formattedDate: {
+            date: date.getDate(unix_timeStamp_ms),
+            month: monthNames[date.getMonth()],
+            day: dayNames[date.getUTCDay()],
+          },
+          details: {
+            description: loadedWeatherForecast[key].details.description,
+            minTemp: loadedWeatherForecast[key].details.minTemp,
+            maxTemp: loadedWeatherForecast[key].details.maxTemp,
+            humidity: loadedWeatherForecast[key].details.humidity,
+          },
+        });
+      }
     }
+
+    const uniqueDates = {};
+    filteredForecasts = filteredForecasts.filter((item) => {
+      if (!uniqueDates[item.formattedDate.date]) {
+        uniqueDates[item.formattedDate.date] = true;
+        return true;
+      }
+      return false;
+    });
     setForecasts([location, filteredForecasts]);
   };
 

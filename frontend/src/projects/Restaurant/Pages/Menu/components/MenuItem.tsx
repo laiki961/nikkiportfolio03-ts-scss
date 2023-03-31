@@ -84,7 +84,7 @@ const MenuItem: React.FC<PropsType> = (props) => {
       )}
 
       <div className={`${className}-card__meal-name`}>{name}</div>
-      <i className={`${className}-card__description`}>{description}</i>
+      <i className={`${className}-card__description hidden`}>{description}</i>
       <div className={`${className}-card__price`}>
         {new Intl.NumberFormat("en-US", {
           style: "currency",

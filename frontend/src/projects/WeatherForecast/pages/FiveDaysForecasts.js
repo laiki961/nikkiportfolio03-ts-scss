@@ -11,7 +11,6 @@ const Forecasts = () => {
   useEffect(() => {}, [forecasts]);
 
   let content = <Loading />;
-  console.log(`isLoading: ${isLoading}`);
   if (forecasts.length > 0) {
     content = (
       <div className='weather__forecast-container'>

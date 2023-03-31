@@ -1,15 +1,26 @@
 .restaurant-reservation {
-  &__left {
-    background-color: $color-restaurant-light;
-    font-size: $default-font-size;
-    border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: minmax(20rem, 50rem) minmax(50rem, 1fr);
+
+  @media only screen and (max-width: $bp-small),
+    (max-width: $bp-medium),
+    (max-width: $bp-large) {
+    grid-template-columns: 1fr;
   }
-  &__right {
+
+  &__img {
     display: flex;
     align-items: center;
     padding: 0 10px;
     justify-content: center;
-    min-height: 100vh;
+  }
+
+  &__form-container {
+    background-color: $color-gray-100;
+    border-radius: 1rem;
+    margin: 4rem 0;
+    border-radius: 0.5rem;
+    min-width: 100%;
   }
 
   &__title {

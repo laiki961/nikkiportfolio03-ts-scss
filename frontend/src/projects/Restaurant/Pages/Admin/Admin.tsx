@@ -1,6 +1,6 @@
 import { Tab, Tabs } from "react-bootstrap";
 import Meals from "./components/AdminMeals";
-// import Bookings from "./components/Bookings";
+import Bookings from "./components/Bookings";
 import { useOktaAuth } from "@okta/okta-react";
 import { Navigate } from "react-router-dom";
 
@@ -9,9 +9,9 @@ const Admin = () => {
 
   return authState?.isAuthenticated ? (
     <section className='restaurant-admin min-vh-100 container'>
-      <div className='section-title'>
+      {/* <div className='section-title'>
         Hi Admin! In this page you can add, edit, remove meals from the menu.
-      </div>
+      </div> */}
       <Tabs
         defaultActiveKey='meals'
         id='uncontrolled-tab-example'
@@ -20,9 +20,9 @@ const Admin = () => {
         <Tab eventKey='meals' title='Meals'>
           <Meals authState={authState} />
         </Tab>
-        {/* <Tab eventKey='booking' title='Booking'>
+        <Tab eventKey='bookings' title='Bookings'>
           <Bookings authState={authState} />
-        </Tab> */}
+        </Tab>
       </Tabs>
     </section>
   ) : (

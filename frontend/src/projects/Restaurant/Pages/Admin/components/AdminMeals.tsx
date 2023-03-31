@@ -1,7 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthState } from "@okta/okta-auth-js";
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Loading from "../../../../../components/Loading/Loading";
 import ModalComponent from "../../../components/Modal/Modal";
 import Search from "../../../components/Search/Search";

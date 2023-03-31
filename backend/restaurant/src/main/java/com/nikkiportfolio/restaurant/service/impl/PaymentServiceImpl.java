@@ -8,6 +8,8 @@ import com.nikkiportfolio.restaurant.service.PaymentService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class PaymentServiceImpl implements PaymentService {
+    Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     private PaymentRepository paymentRepository;
 

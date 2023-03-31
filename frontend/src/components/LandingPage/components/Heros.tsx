@@ -31,7 +31,11 @@ export const Heros = () => {
             </div>
           </div>
           <div className='col-sm-6 col-md-6'>
-            <div className='col-image-weather'></div>
+            {/* <div className='col-image-weather'></div> */}
+            <iframe
+              className='project-demo'
+              src='https://www.youtube.com/embed/FwYHgpzdSTI'
+            ></iframe>
           </div>
         </div>
         <div className='row g-0'>

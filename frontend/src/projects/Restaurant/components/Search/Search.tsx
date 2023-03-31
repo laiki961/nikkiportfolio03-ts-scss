@@ -30,7 +30,7 @@ const Search: React.FC<{
   }
 
   return (
-    <div className={`${props.className} restaurnt__search`}>
+    <div className={`${props.className}`}>
       <form onSubmit={searchNameHandler}>
         <input
           type='text'
