@@ -11,8 +11,3 @@ export const oktaConfig = {
   pkce: true,
   disableHttpsCheck: true,
 };
-
-// export const devConfig = {
-//   backend: { baseUrl: "localhost:8080" },
-//   frontend: { baseUrl: "localhost:3000" },
-// };
