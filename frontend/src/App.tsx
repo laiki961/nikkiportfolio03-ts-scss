@@ -1,6 +1,10 @@
 import React from "react";
 import "./App.scss";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import RootLayout from "./components/LandingPage/Root";
 import { LandingPage } from "./components/LandingPage/LandingPage";
 import ErrorPage from "./components/Error/Error";
@@ -32,7 +36,8 @@ import RestaurantPaymentCompleted from "./projects/Restaurant/pages/Checkout/com
 
 import AboutMe from "./projects/AboutMe/AboutMe";
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <RootLayout />,
