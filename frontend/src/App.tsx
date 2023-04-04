@@ -39,32 +39,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <LandingPage /> },
-      {
-        path: "/login",
-        element: <LoginWidget config={oktaConfig} />,
-      },
+      { path: "/login", element: <LoginWidget config={oktaConfig} /> },
       { path: "/callback", element: <LoginCallback /> },
-      {
-        path: "/about-me",
-        element: <AboutMe />,
-      },
+      { path: "/about-me", element: <AboutMe /> },
       {
         path: "weather",
         element: <WeatherRootLayout />,
         children: [
-          {
-            index: true,
-            element: <WeatherHome />,
-          },
+          { index: true, element: <WeatherHome /> },
           {
             path: ":cityName",
             id: "forecast-weather",
-            children: [
-              {
-                index: true,
-                element: <Forecasts />,
-              },
-            ],
+            children: [{ index: true, element: <Forecasts /> }],
           },
         ],
       },
@@ -77,18 +63,9 @@ const router = createBrowserRouter([
           { path: "/library/search", element: <SearchBooksPage /> },
           { path: "/library/checkout/:bookId", element: <BookCheckoutPage /> },
           { path: "/library/reviewlist/:bookId", element: <ReviewListPage /> },
-          {
-            path: "/library/shelf",
-            element: <ShelfPage />,
-          },
-          {
-            path: "/library/messages",
-            element: <MessagesPage />,
-          },
-          {
-            path: "/library/admin",
-            element: <ManageLibraryPage />,
-          },
+          { path: "/library/shelf", element: <ShelfPage /> },
+          { path: "/library/messages", element: <MessagesPage /> },
+          { path: "/library/admin", element: <ManageLibraryPage /> },
         ],
       },
       {
@@ -96,22 +73,10 @@ const router = createBrowserRouter([
         element: <RestaurantRootLayout />,
         errorElement: <ErrorPage />,
         children: [
-          {
-            index: true,
-            element: <RestaurantMenuPage />,
-          },
-          {
-            path: "/restaurant/menu",
-            element: <RestaurantMenuPage />,
-          },
-          {
-            path: "/restaurant/cart",
-            element: <RestaurantCartPage />,
-          },
-          {
-            path: "/restaurant/order",
-            element: <RestaurantOrderPage />,
-          },
+          { index: true, element: <RestaurantMenuPage /> },
+          { path: "/restaurant/menu", element: <RestaurantMenuPage /> },
+          { path: "/restaurant/cart", element: <RestaurantCartPage /> },
+          { path: "/restaurant/order", element: <RestaurantOrderPage /> },
           {
             path: "/restaurant/payment-completed",
             element: <RestaurantPaymentCompleted />,
@@ -120,10 +85,7 @@ const router = createBrowserRouter([
             path: "/restaurant/reservation",
             element: <RestaurantReservationPage />,
           },
-          {
-            path: "/restaurant/admin",
-            element: <RestaurantAdminPage />,
-          },
+          { path: "/restaurant/admin", element: <RestaurantAdminPage /> },
         ],
       },
     ],
