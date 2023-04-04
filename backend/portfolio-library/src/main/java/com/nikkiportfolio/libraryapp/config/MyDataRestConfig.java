@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     // this will enable us to send request to our frontend
-    private String theAllowedOrigins = "http://localhost:3000";
+    private String theAllowedOrigins = "http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com";
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){

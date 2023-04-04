@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("restaurant/api/admin/secure")
 public class AdminApi {

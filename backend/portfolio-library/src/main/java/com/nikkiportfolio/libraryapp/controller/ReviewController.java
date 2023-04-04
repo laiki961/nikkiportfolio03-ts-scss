@@ -5,7 +5,7 @@ import com.nikkiportfolio.libraryapp.service.ReviewService;
 import com.nikkiportfolio.libraryapp.utils.ExtractJWT;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("library/api/reviews")
 public class ReviewController {
