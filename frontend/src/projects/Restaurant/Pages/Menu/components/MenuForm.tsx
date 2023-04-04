@@ -48,7 +48,8 @@ const MenuForm: React.FC<{
     }
   };
   const amountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+e.target.value);
+    if (+e.target.value >= 0) setAmount(+e.target.value);
+    return;
   };
 
   return (
