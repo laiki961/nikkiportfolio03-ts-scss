@@ -12,6 +12,7 @@ const LoginWidget = ({ config }) => {
 
   const onSuccess = async (tokens) => {
     await oktaAuth.handleLoginRedirect(tokens);
+    console.log("after handleLoginRedirect: " + authState.isAuthenticated);
     redirect("/");
   };
 
