@@ -17,6 +17,8 @@ const RootLayout: React.FC = () => {
   };
 
   const restoreOriginalUri = async (_oktaAuth: any, originalUri: any) => {
+    console.log(originalUri);
+    console.log(window.location.origin);
     navigate(toRelativeUrl(originalUri || "/", window.location.origin));
   };
 
