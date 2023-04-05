@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, redirect } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import Loading from "../components/Loading/Loading";
 import OktaSignInWidget from "./OktaSigninWidget";
@@ -10,10 +10,9 @@ const LoginWidget = ({ config }) => {
     "Normal User:\nUsername: testuser@gmail.com\nPassword: test1234!\n\nAdmin Feature: \nUsername: adminuser@email.com\nPassword: test1234!"
   );
 
-  const onSuccess = (tokens) => {
-    console.log(tokens);
-    console.log(oktaAuth);
-    oktaAuth.handleLoginRedirect(tokens);
+  const onSuccess = async (tokens) => {
+    await oktaAuth.handleLoginRedirect(tokens);
+    redirect("/");
   };
 
   const onError = (err) => {
