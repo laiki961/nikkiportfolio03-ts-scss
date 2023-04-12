@@ -114,17 +114,20 @@ export const Heros = () => {
       <div className='d-lg-none'>
         <div className='container'>
           <div className='m-2'>
-            <div className='col-image-weather'></div>
+            {/* <div className='col-image-weather'></div> */}
+            <iframe
+              className='project-demo'
+              src='https://www.youtube.com/embed/FwYHgpzdSTI'
+            ></iframe>
             <div className='mt-2'>
               <h1 className='heading-1'>
                 Weather Forecast <i className='text-3'>by Open Weather</i>
               </h1>
               <p className='lead text-1'>
-                Try to check in daily as our collection is always changing! We
-                work nonstop to provide the most accurate book selection
-                possible for our Luv 2 Read students! We are diligent about our
-                book selection and our books are always going to be our top
-                priority.
+                This app is using the free API provided by Open Weather. It
+                allows user to query the upcoming 5 days weather forecast by
+                entering a city name. User can also check the weather details by
+                clicking on a specific day.
               </p>
               <div className='label__container'>
                 <span className='label'>JavaScript</span>
@@ -142,12 +145,13 @@ export const Heros = () => {
             <div className='mt-2'>
               <h1 className='heading-1'>Library</h1>
               <p className='lead text-1'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                tincidunt, leo eu vestibulum convallis, ante enim convallis
-                libero, et sodales arcu ipsum id nisl. Maecenas consequat, lacus
-                ut ultricies hendrerit, orci mauris imperdiet nibh, scelerisque
-                tristique dolor augue ut mauris. Quisque at varius mauris, vitae
-                maximus velit. Donec in aliquam.
+                <span className='text-3 u-block u-margin-bottom-sm'>
+                  Udemy Course: Full Stack: React and Java Spring Boot - The
+                  Developer
+                </span>
+                This is the application that I have built by following along the
+                course. It gave me an example of how to build a complete
+                application.
               </p>
               <Link
                 type='button'
@@ -159,15 +163,14 @@ export const Heros = () => {
             </div>
           </div>
           <div className='m-2'>
-            <div className='col-image-library'></div>
+            <div className='col-image-restaurant'></div>
             <div className='mt-2'>
               <h1 className='heading-1'>Restaurant</h1>
               <p className='lead text-1'>
-                Try to check in daily as our collection is always changing! We
-                work nonstop to provide the most accurate book selection
-                possible for our Luv 2 Read students! We are diligent about our
-                book selection and our books are always going to be our top
-                priority.
+                I built this application to utilize and pratice all the skills
+                that I have leant. The menu is connected to the database using
+                JDBC. You can try to login as an Admin and test it out! (You
+                will see the login credential when you on the login page)
               </p>
               <Link className='btn btn-dark btn-md' to='/restaurant'>
                 Check it out

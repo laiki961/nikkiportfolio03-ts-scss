@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-// import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useCart from "../../../../hooks/useCart";
 import CartItem from "./components/CartItem";
@@ -9,10 +8,6 @@ const Cart: React.FC<{}> = () => {
   const location = useLocation();
   const history = useHistory();
 
-  // const navigate = useNavigate();
-  // const navigation = useNavigation();
-
-  // const isSubmitting = navigation.state === "submitting";
   const isSubmitting = location.state === "submitting";
 
   const onSubmitOrderHandler = () => {

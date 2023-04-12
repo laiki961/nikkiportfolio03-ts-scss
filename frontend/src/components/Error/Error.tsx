@@ -1,11 +1,9 @@
-// import { useRouteError } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import MainNavigation from "../MainNavigation/MainNavigation";
 import PageContent from "../PageContent/PageContent";
 
 function ErrorPage() {
-  // const error: any = useRouteError();
   const [error, setError] = useState<string>("");
   const history = useHistory();
 
