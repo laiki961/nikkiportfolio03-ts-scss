@@ -4,20 +4,21 @@ import Loading from "../../../../components/Loading/Loading";
 import classes from "../../Pages/Library.module.css";
 
 export const Navbar = () => {
+  let prevScrollpos = window.pageYOffset;
+
   const { authState } = useOktaAuth();
 
   if (!authState) {
     return <Loading />;
   }
 
-  // const handleLogout = async () => {
-  //   oktaAuth.signOut();
-  // };
-
   console.log(authState);
 
   return (
-    <nav className='navbar navbar-expand-lg text-warning bg-secondary py-3'>
+    <nav
+      id='library-nav'
+      className='navbar navbar-expand-lg text-warning bg-secondary py-3'
+    >
       <div className='container-fluid'>
         <NavLink className='nav-link text-white' to='/library'>
           <span className={classes["library__navbar-brand"]}>Library</span>

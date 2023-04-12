@@ -20,9 +20,6 @@ export const SearchBooksPage = () => {
   const [searchUrl, setSearchUrl] = useState("");
   const [categorySelection, setCategorySelection] = useState("Book category");
 
-  // const { authState } = useOktaAuth();
-  // console.log(authState);
-
   useEffect(() => {
     const fetchBooks = async () => {
       const baseUrl: string = `${process.env.REACT_APP_LIBRARY_API}/books`;
@@ -119,14 +116,14 @@ export const SearchBooksPage = () => {
   const paignate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className={classes["search-book-page"]}>
+    <div className='search-book-page min-vh-100'>
       <div className='container'>
         <div className='pb-5'>
           <div className='row mt-5'>
             <div className='col-6'>
               <div className='d-flex'>
                 <input
-                  className='form-control me-2'
+                  className='form-control me-2 text-3'
                   type='search'
                   placeholder='Search'
                   aria-labelledby='Search'
@@ -156,27 +153,27 @@ export const SearchBooksPage = () => {
                   aria-labelledby='dropdownMeunButton1'
                 >
                   <li onClick={() => categoryField("All")}>
-                    <a className='dropdown-item text-3' href='#'>
+                    <a className='dropdown-item text-3' href='#/library/search'>
                       All
                     </a>
                   </li>
                   <li onClick={() => categoryField("FE")}>
-                    <a className='dropdown-item text-3' href='#'>
+                    <a className='dropdown-item text-3' href='#/library/search'>
                       Front End
                     </a>
                   </li>
                   <li onClick={() => categoryField("BE")}>
-                    <a className='dropdown-item text-3' href='#'>
+                    <a className='dropdown-item text-3' href='#/library/search'>
                       Back End
                     </a>
                   </li>
                   <li onClick={() => categoryField("Data")}>
-                    <a className='dropdown-item text-3' href='#'>
+                    <a className='dropdown-item text-3' href='#/library/search'>
                       Data
                     </a>
                   </li>
                   <li onClick={() => categoryField("DevOps")}>
-                    <a className='dropdown-item text-3' href='#'>
+                    <a className='dropdown-item text-3' href='#/library/search'>
                       DevOps
                     </a>
                   </li>
@@ -186,7 +183,6 @@ export const SearchBooksPage = () => {
           </div>
           {totalAmountOfBooks > 0 ? (
             <>
-              {" "}
               <div className='mt-3'>
                 <span className='text-1'>
                   Number of result: ({totalAmountOfBooks})

@@ -1,18 +1,23 @@
 import { ReactElement } from "react";
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+// import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useCart from "../../../../hooks/useCart";
 import CartItem from "./components/CartItem";
 
 const Cart: React.FC<{}> = () => {
   const { dispatch, REDUCER_ACTIONS, cart, totalItems, totalPrice } = useCart();
-  const navigate = useNavigate();
-  const navigation = useNavigation();
+  const location = useLocation();
+  const history = useHistory();
 
-  const isSubmitting = navigation.state === "submitting";
+  // const navigate = useNavigate();
+  // const navigation = useNavigation();
+
+  // const isSubmitting = navigation.state === "submitting";
+  const isSubmitting = location.state === "submitting";
 
   const onSubmitOrderHandler = () => {
     dispatch({ type: REDUCER_ACTIONS.SUBMIT });
-    navigate("/restaurant/order");
+    history.push("/restaurant/order");
   };
 
   const listTitle: ReactElement = (
@@ -39,7 +44,7 @@ const Cart: React.FC<{}> = () => {
   }
 
   return (
-    <section className='restaurant-cart container'>
+    <section className='restaurant-cart container min-vh-100'>
       <div className='restaurant-cart__title'>Shopping Cart</div>
       {listTitle}
       <div className='restaurant-cart__list'>
@@ -54,10 +59,8 @@ const Cart: React.FC<{}> = () => {
         ))}
       </div>
       <div className='restaurant-cart__summary'>
-        {/* <p>Total Item(s): {totalItems}</p> */}
         <p>Total Item(s): {totalItems}</p>
         <p>Total Price: {totalPrice}</p>
-        {/* <p>Total Price: {totalPrice}</p> */}
         <button
           disabled={isSubmitting || totalItems === 0}
           onClick={onSubmitOrderHandler}

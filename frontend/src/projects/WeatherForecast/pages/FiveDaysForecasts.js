@@ -2,11 +2,13 @@ import ForecastDetails from "./ForecastDetails";
 import WeatherContext from "../store/weather-context";
 import Loading from "../../../components/Loading/Loading";
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Forecasts = () => {
   const { forecasts, isLoading, error } = useContext(WeatherContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const history = useHistory();
 
   useEffect(() => {}, [forecasts]);
 
@@ -34,7 +36,8 @@ const Forecasts = () => {
   }
   return (
     <section className='weather__forecasts'>
-      {error ? navigate("/weather") : isLoading ? <Loading /> : content}
+      {/* {error ? navigate("/weather") : isLoading ? <Loading /> : content} */}
+      {error ? history.push("/weather") : isLoading ? <Loading /> : content}
     </section>
   );
 };
