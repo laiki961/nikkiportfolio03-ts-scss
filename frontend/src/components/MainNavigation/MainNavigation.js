@@ -84,3 +84,29 @@ function MainNavigation() {
 }
 
 export default MainNavigation;
+
+{
+  /* <ul className='main-nav__list'>
+{!isLoading && !user && (
+  <li className='main-nav__item'>
+    <button
+      className='main-nav__feature'
+      onClick={() => loginWithRedirect()}
+    >
+      <FontAwesomeIcon icon={faUser} />
+    </button>
+
+  </li>
+)}
+{!isLoading && user && (
+  <li className='main-nav__item'>
+    <button
+      className='main-nav__feature button'
+      onClick={() => logout()}
+    >
+      <FontAwesomeIcon icon={faRightFromBracket} />
+    </button>
+  </li>
+)}
+</ul> */
+}
