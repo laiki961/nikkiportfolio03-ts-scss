@@ -14,7 +14,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     // this will enable us to send request to our frontend
     private String theAllowedOriginAWS = "http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com";
-    private String theAllowedOrigin = "http://lcoalhost:3000";
+    private String theAllowedOrigin = "http://localhost:3000";
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
