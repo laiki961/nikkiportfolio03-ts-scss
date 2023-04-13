@@ -10,8 +10,10 @@ const LoginWidget = ({ config }) => {
     "Normal User:\nUsername: testuser@gmail.com\nPassword: test1234!\n\nAdmin Feature: \nUsername: adminuser@email.com\nPassword: test1234!"
   );
 
-  const onSuccess = (tokens) => {
-    oktaAuth.handleLoginRedirect(tokens);
+  const onSuccess = async (tokens) => {
+    console.log(`onSuccess`);
+    console.log(tokens);
+    await oktaAuth.handleLoginRedirect(tokens);
   };
 
   const onError = (err) => {

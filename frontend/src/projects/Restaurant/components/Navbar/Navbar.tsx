@@ -7,7 +7,6 @@ import { useOktaAuth } from "@okta/okta-react";
 
 function RestaurantNavbar() {
   const { totalItems } = useCart();
-  console.log(totalItems);
 
   const { authState } = useOktaAuth();
 
