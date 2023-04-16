@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
@@ -20,7 +20,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   // <React.StrictMode>
-  <HashRouter>
+  <BrowserRouter>
     <Elements stripe={stripePromise}>
       <Provider store={store}>
         <WeatherContextProvider>
@@ -28,7 +28,7 @@ root.render(
         </WeatherContextProvider>
       </Provider>
     </Elements>
-  </HashRouter>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 

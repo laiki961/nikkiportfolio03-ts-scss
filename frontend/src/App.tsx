@@ -49,7 +49,7 @@ function App() {
   };
 
   return (
-    <div className='min-vh-100'>
+    <div>
       <Security
         oktaAuth={oktaAuth}
         restoreOriginalUri={restoreOriginalUri}
@@ -57,93 +57,95 @@ function App() {
       >
         <MainNavigation />
         <Switch>
-          <Route path='/' exact>
-            <LandingPage />
-          </Route>
-          <Route path='/home'>
-            <Redirect to='/' />
-          </Route>
-          <Route path='/error'>
-            <ErrorPage />
-          </Route>
-
-          <Route
-            path='/login'
-            render={() => <LoginWidget config={oktaAuth} />}
-          />
-          <Route path='/login/callback' component={LoginCallback} />
-
-          <Route path='/about-me'>
-            <AboutMe />
-          </Route>
-
-          <Route path='/library' exact>
-            <Navbar />
-            <LibraryHomePage />
-          </Route>
-          <Route path='/library/search'>
-            <Navbar />
-            <SearchBooksPage />
-          </Route>
-          <Route path='/library/checkout/:bookId'>
-            <Navbar />
-            <BookCheckoutPage />
-          </Route>
-          <Route path='/library/reviewlist/:bookId'>
-            <Navbar />
-            <ReviewListPage />
-          </Route>
-          <SecureRoute path='/library/shelf'>
-            <Navbar />
-            <ShelfPage />
-          </SecureRoute>
-          <SecureRoute path='/library/messages'>
-            <Navbar />
-            <MessagesPage />
-          </SecureRoute>
-          <SecureRoute path='/library/admin'>
-            <Navbar />
-            <ManageLibraryPage />
-          </SecureRoute>
-
-          <Route exact path='/weather'>
-            <Header />
-            <WeatherHome />
-          </Route>
-          <Route path='/weather/:cityName'>
-            <Header />
-            <Forecasts />
-          </Route>
-
-          <CartProvider>
-            <Route path='/restaurant' exact>
-              <Redirect to='/restaurant/menu' />
+          <div className='min-vh-100'>
+            <Route path='/' exact>
+              <LandingPage />
             </Route>
-            <Route path='/restaurant/menu'>
-              <RestaurantNavbar />
-              <RestaurantMenuPage />
+            <Route path='/home'>
+              <Redirect to='/' />
             </Route>
-            <Route path='/restaurant/cart'>
-              <RestaurantNavbar />
-              <RestaurantCartPage />
+            <Route path='/error'>
+              <ErrorPage />
             </Route>
-            <SecureRoute path='/restaurant/order'>
-              <RestaurantNavbar />
-              <RestaurantOrderPage />
+
+            <Route
+              path='/login'
+              render={() => <LoginWidget config={oktaAuth} />}
+            />
+            <Route path='/login/callback' component={LoginCallback} />
+
+            <Route path='/about-me'>
+              <AboutMe />
+            </Route>
+
+            <Route path='/library' exact>
+              <Navbar />
+              <LibraryHomePage />
+            </Route>
+            <Route path='/library/search'>
+              <Navbar />
+              <SearchBooksPage />
+            </Route>
+            <Route path='/library/checkout/:bookId'>
+              <Navbar />
+              <BookCheckoutPage />
+            </Route>
+            <Route path='/library/reviewlist/:bookId'>
+              <Navbar />
+              <ReviewListPage />
+            </Route>
+            <SecureRoute path='/library/shelf'>
+              <Navbar />
+              <ShelfPage />
             </SecureRoute>
-            <SecureRoute path='/restaurant/payment-completed'>
-              <RestaurantNavbar />
-              <RestaurantPaymentCompleted />
+            <SecureRoute path='/library/messages'>
+              <Navbar />
+              <MessagesPage />
             </SecureRoute>
-            <Route path='/restaurant/reservation'>
-              <RestaurantNavbar />
-              <RestaurantReservationPage />
+            <SecureRoute path='/library/admin'>
+              <Navbar />
+              <ManageLibraryPage />
+            </SecureRoute>
+
+            <Route exact path='/weather'>
+              <Header />
+              <WeatherHome />
             </Route>
-            <SecureRoute path='/restaurant/admin'>
-              <RestaurantNavbar />
-              <RestaurantAdminPage />
-            </SecureRoute>
-          </CartProvider>
+            <Route path='/weather/:cityName'>
+              <Header />
+              <Forecasts />
+            </Route>
+
+            <CartProvider>
+              <Route path='/restaurant' exact>
+                <Redirect to='/restaurant/menu' />
+              </Route>
+              <Route path='/restaurant/menu'>
+                <RestaurantNavbar />
+                <RestaurantMenuPage />
+              </Route>
+              <Route path='/restaurant/cart'>
+                <RestaurantNavbar />
+                <RestaurantCartPage />
+              </Route>
+              <SecureRoute path='/restaurant/order'>
+                <RestaurantNavbar />
+                <RestaurantOrderPage />
+              </SecureRoute>
+              <SecureRoute path='/restaurant/payment-completed'>
+                <RestaurantNavbar />
+                <RestaurantPaymentCompleted />
+              </SecureRoute>
+              <Route path='/restaurant/reservation'>
+                <RestaurantNavbar />
+                <RestaurantReservationPage />
+              </Route>
+              <SecureRoute path='/restaurant/admin'>
+                <RestaurantNavbar />
+                <RestaurantAdminPage />
+              </SecureRoute>
+            </CartProvider>
+          </div>
         </Switch>
       </Security>
       <Footer />
