@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 import RestaurantNavbar from "../components/Navbar/Navbar";
 
 import { CartProvider } from "../Store/CartProvider";
@@ -11,7 +11,7 @@ function RestaurantRootLayout() {
     <div className='restaurant__bg-image min-vh-100'>
       <CartProvider>
         <RestaurantNavbar />
-        <Outlet />
+        {/* <Outlet /> */}
       </CartProvider>
     </div>
   );

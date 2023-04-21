@@ -13,7 +13,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     // this will enable us to send request to our frontend
-    private String theAllowedOrigins = "http://localhost:3000";
+    private String theAllowedOriginAWS = "http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com";
+    private String theAllowedOrigin = "http://localhost:3000";
+    private String theAllowedOriginCloudFront ="https://d1tixx1eh3q5bb.cloudfront.net";
+
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors){
@@ -33,7 +36,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
 //        Configure CORS Mapping
         cors.addMapping((config.getBasePath() + "/**"))
-                .allowedOrigins(theAllowedOrigins);
+                .allowedOrigins(theAllowedOriginAWS, theAllowedOrigin, theAllowedOriginCloudFront);
     }
 
     private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions){

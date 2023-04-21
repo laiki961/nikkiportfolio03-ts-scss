@@ -1,18 +1,14 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { HistoryPage } from "./components/HistoryPage";
 import { Loans } from "./components/Loans";
-
-// import { HistoryPage } from "./components/HistoryPage";
-// import { Loans } from "./components/Loans";
 
 export const ShelfPage = () => {
   const [historyClick, setHistoryClick] = useState(false);
 
   const { authState } = useOktaAuth();
 
-  return authState?.isAuthenticated ? (
+  return (
     <div className='container min-vh-100'>
       <div className='mt-3'>
         <nav>
@@ -65,7 +61,5 @@ export const ShelfPage = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <Navigate to={"/"} />
   );
 };

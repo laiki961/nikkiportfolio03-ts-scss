@@ -20,7 +20,7 @@ function MainNavigation() {
   console.log(authState);
 
   window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
+    let currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("main-nav").style.top = "0";
     } else {
@@ -34,20 +34,12 @@ function MainNavigation() {
       <header className='main-nav__header container-xxl'>
         <ul className='main-nav__list'>
           <li>
-            <NavLink
-              to='/'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-              end
-            >
+            <NavLink to='/' activeClassName='active' exact>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to='/about-me'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-              end
-            >
+            <NavLink to='/about-me' activeClassName='active' exact>
               About Me
             </NavLink>
           </li>
@@ -55,22 +47,13 @@ function MainNavigation() {
           <li className='main-nav__dropdown'>
             <button className='main-nav__dropdown-button'>Projects</button>
             <div className='main-nav__dropdown-content'>
-              <NavLink
-                to='/weather'
-                className={({ isActive }) => (isActive ? "active" : undefined)}
-              >
+              <NavLink to='/weather' activeClassName='active'>
                 Weather Forecast
               </NavLink>
-              <NavLink
-                to='/library'
-                className={({ isActive }) => (isActive ? "active" : undefined)}
-              >
+              <NavLink to='/library' activeClassName='active'>
                 Library
               </NavLink>
-              <NavLink
-                to='/restaurant'
-                className={({ isActive }) => (isActive ? "active" : undefined)}
-              >
+              <NavLink to='/restaurant' activeClassName='active'>
                 Restaurant
               </NavLink>
             </div>
@@ -101,3 +84,29 @@ function MainNavigation() {
 }
 
 export default MainNavigation;
+
+{
+  /* <ul className='main-nav__list'>
+{!isLoading && !user && (
+  <li className='main-nav__item'>
+    <button
+      className='main-nav__feature'
+      onClick={() => loginWithRedirect()}
+    >
+      <FontAwesomeIcon icon={faUser} />
+    </button>
+
+  </li>
+)}
+{!isLoading && user && (
+  <li className='main-nav__item'>
+    <button
+      className='main-nav__feature button'
+      onClick={() => logout()}
+    >
+      <FontAwesomeIcon icon={faRightFromBracket} />
+    </button>
+  </li>
+)}
+</ul> */
+}

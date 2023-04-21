@@ -1,13 +1,10 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
-// import AdminMessageRequest from '../../../models/AdminMessageRequest';
 import MessageModel from "../../../Models/MessageModel";
 import { Pagination } from "../../../../../components/Pagination/Pagination";
 import Loading from "../../../../..//components/Loading/Loading";
 import { AdminMessage } from "./AdminMessage";
 import AdminMessageRequest from "../../../Models/AdminMessageRequest";
-// import { SpinnerLoading } from '../../Utils/SpinnerLoading';
-// import { AdminMessage } from './AdminMessage';
 
 export const AdminMessages = () => {
   const { authState } = useOktaAuth();

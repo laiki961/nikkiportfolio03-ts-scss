@@ -1,5 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
@@ -10,7 +11,8 @@ import useCart from "../../../../hooks/useCart";
 const Checkout: React.FC<{}> = () => {
   const { dispatch, REDUCER_ACTIONS } = useCart();
   const { authState } = useOktaAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const history = useHistory();
 
   const totalPriceConverted = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -25,7 +27,8 @@ const Checkout: React.FC<{}> = () => {
   useEffect(() => {
     if (transactionCompleted) {
       dispatch({ type: REDUCER_ACTIONS.COMPLETED });
-      navigate("/restaurant/payment-completed");
+      // navigate("/restaurant/payment-completed");
+      history.push("/restaurant/payment-completed");
     }
   }, [transactionCompleted]);
 
@@ -169,7 +172,7 @@ const Checkout: React.FC<{}> = () => {
     </div>;
   }
 
-  return authState?.isAuthenticated ? (
+  return (
     <section className='restaurant-checkout container'>
       <form onSubmit={checkout}>
         <div className='restaurant-checkout__user-info'>
@@ -264,8 +267,6 @@ const Checkout: React.FC<{}> = () => {
         </div>
       </form>
     </section>
-  ) : (
-    <Navigate to={"/login"} />
   );
 };
 

@@ -24,9 +24,9 @@ export const Heros = () => {
                 <Link
                   type='button'
                   className='btn btn-outline-secondary btn-lg text-black'
-                  to='search'
+                  to='/library/search'
                 >
-                  Explore top books{" "}
+                  Explore top books
                 </Link>
               ) : (
                 <Link
