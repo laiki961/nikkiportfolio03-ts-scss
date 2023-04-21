@@ -20,6 +20,7 @@ const MenuForm: React.FC<{
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    console.log(`submitHandler`);
     if (amount === 0 || amount < 1 || amount > 5) {
       setAmountIsValid(false);
       return;

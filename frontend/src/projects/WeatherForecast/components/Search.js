@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useHistory } from "react-router-dom";
 import useInput from "../hooks/use-input";
 import WeatherContext from "../store/weather-context";
 import Button from "../ui/Button";
@@ -7,7 +7,7 @@ import Input from "../ui/Input";
 
 const Search = ({ className }) => {
   const { onFetch, error } = useContext(WeatherContext);
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const isNotEmpty = (value) => value.trim() !== "";
   const {
@@ -30,13 +30,13 @@ const Search = ({ className }) => {
     e.preventDefault();
     cityBlurHandler();
     if (!formIsValid) {
-      navigate("/weather");
+      history.push("/weather");
     } else {
       onFetch(cityValue);
       if (error) {
-        navigate("/weather");
+        history.push("/weather");
       }
-      navigate(`/weather/${cityValue.toLowerCase()}`);
+      history.push(`/weather/${cityValue.toLowerCase()}`);
     }
     resetCityInput();
   };

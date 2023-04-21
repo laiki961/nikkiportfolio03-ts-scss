@@ -7,6 +7,7 @@ import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 import { LatestReviews } from "./LatestReviews";
 import { useOktaAuth } from "@okta/okta-react";
 import ReviewRequestModel from "../../Models/ReviewRequestModel";
+import { useParams } from "react-router-dom";
 
 export const BookCheckoutPage = () => {
   const { authState } = useOktaAuth();
@@ -32,7 +33,11 @@ export const BookCheckoutPage = () => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
   const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
-  const bookId = window.location.pathname.split("/")[3];
+  interface RouteParams {
+    bookId: string;
+  }
+
+  const { bookId } = useParams<RouteParams>();
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -64,7 +69,7 @@ export const BookCheckoutPage = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [isCheckedOut]);
+  }, [isCheckedOut, bookId]);
 
   useEffect(() => {
     const fetchBookReviews = async () => {
@@ -111,7 +116,7 @@ export const BookCheckoutPage = () => {
       setIsLoadingReview(false);
       setHttpError(error.message);
     });
-  }, [isReviewLeft]);
+  }, [isReviewLeft, bookId]);
 
   useEffect(() => {
     const fetchUserReviewBook = async () => {
@@ -137,7 +142,7 @@ export const BookCheckoutPage = () => {
       setIsLoadingUserReview(false);
       setHttpError(error.message);
     });
-  }, [authState]);
+  }, [authState, bookId]);
 
   useEffect(() => {
     const fetchUserCurrentLoansCount = async () => {
@@ -190,7 +195,7 @@ export const BookCheckoutPage = () => {
       setIsLoadingBookCheckedOut(false);
       setHttpError(error.message);
     });
-  }, [authState]);
+  }, [authState, bookId]);
 
   if (
     isLoading ||

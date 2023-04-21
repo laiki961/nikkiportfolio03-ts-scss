@@ -2,12 +2,11 @@ import { Tab, Tabs } from "react-bootstrap";
 import Meals from "./components/AdminMeals";
 import Bookings from "./components/Bookings";
 import { useOktaAuth } from "@okta/okta-react";
-import { Navigate } from "react-router-dom";
 
 const Admin = () => {
   const { authState } = useOktaAuth();
 
-  return authState?.isAuthenticated ? (
+  return (
     <section className='restaurant-admin min-vh-100 container'>
       {/* <div className='section-title'>
         Hi Admin! In this page you can add, edit, remove meals from the menu.
@@ -25,8 +24,6 @@ const Admin = () => {
         </Tab>
       </Tabs>
     </section>
-  ) : (
-    <Navigate to={"/"} />
   );
 };
 

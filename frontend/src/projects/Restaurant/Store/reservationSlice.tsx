@@ -41,7 +41,6 @@ export const fetchBookings = createAsyncThunk("fetchBookings", async () => {
         name: responseBookings[key].name,
         contact: responseBookings[key].contact,
         email: responseBookings[key].email,
-        // dateTime: new Date(responseBookings[key].dateTime),
         time: new Date(responseBookings[key].dateTime).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",

@@ -63,8 +63,8 @@ const Bookings: React.FC<PropsType> = () => {
             {booking.email}
           </div>
           <div className='restaurant-admin__bookings-features'>
-            <button className='restaurant-btn'>Check-in</button>
-            <button className='restaurant-btn seconday'>Cancel</button>
+            {/* <button className='restaurant-btn'>Check-in</button>
+            <button className='restaurant-btn seconday'>Cancel</button> */}
           </div>
         </div>
       );

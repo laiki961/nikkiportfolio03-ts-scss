@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import useInput from "../../../../hooks/use-input";
 import { ReservationInfoRequestDto } from "../../domain/dto/backend-dto";
 import { makeReservation } from "../../Store/reservationSlice";
 import { useAppDispatch, useAppSelector } from "../../Store/store";
 
 const Reservation = () => {
-  const { bookings, status, error } = useAppSelector(
-    (state) => state.reservation
-  );
+  const { status, error } = useAppSelector((state) => state.reservation);
   const dispatch = useAppDispatch();
   const [message, setMessage] = useState<string>("");
 
@@ -156,17 +154,12 @@ const Reservation = () => {
 
   return (
     <section className='restaurant-reservation container'>
-      {/* <Row> */}
       <div className='restaurant-reservation__img'>
-        {/* <Col className='restaurant-reservation__right'> */}
         <img
           src={require("../../images/reservation.jpeg")}
           className='reservation-img'
         ></img>
-        {/* <Calendar /> */}
-        {/* </Col> */}
       </div>
-      {/* <Col lg={7} className='restaurant-reservation__left'> */}
       <div className='restaurant-reservation__form-container'>
         <div className='restaurant-reservation__title'>
           Make a reservation online
@@ -274,8 +267,6 @@ const Reservation = () => {
           </div>
         </form>
       </div>
-      {/* </Col> */}
-      {/* </Row> */}
     </section>
   );
 };

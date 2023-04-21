@@ -18,39 +18,27 @@ function RestaurantNavbar() {
         </Navbar.Brand>
         <ul className='restaurant-nav__list'>
           <li>
-            <NavLink
-              to='menu'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
+            <NavLink to='menu' activeClassName='active'>
               Menu
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to='reservation'
-              className={({ isActive }) => (isActive ? "active" : undefined)}
-            >
+            <NavLink to='reservation' activeClassName='active'>
               Reservation
             </NavLink>
           </li>
           {authState?.accessToken?.claims.userType === "admin" && (
             <li>
-              <NavLink
-                to='admin'
-                className={({ isActive }) => (isActive ? "active" : undefined)}
-              >
+              <NavLink to='admin' activeClassName='active'>
                 Admin
               </NavLink>
             </li>
           )}
           <li>
             <NavLink
-              to='cart'
-              className={({ isActive }) =>
-                isActive
-                  ? "active restaurant-nav__cart"
-                  : "restaurant-nav__cart"
-              }
+              to='/restaurant/cart'
+              activeClassName='active restaurant-nav__cart'
+              className='restaurant-nav__cart'
             >
               <FontAwesomeIcon icon={faCartShopping} />
               <span className={`restaurant-nav__badge`}>{totalItems}</span>

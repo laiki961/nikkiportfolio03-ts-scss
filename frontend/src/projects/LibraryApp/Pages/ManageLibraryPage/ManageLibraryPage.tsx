@@ -1,11 +1,9 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router";
 import { AddNewBook } from "./components/AddNewBook";
 import { AdminMessages } from "./components/AdminMessages";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
-// import { AddNewBook } from "./components/AddNewBook";
-// import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 
 export const ManageLibraryPage = () => {
   const { authState } = useOktaAuth();
@@ -29,12 +27,11 @@ export const ManageLibraryPage = () => {
     setMessagesClick(true);
   }
 
-  //check the user type: admin or normal user
   if (authState?.accessToken?.claims.userType === undefined) {
-    return <Navigate to='/library' />;
+    return <Redirect to='/' />;
   }
 
-  return authState?.isAuthenticated ? (
+  return (
     <div className='container min-vh-100'>
       <div className='my-5'>
         <h3>Manage Library</h3>
@@ -109,7 +106,5 @@ export const ManageLibraryPage = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <Navigate to='/login' />
   );
 };

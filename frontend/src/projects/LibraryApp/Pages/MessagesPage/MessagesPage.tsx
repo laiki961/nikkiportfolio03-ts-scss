@@ -1,6 +1,5 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { Messages } from "./components/Messages";
 import { PostNewMessage } from "./components/PostNewMessage";
 
@@ -8,7 +7,7 @@ export const MessagesPage = () => {
   const { authState } = useOktaAuth();
   const [messagesClick, setMessagesClick] = useState(false);
 
-  return authState?.isAuthenticated ? (
+  return (
     <div className='container min-vh-100'>
       <div className='mt-3 mb-2'>
         <nav>
@@ -61,7 +60,5 @@ export const MessagesPage = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <Navigate to='/login' />
   );
 };
