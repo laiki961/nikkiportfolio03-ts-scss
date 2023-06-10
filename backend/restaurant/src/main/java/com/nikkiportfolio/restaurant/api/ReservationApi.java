@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
-@CrossOrigin(origins = {"http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com","http://localhost:3000", "https://d1tixx1eh3q5bb.cloudfront.net"})
+@CrossOrigin(origins = {"http://nikki-portfolio-frontend.s3-website.us-east-2.amazonaws.com","http://localhost:3000", "https://d1u8ufdpmtpp72.cloudfront.net"})
 @RestController
 @RequestMapping("restaurant/api/reservation")
 public class ReservationApi {

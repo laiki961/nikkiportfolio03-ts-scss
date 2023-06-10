@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useOktaAuth } from "@okta/okta-react";
 import { Button, Card, Container, Form } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 
 function SignIn() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState<any>(null);
 
   const { oktaAuth } = useOktaAuth();
   const [sessionToken, setSessionToken] = React.useState<string | null>(null);
@@ -34,10 +36,24 @@ function SignIn() {
           sessionToken: sessionToken,
         });
       })
-      .catch((err) => console.log(`handle error here: ${err}`));
+      .catch((err) => {
+        setError(err);
+        console.log(`handle error here: ${err}`);
+      });
   };
 
   if (sessionToken) return <div />;
+
+  if (error) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/error",
+          state: { statusCode: error },
+        }}
+      />
+    );
+  }
 
   return (
     <Container

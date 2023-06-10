@@ -20,7 +20,7 @@ export const ReturnBook: React.FC<{ book: BookModel }> = (props) => {
         <p>{props.book.author}</p>
         <Link
           className='btn btn-outline-secondary text-black'
-          to={`checkout/${props.book.id}`}
+          to={`library/checkout/${props.book.id}`}
         >
           Reserve
         </Link>
