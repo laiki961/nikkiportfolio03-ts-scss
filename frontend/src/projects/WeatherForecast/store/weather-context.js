@@ -5,6 +5,7 @@ import { config } from "../../../lib/config";
 
 const WeatherContext = React.createContext({
   onFetch: (city) => {},
+  enteredCityInUrl: false,
   forecasts: [],
   isLoading: null,
   error: null,
@@ -110,6 +111,11 @@ export const WeatherContextProvider = (props) => {
   };
 
   useEffect(() => {
+    const enteredCity = window.location.pathname.split("/")[2];
+    if (enteredCity !== undefined) {
+      setCity(enteredCity);
+    }
+
     city &&
       fetchWeather(
         {

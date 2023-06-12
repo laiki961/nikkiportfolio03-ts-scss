@@ -1,5 +1,4 @@
 import { useOktaAuth } from "@okta/okta-react";
-// import { Navigate, useNavigate } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ import useCart from "../../../../hooks/useCart";
 const Checkout: React.FC<{}> = () => {
   const { dispatch, REDUCER_ACTIONS } = useCart();
   const { authState } = useOktaAuth();
-  // const navigate = useNavigate();
   const history = useHistory();
 
   const totalPriceConverted = new Intl.NumberFormat("en-US", {
@@ -27,7 +25,6 @@ const Checkout: React.FC<{}> = () => {
   useEffect(() => {
     if (transactionCompleted) {
       dispatch({ type: REDUCER_ACTIONS.COMPLETED });
-      // navigate("/restaurant/payment-completed");
       history.push("/restaurant/payment-completed");
     }
   }, [transactionCompleted]);
@@ -231,18 +228,6 @@ const Checkout: React.FC<{}> = () => {
               <div className='error-text'>Please enter a valid email.</div>
             )}
           </div>
-          {/* <hr className='solid' />
-          <div className='restaurant-checkout__title'>
-            Prefered Delivery Date & Time
-          </div>
-          <div className='form-group'>
-            <label htmlFor='date'>Date</label>
-            <input type='date'></input>
-          </div>
-          <div className='form-group'>
-            <label htmlFor='date'>Time</label>
-            <input type='time'></input>
-          </div> */}
           <hr className='solid' />
           <div className='restaurant-checkout__title'>Payment Details</div>
           <div className='form-group'>

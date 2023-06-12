@@ -15,7 +15,7 @@ import AboutMe from "./projects/AboutMe/AboutMe";
 
 import Header from "./projects/WeatherForecast/ui/Header";
 import WeatherHome from "./projects/WeatherForecast/pages/WeatherForecastHome";
-import Forecasts from "./projects/WeatherForecast/pages/FiveDaysForecasts";
+import Forecast from "./projects/WeatherForecast/pages/FiveDaysForecast";
 
 import LibraryHomePage from "./projects/LibraryApp/Pages/LibraryHomePage/HomePage";
 import { Navbar } from "./projects/LibraryApp/Components/NavbarAndFooter/Navbar";
@@ -113,7 +113,7 @@ function App() {
             </Route>
             <Route path='/weather/:cityName'>
               <Header />
-              <Forecasts />
+              <Forecast />
             </Route>
 
             <CartProvider>

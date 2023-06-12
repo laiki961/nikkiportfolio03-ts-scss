@@ -4,7 +4,7 @@ import Loading from "../../../components/Loading/Loading";
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-const Forecasts = () => {
+const Forecast = () => {
   const { forecasts, isLoading, error } = useContext(WeatherContext);
   const history = useHistory();
 
@@ -34,10 +34,9 @@ const Forecasts = () => {
   }
   return (
     <section className='weather__forecasts'>
-      {/* {error ? navigate("/weather") : isLoading ? <Loading /> : content} */}
       {error ? history.push("/weather") : isLoading ? <Loading /> : content}
     </section>
   );
 };
 
-export default Forecasts;
+export default Forecast;

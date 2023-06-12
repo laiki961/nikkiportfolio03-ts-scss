@@ -14,7 +14,7 @@ const WeatherDetailsModalOverlay = (props) => {
           <h3 className='weather__location heading-2 u-margin-tb-sm'>
             {props.city}, {props.country}
           </h3>
-          <p>{` ${props.formattedDate.day}, ${props.formattedDate.month} ${props.formattedDate.date}`}</p>
+          <p>{`${props.formattedDate.day}, ${props.formattedDate.month} ${props.formattedDate.date}`}</p>
         </div>
         <div>
           <img src={props.icon} alt='weathericon' />

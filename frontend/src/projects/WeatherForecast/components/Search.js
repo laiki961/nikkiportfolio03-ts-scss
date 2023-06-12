@@ -33,11 +33,10 @@ const Search = ({ className }) => {
       history.push("/weather");
     } else {
       onFetch(cityValue);
-      // if (error) {
-      //   history.push("/weather");
-      // }
-      history.push(`/weather`);
-      // history.push(`/weather/${cityValue.toLowerCase()}`);
+      if (error) {
+        history.push("/weather");
+      }
+      history.push(`/weather/${cityValue.toLowerCase()}`);
     }
     resetCityInput();
   };
